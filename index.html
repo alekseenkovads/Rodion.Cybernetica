@@ -391,3 +391,122 @@
       </div>
       <div class="ring-item">
         <div class="ring-wrap">
+          <svg viewBox="0 0 76 76"><circle class="ring-bg" cx="38" cy="38" r="31.5"/><circle class="ring-fill rf-muted" cx="38" cy="38" r="31.5" data-pct="40"/></svg>
+          <div class="ring-num">26</div>
+        </div>
+        <div class="ring-label">Аналитика</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bars-block">
+    <div class="bars-title">// файлы</div>
+    <div class="bar-row"><div class="bar-label">Gartner</div><div class="bar-track"><div class="bar-fill" data-w="100"></div></div><div class="bar-val">$2.5T</div></div>
+    <div class="bar-row"><div class="bar-label">Goldman</div><div class="bar-track"><div class="bar-fill" data-w="72"></div></div><div class="bar-val">$667B</div></div>
+    <div class="bar-row"><div class="bar-label">Seq. gap</div><div class="bar-track"><div class="bar-fill" data-w="48"></div></div><div class="bar-val">$450B</div></div>
+    <div class="bar-row"><div class="bar-label">WEF jobs+</div><div class="bar-track"><div class="bar-fill" data-w="8"></div></div><div class="bar-val">+78M</div></div>
+  </div>
+</div>
+
+<div class="right">
+  <a class="tool-card" href="CyberneticaWeb.html" target="_blank" rel="noopener">
+    <div class="deco-ring"></div>
+    <div class="deco-ring-inner"></div>
+    <div class="deco-sector"></div>
+    <div class="card-num">01 / Product</div>
+    <div class="card-title">Cybernetica<br>Web</div>
+    <p class="card-desc">Лендинг агентства. Гейминг в России — позиционирование и бренд.</p>
+    <div class="card-pills">
+      <span class="pill">Gaming</span>
+      <span class="pill">Brand</span>
+      <span class="pill">Landing</span>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a class="tool-card" href="owner-briefing.html" target="_blank" rel="noopener">
+    <div class="deco-ring"></div>
+    <div class="deco-ring-inner"></div>
+    <div class="deco-sector"></div>
+    <div class="card-num">02 / Internal</div>
+    <div class="card-title">Owner<br>Briefing</div>
+    <p class="card-desc">Внутренний документ для владельца. Реструктуризация и план перехода на COO.</p>
+    <div class="card-pills">
+      <span class="pill">COO</span>
+      <span class="pill">Operations</span>
+      <span class="pill">Plan</span>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a class="tool-card" href="cyberneticaWebGemini.html" target="_blank" rel="noopener">
+    <div class="deco-ring"></div>
+    <div class="deco-ring-inner"></div>
+    <div class="deco-sector"></div>
+    <div class="card-num">03 / AI Core</div>
+    <div class="card-title">Cybernetica<br>Web Gemini</div>
+    <p class="card-desc">Интеграция генеративных систем. Автоматизация процессов и протоколы Gemini API.</p>
+    <div class="card-pills">
+      <span class="pill">AI Core</span>
+      <span class="pill">Gemini API</span>
+      <span class="pill">Automation</span>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a class="tool-card" href="cybernetica-transcribator.html" target="_blank" rel="noopener">
+    <div class="deco-ring"></div>
+    <div class="deco-ring-inner"></div>
+    <div class="deco-sector"></div>
+    <div class="card-num">04 / Research</div>
+    <div class="card-title">Transcription<br>Market 2025</div>
+    <p class="card-desc">Анализ рынка AI-транскрибаторов — игроки, цены, языки и точность.</p>
+    <div class="card-pills">
+      <span class="pill">Market</span>
+      <span class="pill">Speech-to-text</span>
+      <span class="pill">Benchmarks</span>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a class="tool-card" href="GamingAndCybersportMarketOverviewByRodion.html" target="_blank" rel="noopener">
+    <div class="deco-ring"></div>
+    <div class="deco-ring-inner"></div>
+    <div class="deco-sector"></div>
+    <div class="card-num">05 / Market Insights</div>
+    <div class="card-title">Gaming &<br>Cybersport</div>
+    <p class="card-desc">Глубокий аналитический обзор вертикали гейминга и киберспорта.</p>
+    <div class="card-pills">
+      <span class="pill">Gaming</span>
+      <span class="pill">Cybersport</span>
+      <span class="pill">Review</span>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+</div>
+
+<footer>
+  <span><span class="dot"></span>alekseenkovads.github.io/Rodion.Cybernetica</span>
+  <span>5 documents · updated may 2026</span>
+</footer>
+
+</div>
+<script>
+  window.addEventListener('load', () => {
+    const C = 2 * Math.PI * 31.5; // circumference r=31.5
+    setTimeout(() => {
+      document.querySelectorAll('.ring-fill').forEach(el => {
+        const pct = +el.dataset.pct / 100;
+        el.style.strokeDasharray = C;
+        el.style.strokeDashoffset = C * (1 - pct);
+      });
+    }, 350);
+    setTimeout(() => {
+      document.querySelectorAll('.bar-fill').forEach(el => {
+        el.style.width = el.dataset.w + '%';
+      });
+    }, 450);
+  });
+</script>
+</body>
+</html>
