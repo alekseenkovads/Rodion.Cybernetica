@@ -1,822 +1,281 @@
-{
-  "runSettings": {
-    "temperature": 1.0,
-    "model": "models/gemini-3.5-flash",
-    "topP": 0.95,
-    "topK": 64,
-    "maxOutputTokens": 65536,
-    "safetySettings": [{
-      "category": "HARM_CATEGORY_HARASSMENT",
-      "threshold": "OFF"
-    }, {
-      "category": "HARM_CATEGORY_HATE_SPEECH",
-      "threshold": "OFF"
-    }, {
-      "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-      "threshold": "OFF"
-    }, {
-      "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-      "threshold": "OFF"
-    }],
-    "responseMimeType": "application/json",
-    "enableCodeExecution": false,
-    "responseSchema": {
-      "type": "OBJECT",
-      "properties": {
-        "response": {
-          "type": "STRING"
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth bg-black text-white selection:bg-cyan-500 selection:text-black">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CYBERNETICA — Premium Gaming & Esports Advertising</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            obsidian: '#000000',
+            silver: '#888888',
+            accent: '#00F0FF',
+            accentPurple: '#7000FF',
+            borderDark: '#1A1A1A',
+            borderHover: '#333333',
+          }
         }
       }
-    },
-    "enableSearchAsATool": false,
-    "enableBrowseAsATool": false,
-    "enableAutoFunctionResponse": false,
-    "outputResolution": "1K",
-    "thinkingLevel": "THINKING_HIGH",
-    "enableImageSearch": false,
-    "enableGoogleMaps": false,
-    "enableAgentThinkingSummariesControl": false,
-    "enableAgentVisualizationControl": false,
-    "enableAgentCollaborativePlanningControl": false,
-    "environmentMode": "new"
-  },
-  "systemInstruction": {
-  },
-  "chunkedPrompt": {
-    "chunks": [{
-      "text": "Act as an award-winning Senior UI/UX Architect and Lead Front-end Developer. Generate a high-end, premium B2B corporate website for \"Cybernetica\" — the leading gaming and esports advertising agency in Russia. \n\nDesign Aesthetics \u0026 Philosophy:\n- Visual References: Merge the ultra-clean, developer-first, high-contrast tech minimalism of Vercel.com with the cinematic, utilitarian, industrial epicness of SpaceX.com.\n- Color Palette: Deep space obsidian black (#000000) as the primary background. Text colors: Pure White (#FFFFFF) for primary headers, Muted Silver/Gray (#888888) for body text and secondary elements. Accent colors: Cyber Neon Cyan (#00F0FF) or Electric Purple (#7000FF) used extremely sparingly only for active states, border glows, and primary CTAs.\n- Typography: Strict, premium sans-serif/monospaced hybrid. Use fonts like Geist Mono, JetBrains Mono, or Inter. Heavy font weights for impact titles, precise light tracking for numerical data.\n- Layout: Rigid bento-grid system, razor-sharp borders (1px solid #1A1A1A or #222222), zero rounded corners (sharp 0px-4px radius only), micro-animations on hover (border illumination, text color shift).\n\nStructure \u0026 Layout Components:\n\n1. Navigation Bar:\n- Minimalist sticky header. Left: Cybernetica typography logo placeholder. Center: Links (Expertise, Data \u0026 Analytics, Services, Case Studies). Right: High-contrast CTA button \"[ Get Strategy ]\" with a sharp Vercel-like border glow.\n\n2. Hero Section (The Ultimate Statement):\n- Large, bold typography. Title: \"Cybernetica. Professional Gateway to Gaming \u0026 Esports.\"\n- Subtitle: \"The definitive market-leader for brand integration into the gaming ecosystem.\"\n- Dynamic asset: A subtle, dark abstract 3D grid or low-poly particle matrix moving slowly in the background (SpaceX style).\n- CTA: Primary solid white button \"[ Initiate Integration ]\" and secondary text link \"[ Read Market Report 2026 ]\".\n\n3. Positioning Manifest Section:\n- High-impact typography block. Large text size (4vw). Muted gray text where keywords like \"Gaming in Russia\", \"Cybernetica\", and \"Absolute Expertise\" light up in pure white as user hovers over the block. \n\n4. Analytics \u0026 Research Engine (The Proof of Competence):\n- A premium, interactive data dashboard widget. Split layout. Left: Vertical tabs (Market Volume, Target Audience Demographics, 2026-2030 Industry Forecast). Right: Clean, stylized data visualization graphs, trend lines, and metrics (e.g., \"65M+ Active Players\", \"ROI +240%\"). This must look like a high-tech financial terminal or Vercel analytics dashboard.\n\n5. Service Matrix (Bento Grid):\n- 4-column sharp bento grid displaying core capabilities: Esports Sponsorships, In-Game Integrations, Streamer Campaigns, Custom Gaming Content. Each card features clean typography, a short technical description, and a subtle icon.\n\n6. B2B Lead Capture (The Knowledge Hub):\n- A clean, dark form container. Title: \"Access Exclusive Market Intelligence\". Feature a downloadable PDF preview card: \"Cybernetica Report: Gaming Audience Behavior \u0026 Ad Effectiveness 2026\". \n- Form fields: 1px border inputs for [Name], [Company], [Corporate Email] with an absolute minimalist submit button \"[ Download Report ]\".\n\n7. Footer:\n- Minimalist 4-column fat footer. Legal text, social links (Telegram, VK), and a bold technical timestamp or system status indicator to emphasize technology focus.\n\nGeneral Code/Design Output Requirements:\n- Render clean, semantic layouts. If writing code (React/Tailwind/HTML), use accurate layout spacing (py-24, space-y-12), perfectly aligned grids, flexbox components, and pure CSS transitions for hover states. Ensure maximum desktop responsiveness. Do not use generic icons or soft gradients. Keep it sharp, technological, and authoritarian.\n",
-      "role": "user",
-      "tokenCount": 901,
-      "createTime": "2026-05-19T20:59:12.716Z"
-    }, {
-      "text": "**Defining the Design Brief**\n\nI\u0027m solidifying the core design brief for Cybernetica\u0027s landing page. My current focus is refining the target persona and their needs within the Russian market for gaming and esports advertising, in the B2B context. The goal is now clearly to design and build a premium, high-end landing page.\n\n\n**Defining the Visual Style**\n\nI\u0027ve been working on defining the visual style. The plan is for a high-contrast, tech minimalist look with hints of a cinematic, industrial utility, drawing inspiration from Vercel and SpaceX. This involves a deep obsidian black, pure white, muted silver/gray, and a cyber neon cyan or electric purple for accents. I\u0027m leaning toward a monospace/sans-serif hybrid typeface with sharp, tight tracking and heavy weights for headers. Layout will be bento-grid, with sharp borders and micro-animations on hover.\n\n\n",
-      "role": "model",
-      "tokenCount": 712,
-      "isThought": true,
-      "parts": [{
-        "text": "**Defining the Design Brief**\n\nI\u0027m solidifying the core design brief for Cybernetica\u0027s landing page. My current focus is refining the target persona and their needs within the Russian market for gaming and esports advertising, in the B2B context. The goal is now clearly to design and build a premium, high-end landing page.\n\n\n",
-        "thought": true
-      }, {
-        "text": "**Defining the Visual Style**\n\nI\u0027ve been working on defining the visual style. The plan is for a high-contrast, tech minimalist look with hints of a cinematic, industrial utility, drawing inspiration from Vercel and SpaceX. This involves a deep obsidian black, pure white, muted silver/gray, and a cyber neon cyan or electric purple for accents. I\u0027m leaning toward a monospace/sans-serif hybrid typeface with sharp, tight tracking and heavy weights for headers. Layout will be bento-grid, with sharp borders and micro-animations on hover.\n\n\n",
-        "thought": true
-      }],
-      "createTime": "2026-05-19T20:59:12.716Z"
-    }, {
-      "text": "Here is a complete, production-ready, single-file HTML layout for **Cybernetica**. This implementation combines the developer-first minimalism of Vercel with the industrial utility of SpaceX, leveraging Tailwind CSS and custom CSS variables for precision styling.\n\nTo preview this page, save the code below as an `.html` file (e.g., `index.html`) and open it in any modern browser.\n\n```html\n\u003c!DOCTYPE html\u003e\n\u003chtml lang\u003d\"en\" class\u003d\"scroll-smooth bg-black text-white selection:bg-cyan-500 selection:text-black\"\u003e\n\u003chead\u003e\n    \u003cmeta charset\u003d\"UTF-8\"\u003e\n    \u003cmeta name\u003d\"viewport\" content\u003d\"width\u003ddevice-width, initial-scale\u003d1.0\"\u003e\n    \u003ctitle\u003eCYBERNETICA — Premium Gaming \u0026 Esports Advertising\u003c/title\u003e\n    \u003c!-- Fonts --\u003e\n    \u003clink rel\u003d\"preconnect\" href\u003d\"https://fonts.googleapis.com\"\u003e\n    \u003clink rel\u003d\"preconnect\" href\u003d\"https://fonts.gstatic.com\" crossorigin\u003e\n    \u003clink href\u003d\"https://fonts.googleapis.com/css2?family\u003dInter:wght@300;400;500;600;700\u0026family\u003dJetBrains+Mono:wght@300;400;500;700\u0026display\u003dswap\" rel\u003d\"stylesheet\"\u003e\n    \u003c!-- Tailwind CSS CDN --\u003e\n    \u003cscript src\u003d\"https://cdn.tailwindcss.com\"\u003e\u003c/script\u003e\n    \u003cscript\u003e\n        tailwind.config \u003d {\n            theme: {\n                extend: {\n                    fontFamily: {\n                        sans: [\u0027Inter\u0027, \u0027sans-serif\u0027],\n                        mono: [\u0027JetBrains Mono\u0027, \u0027monospace\u0027],\n                    },\n                    colors: {\n                        obsidian: \u0027#000000\u0027,\n                        silver: \u0027#888888\u0027,\n                        accent: \u0027#00F0FF\u0027,\n                        accentPurple: \u0027#7000FF\u0027,\n                        borderDark: \u0027#1A1A1A\u0027,\n                        borderHover: \u0027#333333\u0027,\n                    }\n                }\n            }\n        }\n    \u003c/script\u003e\n    \u003cstyle\u003e\n        /* Custom UI Reset \u0026 Focus */\n        body {\n            font-family: \u0027Inter\u0027, sans-serif;\n            background-color: #000000;\n        }\n        .mono-text {\n            font-family: \u0027JetBrains Mono\u0027, monospace;\n        }\n        /* Custom borders conforming to the 0px-4px radius requirement */\n        .sharp-card {\n            border: 1px solid #1A1A1A;\n            border-radius: 2px;\n            background-color: #050505;\n            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);\n        }\n        .sharp-card:hover {\n            border-color: #333333;\n            box-shadow: 0 0 15px rgba(0, 240, 255, 0.03);\n        }\n        .glow-button {\n            border: 1px solid #FFFFFF;\n            border-radius: 2px;\n            transition: all 0.2s ease;\n        }\n        .glow-button:hover {\n            background-color: #FFFFFF;\n            color: #000000;\n            box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);\n        }\n        .glow-cyan {\n            border: 1px solid #1A1A1A;\n            transition: all 0.2s ease;\n        }\n        .glow-cyan:hover {\n            border-color: #00F0FF;\n            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);\n        }\n        /* Hide scrollbars but keep functionality */\n        ::-webkit-scrollbar {\n            width: 6px;\n            height: 6px;\n        }\n        ::-webkit-scrollbar-track {\n            background: #000000;\n        }\n        ::-webkit-scrollbar-thumb {\n            background: #1A1A1A;\n            border-radius: 3px;\n        }\n        ::-webkit-scrollbar-thumb:hover {\n            background: #333333;\n        }\n    \u003c/style\u003e\n\u003c/head\u003e\n\u003cbody class\u003d\"antialiased overflow-x-hidden\"\u003e\n\n    \u003c!-- NAVIGATION BAR --\u003e\n    \u003cheader class\u003d\"sticky top-0 z-50 w-full border-b border-borderDark bg-black/80 backdrop-blur-md\"\u003e\n        \u003cdiv class\u003d\"max-w-7xl mx-auto px-6 h-16 flex items-center justify-between\"\u003e\n            \u003cdiv class\u003d\"flex items-center space-x-8\"\u003e\n                \u003c!-- Logo --\u003e\n                \u003ca href\u003d\"#\" class\u003d\"mono-text text-lg font-bold tracking-widest text-white flex items-center space-x-2\"\u003e\n                    \u003cspan\u003eCYBERNETICA\u003c/span\u003e\n                    \u003cspan class\u003d\"w-1.5 h-1.5 bg-accent inline-block animate-pulse\"\u003e\u003c/span\u003e\n                \u003c/a\u003e\n                \u003c!-- Nav Links --\u003e\n                \u003cnav class\u003d\"hidden md:flex items-center space-x-6\"\u003e\n                    \u003ca href\u003d\"#manifest\" class\u003d\"text-xs mono-text text-silver hover:text-white transition-colors duration-200\"\u003e/Manifest\u003c/a\u003e\n                    \u003ca href\u003d\"#analytics\" class\u003d\"text-xs mono-text text-silver hover:text-white transition-colors duration-200\"\u003e/Data_Engine\u003c/a\u003e\n                    \u003ca href\u003d\"#services\" class\u003d\"text-xs mono-text text-silver hover:text-white transition-colors duration-200\"\u003e/Services\u003c/a\u003e\n                    \u003ca href\u003d\"#capture\" class\u003d\"text-xs mono-text text-silver hover:text-white transition-colors duration-200\"\u003e/Reports\u003c/a\u003e\n                \u003c/nav\u003e\n            \u003c/div\u003e\n            \u003c!-- CTA --\u003e\n            \u003cdiv\u003e\n                \u003ca href\u003d\"#capture\" class\u003d\"mono-text text-xs uppercase px-4 py-2 glow-cyan bg-black text-white tracking-wider\"\u003e\n                    [ Get Strategy ]\n                \u003c/a\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n    \u003c/header\u003e\n\n    \u003c!-- HERO SECTION --\u003e\n    \u003csection class\u003d\"relative min-h-screen flex items-center justify-center overflow-hidden border-b border-borderDark py-24\"\u003e\n        \u003c!-- SpaceX Matrix Canvas Background --\u003e\n        \u003ccanvas id\u003d\"matrixCanvas\" class\u003d\"absolute inset-0 w-full h-full pointer-events-none opacity-45\"\u003e\u003c/canvas\u003e\n        \u003cdiv class\u003d\"absolute inset-0 bg-gradient-to-t from-black via-transparent to-black pointer-events-none\"\u003e\u003c/div\u003e\n\n        \u003cdiv class\u003d\"relative z-10 max-w-7xl mx-auto px-6 w-full text-center md:text-left flex flex-col justify-center h-full\"\u003e\n            \u003cdiv class\u003d\"inline-flex items-center space-x-2 border border-borderDark bg-black px-3 py-1 mb-8 self-center md:self-start\"\u003e\n                \u003cspan class\u003d\"w-2 h-2 bg-accent rounded-full\"\u003e\u003c/span\u003e\n                \u003cspan class\u003d\"mono-text text-[10px] uppercase tracking-widest text-silver\"\u003eMARKET STATUS: ACTIVE [2026]\u003c/span\u003e\n            \u003c/div\u003e\n            \n            \u003ch1 class\u003d\"text-4xl md:text-7xl font-bold tracking-tight text-white mb-6 uppercase max-w-5xl leading-none\"\u003e\n                Cybernetica.\u003cbr/\u003e\n                \u003cspan class\u003d\"text-transparent bg-clip-text bg-gradient-to-r from-white via-silver to-borderHover\"\u003e\n                    Professional Gateway to Gaming \u0026 Esports.\n                \u003c/span\u003e\n            \u003c/h1\u003e\n\n            \u003cp class\u003d\"text-base md:text-lg text-silver max-w-2xl mb-12 font-light leading-relaxed\"\u003e\n                The definitive market-leader for brand integration into the gaming ecosystem. Powered by direct publisher APIs, high-frequency media buy protocols, and absolute demographic domination.\n            \u003c/p\u003e\n\n            \u003cdiv class\u003d\"flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4\"\u003e\n                \u003ca href\u003d\"#capture\" class\u003d\"mono-text text-xs uppercase w-full sm:w-auto px-8 py-4 glow-button text-center bg-white text-black tracking-widest\"\u003e\n                    [ Initiate Integration ]\n                \u003c/a\u003e\n                \u003ca href\u003d\"#capture\" class\u003d\"mono-text text-xs text-silver hover:text-white transition-all duration-200 uppercase w-full sm:w-auto px-8 py-4 border border-borderDark text-center tracking-widest bg-black/50 hover:border-borderHover\"\u003e\n                    [ Read Market Report 2026 ]\n                \u003c/a\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003c!-- POSITIONING MANIFEST SECTION --\u003e\n    \u003csection id\u003d\"manifest\" class\u003d\"py-32 border-b border-borderDark bg-black\"\u003e\n        \u003cdiv class\u003d\"max-w-7xl mx-auto px-6\"\u003e\n            \u003cspan class\u003d\"mono-text text-xs text-silver block mb-8 uppercase tracking-widest\"\u003e/ POSITIONING MANIFEST\u003c/span\u003e\n            \n            \u003cdiv class\u003d\"manifest-container max-w-5xl\"\u003e\n                \u003cp class\u003d\"text-3xl md:text-5xl leading-tight text-silver font-light tracking-tight select-none\"\u003e\n                    Establishing infrastructure in \n                    \u003cspan class\u003d\"manifest-word text-silver hover:text-white transition-colors duration-150 cursor-pointer inline-block\" data-active\u003d\"true\"\u003eGaming in Russia\u003c/span\u003e \n                    requires more than media-buying. It demands \n                    \u003cspan class\u003d\"manifest-word text-silver hover:text-white transition-colors duration-150 cursor-pointer inline-block\" data-active\u003d\"true\"\u003eCybernetica’s\u003c/span\u003e \n                    proprietary analytical engines and \n                    \u003cspan class\u003d\"manifest-word text-silver hover:text-white transition-colors duration-150 cursor-pointer inline-block\" data-active\u003d\"true\"\u003eAbsolute Expertise\u003c/span\u003e. \n                    We translate cultural capital into high-yield enterprise assets.\n                \u003c/p\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003c!-- ANALYTICS \u0026 RESEARCH ENGINE --\u003e\n    \u003csection id\u003d\"analytics\" class\u003d\"py-32 border-b border-borderDark bg-black\"\u003e\n        \u003cdiv class\u003d\"max-w-7xl mx-auto px-6\"\u003e\n            \u003cdiv class\u003d\"mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6\"\u003e\n                \u003cdiv\u003e\n                    \u003cspan class\u003d\"mono-text text-xs text-silver block mb-2 uppercase tracking-widest\"\u003e/ DATA ENGINE\u003c/span\u003e\n                    \u003ch2 class\u003d\"text-3xl font-bold tracking-tight uppercase\"\u003eAnalytics \u0026 Research Terminal\u003c/h2\u003e\n                \u003c/div\u003e\n                \u003cdiv class\u003d\"mono-text text-xs text-silver border border-borderDark px-3 py-1 bg-black\"\u003e\n                    SYSTEM TIME: \u003cspan id\u003d\"systemTime\"\u003e00:00:00 UTC\u003c/span\u003e\n                \u003c/div\u003e\n            \u003c/div\u003e\n\n            \u003c!-- Dashboard Widget Grid --\u003e\n            \u003cdiv class\u003d\"grid grid-cols-1 lg:grid-cols-12 gap-px bg-borderDark sharp-card p-1\"\u003e\n                \u003c!-- Left Nav Tabs --\u003e\n                \u003cdiv class\u003d\"lg:col-span-4 flex flex-col bg-black divide-y divide-borderDark\"\u003e\n                    \u003cbutton onclick\u003d\"switchTab(\u0027market\u0027)\" id\u003d\"tab-btn-market\" class\u003d\"w-full text-left p-6 transition-all duration-200 hover:bg-neutral-950 flex flex-col justify-between group active-tab border-l-2 border-accent\"\u003e\n                        \u003cspan class\u003d\"mono-text text-xs text-silver tracking-widest mb-1\"\u003eMETRIC 01 //\u003c/span\u003e\n                        \u003cspan class\u003d\"text-lg font-bold tracking-tight uppercase group-hover:text-white transition-colors text-white\"\u003eMarket Volume \u0026 Impact\u003c/span\u003e\n                        \u003cspan class\u003d\"text-xs text-silver mt-4\"\u003eTotal addressable gaming landscape metrics.\u003c/span\u003e\n                    \u003c/button\u003e\n                    \u003cbutton onclick\u003d\"switchTab(\u0027demographics\u0027)\" id\u003d\"tab-btn-demographics\" class\u003d\"w-full text-left p-6 transition-all duration-200 hover:bg-neutral-950 flex flex-col justify-between group border-l-2 border-transparent\"\u003e\n                        \u003cspan class\u003d\"mono-text text-xs text-silver tracking-widest mb-1\"\u003eMETRIC 02 //\u003c/span\u003e\n                        \u003cspan class\u003d\"text-lg font-bold tracking-tight uppercase text-silver group-hover:text-white transition-colors\"\u003eTarget Demographics\u003c/span\u003e\n                        \u003cspan class\u003d\"text-xs text-silver mt-4\"\u003eGranular player profiles and purchasing behaviors.\u003c/span\u003e\n                    \u003c/button\u003e\n                    \u003cbutton onclick\u003d\"switchTab(\u0027forecast\u0027)\" id\u003d\"tab-btn-forecast\" class\u003d\"w-full text-left p-6 transition-all duration-200 hover:bg-neutral-950 flex flex-col justify-between group border-l-2 border-transparent\"\u003e\n                        \u003cspan class\u003d\"mono-text text-xs text-silver tracking-widest mb-1\"\u003eMETRIC 03 //\u003c/span\u003e\n                        \u003cspan class\u003d\"text-lg font-bold tracking-tight uppercase text-silver group-hover:text-white transition-colors\"\u003e2026-2030 Growth Forecast\u003c/span\u003e\n                        \u003cspan class\u003d\"text-xs text-silver mt-4\"\u003ePredictive models of ad-spend effectiveness.\u003c/span\u003e\n                    \u003c/button\u003e\n                \u003c/div\u003e\n\n                \u003c!-- Right Display Area --\u003e\n                \u003cdiv class\u003d\"lg:col-span-8 bg-black p-6 md:p-8 flex flex-col justify-between min-h-[400px]\"\u003e\n                    \u003c!-- Market Tab Content --\u003e\n                    \u003cdiv id\u003d\"tab-content-market\" class\u003d\"tab-content space-y-8\"\u003e\n                        \u003cdiv class\u003d\"flex items-center justify-between\"\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-accent uppercase tracking-widest\"\u003e[ DATA FEED // ACTIVE ]\u003c/span\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-silver\"\u003eUPDATE: 1m AGO\u003c/span\u003e\n                        \u003c/div\u003e\n                        \u003cdiv class\u003d\"grid grid-cols-1 sm:grid-cols-3 gap-6\"\u003e\n                            \u003cdiv class\u003d\"border border-borderDark p-4 bg-neutral-950/50\"\u003e\n                                \u003cspan class\u003d\"mono-text text-xs text-silver block mb-2\"\u003eACTIVE PLAYERS\u003c/span\u003e\n                                \u003cspan class\u003d\"text-3xl font-bold tracking-tight text-white font-sans\"\u003e65.4M+\u003c/span\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class\u003d\"border border-borderDark p-4 bg-neutral-950/50\"\u003e\n                                \u003cspan class\u003d\"mono-text text-xs text-silver block mb-2\"\u003eREVENUE GENERATED\u003c/span\u003e\n                                \u003cspan class\u003d\"text-3xl font-bold tracking-tight text-white font-sans\"\u003e$2.1B\u003c/span\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class\u003d\"border border-borderDark p-4 bg-neutral-950/50\"\u003e\n                                \u003cspan class\u003d\"mono-text text-xs text-silver block mb-2\"\u003eAVG INTEGRATION ROI\u003c/span\u003e\n                                \u003cspan class\u003d\"text-3xl font-bold tracking-tight text-accent font-sans\"\u003e+240%\u003c/span\u003e\n                            \u003c/div\u003e\n                        \u003c/div\u003e\n                        \u003c!-- Simple Tech Viz (SpaceX Style Terminal) --\u003e\n                        \u003cdiv class\u003d\"border border-borderDark p-4 h-48 flex items-end space-x-2 relative overflow-hidden bg-neutral-950/30\"\u003e\n                            \u003cdiv class\u003d\"absolute inset-x-0 top-0 h-full bg-gradient-to-b from-transparent to-neutral-950/80 pointer-events-none z-10\"\u003e\u003c/div\u003e\n                            \u003c!-- Static/Dynamic Grid Overlay --\u003e\n                            \u003cdiv class\u003d\"absolute inset-0 bg-[radial-gradient(#1a1a1a_1px,transparent_1px)] [background-size:16px_16px] opacity-40\"\u003e\u003c/div\u003e\n                            \u003c!-- Bar Charts --\u003e\n                            \u003cdiv class\u003d\"w-full h-[15%] bg-zinc-800 transition-all duration-500 hover:bg-accent z-20\"\u003e\u003c/div\u003e\n                            \u003cdiv class\u003d\"w-full h-[40%] bg-zinc-800 transition-all duration-500 hover:bg-accent z-20\"\u003e\u003c/div\u003e\n                            \u003cdiv class\u003d\"w-full h-[35%] bg-zinc-800 transition-all duration-500 hover:bg-accent z-20\"\u003e\u003c/div\u003e\n                            \u003cdiv class\u003d\"w-full h-[65%] bg-zinc-800 transition-all duration-500 hover:bg-accent z-20\"\u003e\u003c/div\u003e\n                            \u003cdiv class\u003d\"w-full h-[85%] bg-accent transition-all duration-500 hover:bg-accent z-20\"\u003e\u003c/div\u003e\n                        \u003c/div\u003e\n                    \u003c/div\u003e\n\n                    \u003c!-- Demographics Tab Content --\u003e\n                    \u003cdiv id\u003d\"tab-content-demographics\" class\u003d\"tab-content hidden space-y-8\"\u003e\n                        \u003cdiv class\u003d\"flex items-center justify-between\"\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-accentPurple uppercase tracking-widest\"\u003e[ USER PROFILES // STRATIFIED ]\u003c/span\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-silver\"\u003eUPDATE: Realtime\u003c/span\u003e\n                        \u003c/div\u003e\n                        \u003cdiv class\u003d\"grid grid-cols-1 sm:grid-cols-2 gap-6\"\u003e\n                            \u003cdiv class\u003d\"border border-borderDark p-4 bg-neutral-950/50\"\u003e\n                                \u003cspan class\u003d\"mono-text text-xs text-silver block mb-2\"\u003ePRIMARY DEMOGRAPHIC\u003c/span\u003e\n                                \u003cspan class\u003d\"text-2xl font-bold text-white\"\u003eM/F 18-34 (74%)\u003c/span\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class\u003d\"border border-borderDark p-4 bg-neutral-950/50\"\u003e\n                                \u003cspan class\u003d\"mono-text text-xs text-silver block mb-2\"\u003eAVG DAILY SESSIONS\u003c/span\u003e\n                                \u003cspan class\u003d\"text-2xl font-bold text-white\"\u003e2.8 hrs\u003c/span\u003e\n                            \u003c/div\u003e\n                        \u003c/div\u003e\n                        \u003cdiv class\u003d\"border border-borderDark p-6 bg-neutral-950/30 space-y-4\"\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-silver block\"\u003eTRAFFIC DENSITY INDEX\u003c/span\u003e\n                            \u003cdiv class\u003d\"w-full bg-borderDark h-2 relative\"\u003e\n                                \u003cdiv class\u003d\"absolute top-0 left-0 bg-accentPurple w-[82%] h-full\"\u003e\u003c/div\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class\u003d\"flex justify-between text-[10px] mono-text text-silver\"\u003e\n                                \u003cspan\u003eTier 3 Cities (18%)\u003c/span\u003e\n                                \u003cspan\u003eMetropolitan Hubs (82%)\u003c/span\u003e\n                            \u003c/div\u003e\n                        \u003c/div\u003e\n                    \u003c/div\u003e\n\n                    \u003c!-- Forecast Tab Content --\u003e\n                    \u003cdiv id\u003d\"tab-content-forecast\" class\u003d\"tab-content hidden space-y-8\"\u003e\n                        \u003cdiv class\u003d\"flex items-center justify-between\"\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-accent uppercase tracking-widest\"\u003e[ ML PROJECTIONS // RUNNING ]\u003c/span\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-silver\"\u003eMODEL V4.12\u003c/span\u003e\n                        \u003c/div\u003e\n                        \u003cdiv class\u003d\"grid grid-cols-1 sm:grid-cols-3 gap-6\"\u003e\n                            \u003cdiv class\u003d\"border border-borderDark p-4 bg-neutral-950/50\"\u003e\n                                \u003cspan class\u003d\"mono-text text-xs text-silver block mb-2\"\u003e2026 VALUE\u003c/span\u003e\n                                \u003cspan class\u003d\"text-2xl font-bold text-white\"\u003e$2.1B\u003c/span\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class\u003d\"border border-borderDark p-4 bg-neutral-950/50\"\u003e\n                                \u003cspan class\u003d\"mono-text text-xs text-silver block mb-2\"\u003e2028 VALUE\u003c/span\u003e\n                                \u003cspan class\u003d\"text-2xl font-bold text-white\"\u003e$2.9B\u003c/span\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class\u003d\"border border-borderDark p-4 bg-neutral-950/50\"\u003e\n                                \u003cspan class\u003d\"mono-text text-xs text-silver block mb-2\"\u003e2030 PROJ\u003c/span\u003e\n                                \u003cspan class\u003d\"text-2xl font-bold text-accent\"\u003e$4.2B\u003c/span\u003e\n                            \u003c/div\u003e\n                        \u003c/div\u003e\n                        \u003cp class\u003d\"text-xs text-silver leading-relaxed border-l-2 border-accent pl-4\"\u003e\n                            Ad spend efficiency indicators suggest high user friction reduction in contextual native integrations compared to standard web-native display frameworks over the next decade.\n                        \u003c/p\u003e\n                    \u003c/div\u003e\n\n                    \u003c!-- Base Terminal Metadata Footer --\u003e\n                    \u003cdiv class\u003d\"mt-8 pt-4 border-t border-borderDark flex items-center justify-between text-[10px] mono-text text-silver\"\u003e\n                        \u003cspan\u003eSYS_STATUS: OPTIMAL\u003c/span\u003e\n                        \u003cspan\u003eNODE_RU: MSK_A1\u003c/span\u003e\n                    \u003c/div\u003e\n                \u003c/div\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003c!-- SERVICE MATRIX (Bento Grid) --\u003e\n    \u003csection id\u003d\"services\" class\u003d\"py-32 border-b border-borderDark bg-black\"\u003e\n        \u003cdiv class\u003d\"max-w-7xl mx-auto px-6\"\u003e\n            \u003cspan class\u003d\"mono-text text-xs text-silver block mb-2 uppercase tracking-widest\"\u003e/ CAPABILITIES\u003c/span\u003e\n            \u003ch2 class\u003d\"text-3xl font-bold tracking-tight uppercase mb-12\"\u003eThe Service Matrix\u003c/h2\u003e\n\n            \u003c!-- Bento Grid --\u003e\n            \u003cdiv class\u003d\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6\"\u003e\n                \u003c!-- Card 1 --\u003e\n                \u003cdiv class\u003d\"sharp-card p-6 flex flex-col justify-between min-h-[280px]\"\u003e\n                    \u003cdiv\u003e\n                        \u003cdiv class\u003d\"w-8 h-8 flex items-center justify-center border border-borderDark mb-6 bg-neutral-950\"\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-accent\"\u003e01\u003c/span\u003e\n                        \u003c/div\u003e\n                        \u003ch3 class\u003d\"text-lg font-bold uppercase tracking-tight mb-2 text-white\"\u003eEsports Sponsorships\u003c/h3\u003e\n                        \u003cp class\u003d\"text-xs text-silver leading-relaxed font-light\"\u003e\n                            Direct inventory placement within flagship regional leagues, tier-1 teams, and independent regional tournament streams.\n                        \u003c/p\u003e\n                    \u003c/div\u003e\n                    \u003cdiv class\u003d\"mt-8 pt-4 border-t border-borderDark/50 flex justify-between items-center text-[10px] mono-text text-silver\"\u003e\n                        \u003cspan\u003eSCALE: MACRO\u003c/span\u003e\n                        \u003cspan\u003e[ CONNECT ]\u003c/span\u003e\n                    \u003c/div\u003e\n                \u003c/div\u003e\n\n                \u003c!-- Card 2 --\u003e\n                \u003cdiv class\u003d\"sharp-card p-6 flex flex-col justify-between min-h-[280px]\"\u003e\n                    \u003cdiv\u003e\n                        \u003cdiv class\u003d\"w-8 h-8 flex items-center justify-center border border-borderDark mb-6 bg-neutral-950\"\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-accent\"\u003e02\u003c/span\u003e\n                        \u003c/div\u003e\n                        \u003ch3 class\u003d\"text-lg font-bold uppercase tracking-tight mb-2 text-white\"\u003eIn-Game Integrations\u003c/h3\u003e\n                        \u003cp class\u003d\"text-xs text-silver leading-relaxed font-light\"\u003e\n                            Native SDK-level product placements, dynamic virtual billboarding, and personalized server-side activations.\n                        \u003c/p\u003e\n                    \u003c/div\u003e\n                    \u003cdiv class\u003d\"mt-8 pt-4 border-t border-borderDark/50 flex justify-between items-center text-[10px] mono-text text-silver\"\u003e\n                        \u003cspan\u003eSCALE: NATIVE\u003c/span\u003e\n                        \u003cspan\u003e[ CONNECT ]\u003c/span\u003e\n                    \u003c/div\u003e\n                \u003c/div\u003e\n\n                \u003c!-- Card 3 --\u003e\n                \u003cdiv class\u003d\"sharp-card p-6 flex flex-col justify-between min-h-[280px]\"\u003e\n                    \u003cdiv\u003e\n                        \u003cdiv class\u003d\"w-8 h-8 flex items-center justify-center border border-borderDark mb-6 bg-neutral-950\"\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-accent\"\u003e03\u003c/span\u003e\n                        \u003c/div\u003e\n                        \u003ch3 class\u003d\"text-lg font-bold uppercase tracking-tight mb-2 text-white\"\u003eStreamer Campaigns\u003c/h3\u003e\n                        \u003cp class\u003d\"text-xs text-silver leading-relaxed font-light\"\u003e\n                            Coordinated interactive media bursts across key platform networks with automated performance compliance tracking.\n                        \u003c/p\u003e\n                    \u003c/div\u003e\n                    \u003cdiv class\u003d\"mt-8 pt-4 border-t border-borderDark/50 flex justify-between items-center text-[10px] mono-text text-silver\"\u003e\n                        \u003cspan\u003eSCALE: AD-HOC\u003c/span\u003e\n                        \u003cspan\u003e[ CONNECT ]\u003c/span\u003e\n                    \u003c/div\u003e\n                \u003c/div\u003e\n\n                \u003c!-- Card 4 --\u003e\n                \u003cdiv class\u003d\"sharp-card p-6 flex flex-col justify-between min-h-[280px]\"\u003e\n                    \u003cdiv\u003e\n                        \u003cdiv class\u003d\"w-8 h-8 flex items-center justify-center border border-borderDark mb-6 bg-neutral-950\"\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-accent\"\u003e04\u003c/span\u003e\n                        \u003c/div\u003e\n                        \u003ch3 class\u003d\"text-lg font-bold uppercase tracking-tight mb-2 text-white\"\u003eCustom Gaming Content\u003c/h3\u003e\n                        \u003cp class\u003d\"text-xs text-silver leading-relaxed font-light\"\u003e\n                            Execution of custom maps, custom mod development, and dynamic mini-games crafted for massive community distribution networks.\n                        \u003c/p\u003e\n                    \u003c/div\u003e\n                    \u003cdiv class\u003d\"mt-8 pt-4 border-t border-borderDark/50 flex justify-between items-center text-[10px] mono-text text-silver\"\u003e\n                        \u003cspan\u003eSCALE: BESPOKE\u003c/span\u003e\n                        \u003cspan\u003e[ CONNECT ]\u003c/span\u003e\n                    \u003c/div\u003e\n                \u003c/div\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003c!-- B2B LEAD CAPTURE \u0026 REPORT DOWNLOAD --\u003e\n    \u003csection id\u003d\"capture\" class\u003d\"py-32 border-b border-borderDark bg-neutral-950/30\"\u003e\n        \u003cdiv class\u003d\"max-w-7xl mx-auto px-6\"\u003e\n            \u003cdiv class\u003d\"grid grid-cols-1 lg:grid-cols-12 gap-12 items-center\"\u003e\n                \u003c!-- Left Content: PDF Preview Card --\u003e\n                \u003cdiv class\u003d\"lg:col-span-5 space-y-6\"\u003e\n                    \u003cspan class\u003d\"mono-text text-xs text-accent block uppercase tracking-widest\"\u003e/ STRATEGIC RESOURCE\u003c/span\u003e\n                    \u003ch2 class\u003d\"text-3xl font-bold uppercase tracking-tight\"\u003eAccess Exclusive Market Intelligence\u003c/h2\u003e\n                    \u003cp class\u003d\"text-sm text-silver leading-relaxed font-light\"\u003e\n                        Request our 2026 report analyzing audience shift patterns, advertising elasticity coefficients, and structural integration strategies within the Russian esports matrix.\n                    \u003c/p\u003e\n\n                    \u003c!-- Preview Graphic (Minimalist book design) --\u003e\n                    \u003cdiv class\u003d\"border border-borderDark bg-black p-6 flex items-center space-x-6 sharp-card mt-8\"\u003e\n                        \u003cdiv class\u003d\"w-24 h-32 bg-neutral-900 border border-borderDark flex flex-col justify-between p-3 relative flex-shrink-0\"\u003e\n                            \u003cdiv class\u003d\"absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent pointer-events-none\"\u003e\u003c/div\u003e\n                            \u003cspan class\u003d\"mono-text text-[6px] text-accent font-bold\"\u003eCYBERNETICA DATA DOC\u003c/span\u003e\n                            \u003cspan class\u003d\"text-[8px] font-bold text-white uppercase leading-none\"\u003eAUDIENCE REPORT 2026\u003c/span\u003e\n                            \u003cspan class\u003d\"mono-text text-[6px] text-silver text-right\"\u003eSECURE // SEC_01\u003c/span\u003e\n                        \u003c/div\u003e\n                        \u003cdiv\u003e\n                            \u003cspan class\u003d\"mono-text text-[10px] text-accent block mb-1\"\u003e[ 148 PAGES // PDF ]\u003c/span\u003e\n                            \u003ch4 class\u003d\"text-sm font-bold text-white mb-2 uppercase\"\u003eRussian Esports Landscape v3.0\u003c/h4\u003e\n                            \u003cp class\u003d\"text-xs text-silver font-light\"\u003eAggregated player demographic mapping, platform indices, and budget allocation guidance matrices.\u003c/p\u003e\n                        \u003c/div\u003e\n                    \u003c/div\u003e\n                \u003c/div\u003e\n\n                \u003c!-- Right Content: Minimal Form Container --\u003e\n                \u003cdiv class\u003d\"lg:col-span-7 sharp-card bg-black p-8 md:p-10 border border-borderDark\"\u003e\n                    \u003ch3 class\u003d\"text-lg font-bold uppercase tracking-tight text-white mb-6\"\u003eInitialize Report Access\u003c/h3\u003e\n                    \u003cform class\u003d\"space-y-6\" onsubmit\u003d\"event.preventDefault(); alert(\u0027Request logged. Intelligence dispatch confirmed.\u0027);\"\u003e\n                        \u003cdiv class\u003d\"grid grid-cols-1 sm:grid-cols-2 gap-6\"\u003e\n                            \u003cdiv\u003e\n                                \u003clabel class\u003d\"mono-text text-[10px] uppercase tracking-wider text-silver block mb-2\"\u003eFull Name\u003c/label\u003e\n                                \u003cinput type\u003d\"text\" placeholder\u003d\"e.g. Victor Volkov\" required class\u003d\"w-full bg-neutral-950 text-white border border-borderDark px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors duration-150 rounded-[2px] placeholder:text-neutral-700\"\u003e\n                            \u003c/div\u003e\n                            \u003cdiv\u003e\n                                \u003clabel class\u003d\"mono-text text-[10px] uppercase tracking-wider text-silver block mb-2\"\u003eCorporate Email\u003c/label\u003e\n                                \u003cinput type\u003d\"email\" placeholder\u003d\"e.g. volkov@cybernetica.ru\" required class\u003d\"w-full bg-neutral-950 text-white border border-borderDark px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors duration-150 rounded-[2px] placeholder:text-neutral-700\"\u003e\n                            \u003c/div\u003e\n                        \u003c/div\u003e\n                        \u003cdiv\u003e\n                            \u003clabel class\u003d\"mono-text text-[10px] uppercase tracking-wider text-silver block mb-2\"\u003eCompany / Enterprise Entity\u003c/label\u003e\n                            \u003cinput type\u003d\"text\" placeholder\u003d\"e.g. Cybernetica Global\" required class\u003d\"w-full bg-neutral-950 text-white border border-borderDark px-4 py-3 text-sm focus:outline-none focus:border-accent transition-colors duration-150 rounded-[2px] placeholder:text-neutral-700\"\u003e\n                        \u003c/div\u003e\n                        \u003cdiv class\u003d\"pt-4\"\u003e\n                            \u003cbutton type\u003d\"submit\" class\u003d\"w-full mono-text text-xs uppercase bg-white text-black font-bold py-4 glow-button tracking-widest\"\u003e\n                                [ Download Report ]\n                            \u003c/button\u003e\n                        \u003c/div\u003e\n                        \u003cp class\u003d\"text-[10px] mono-text text-silver text-center\"\u003e\n                            By clicking download you acknowledge the absolute privacy frameworks under protocol RU-2026-X.\n                        \u003c/p\u003e\n                    \u003c/form\u003e\n                \u003c/div\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003c!-- FOOTER --\u003e\n    \u003cfooter class\u003d\"bg-black py-24 border-t border-borderDark\"\u003e\n        \u003cdiv class\u003d\"max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12\"\u003e\n            \u003c!-- Col 1: Brand Info --\u003e\n            \u003cdiv class\u003d\"lg:col-span-4 space-y-4\"\u003e\n                \u003ca href\u003d\"#\" class\u003d\"mono-text text-lg font-bold tracking-widest text-white flex items-center space-x-2\"\u003e\n                    \u003cspan\u003eCYBERNETICA\u003c/span\u003e\n                \u003c/a\u003e\n                \u003cp class\u003d\"text-xs text-silver font-light max-w-sm leading-relaxed\"\u003e\n                    Engineering next-generation brand infrastructures across sovereign and global gaming networks. Verified metrics. Certified execution.\n                \u003c/p\u003e\n                \u003cdiv class\u003d\"pt-4 flex items-center space-x-2 text-[10px] mono-text text-accent\"\u003e\n                    \u003cspan class\u003d\"w-2.5 h-2.5 bg-accent inline-block animate-ping rounded-full absolute\"\u003e\u003c/span\u003e\n                    \u003cspan class\u003d\"w-2.5 h-2.5 bg-accent inline-block rounded-full\"\u003e\u003c/span\u003e\n                    \u003cspan class\u003d\"pl-2\"\u003eSYSTEM NODE: MSK // ONLINE\u003c/span\u003e\n                \u003c/div\u003e\n            \u003c/div\u003e\n\n            \u003c!-- Col 2: Services Quick links --\u003e\n            \u003cdiv class\u003d\"lg:col-span-3 space-y-4\"\u003e\n                \u003ch4 class\u003d\"mono-text text-xs uppercase text-white tracking-widest\"\u003e/ DIRECTORIES\u003c/h4\u003e\n                \u003cul class\u003d\"space-y-2 text-xs text-silver\"\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#services\" class\u003d\"hover:text-white transition-colors\"\u003eEsports Partnerships\u003c/a\u003e\u003c/li\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#services\" class\u003d\"hover:text-white transition-colors\"\u003eIn-Game Placements\u003c/a\u003e\u003c/li\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#services\" class\u003d\"hover:text-white transition-colors\"\u003eCreator Networks\u003c/a\u003e\u003c/li\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#services\" class\u003d\"hover:text-white transition-colors\"\u003eInteractive Tech R\u0026D\u003c/a\u003e\u003c/li\u003e\n                \u003c/ul\u003e\n            \u003c/div\u003e\n\n            \u003c!-- Col 3: Legal \u0026 Regulatory --\u003e\n            \u003cdiv class\u003d\"lg:col-span-3 space-y-4\"\u003e\n                \u003ch4 class\u003d\"mono-text text-xs uppercase text-white tracking-widest\"\u003e/ REGULATORY\u003c/h4\u003e\n                \u003cul class\u003d\"space-y-2 text-xs text-silver\"\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#\" class\u003d\"hover:text-white transition-colors\"\u003ePrivacy Frameworks\u003c/a\u003e\u003c/li\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#\" class\u003d\"hover:text-white transition-colors\"\u003ePublisher API Limits\u003c/a\u003e\u003c/li\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#\" class\u003d\"hover:text-white transition-colors\"\u003eCorporate Governance\u003c/a\u003e\u003c/li\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#\" class\u003d\"hover:text-white transition-colors\"\u003eCompliance Verification\u003c/a\u003e\u003c/li\u003e\n                \u003c/ul\u003e\n            \u003c/div\u003e\n\n            \u003c!-- Col 4: Network Channels --\u003e\n            \u003cdiv class\u003d\"lg:col-span-2 space-y-4\"\u003e\n                \u003ch4 class\u003d\"mono-text text-xs uppercase text-white tracking-widest\"\u003e/ NETWORKS\u003c/h4\u003e\n                \u003cul class\u003d\"space-y-2 text-xs text-silver\"\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#\" class\u003d\"hover:text-white transition-colors\"\u003eTelegram // Channel\u003c/a\u003e\u003c/li\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#\" class\u003d\"hover:text-white transition-colors\"\u003eVK // Official Group\u003c/a\u003e\u003c/li\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#\" class\u003d\"hover:text-white transition-colors\"\u003eGitHub // Ecosystem\u003c/a\u003e\u003c/li\u003e\n                \u003c/ul\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n\n        \u003cdiv class\u003d\"max-w-7xl mx-auto px-6 pt-16 mt-16 border-t border-borderDark flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] mono-text text-silver\"\u003e\n            \u003cspan\u003e© 2026 CYBERNETICA. ALL CORE FRAMEWORKS RESERVED.\u003c/span\u003e\n            \u003cspan\u003eBUILD: 0x93FA8D2F // V2.0.26\u003c/span\u003e\n        \u003c/div\u003e\n    \u003c/footer\u003e\n\n    \u003c!-- INTERACTION SCRIPTS --\u003e\n    \u003cscript\u003e\n        // Real-time Dashboard Clock\n        function updateTime() {\n            const timeSpan \u003d document.getElementById(\u0027systemTime\u0027);\n            const now \u003d new Date();\n            const timeString \u003d now.toISOString().replace(\u0027T\u0027, \u0027 \u0027).substring(0, 19) + \u0027 UTC\u0027;\n            timeSpan.textContent \u003d timeString;\n        }\n        setInterval(updateTime, 1000);\n        updateTime();\n\n        // High-Tech Interactive Tab Switcher\n        function switchTab(tabId) {\n            // Hide all contents\n            document.querySelectorAll(\u0027.tab-content\u0027).forEach(element \u003d\u003e {\n                element.classList.add(\u0027hidden\u0027);\n            });\n            // Show target\n            document.getElementById(`tab-content-${tabId}`).classList.remove(\u0027hidden\u0027);\n\n            // Handle active button styles\n            const buttons \u003d [\u0027market\u0027, \u0027demographics\u0027, \u0027forecast\u0027];\n            buttons.forEach(bId \u003d\u003e {\n                const btn \u003d document.getElementById(`tab-btn-${bId}`);\n                if (bId \u003d\u003d\u003d tabId) {\n                    btn.classList.add(\u0027border-accent\u0027);\n                    btn.classList.remove(\u0027border-transparent\u0027);\n                    btn.querySelector(\u0027span.text-lg\u0027).classList.remove(\u0027text-silver\u0027);\n                    btn.querySelector(\u0027span.text-lg\u0027).classList.add(\u0027text-white\u0027);\n                } else {\n                    btn.classList.remove(\u0027border-accent\u0027);\n                    btn.classList.add(\u0027border-transparent\u0027);\n                    btn.querySelector(\u0027span.text-lg\u0027).classList.add(\u0027text-silver\u0027);\n                    btn.querySelector(\u0027span.text-lg\u0027).classList.remove(\u0027text-white\u0027);\n                }\n            });\n        }\n\n        // Space Matrix Canvas Background (SpaceX subtle technological mesh)\n        const canvas \u003d document.getElementById(\u0027matrixCanvas\u0027);\n        const ctx \u003d canvas.getContext(\u00272d\u0027);\n\n        let width \u003d canvas.width \u003d window.innerWidth;\n        let height \u003d canvas.height \u003d window.innerHeight;\n\n        const points \u003d [];\n        const numPoints \u003d 45;\n        const maxDist \u003d 180;\n\n        for (let i \u003d 0; i \u003c numPoints; i++) {\n            points.push({\n                x: Math.random() * width,\n                y: Math.random() * height,\n                vx: (Math.random() - 0.5) * 0.3,\n                vy: (Math.random() - 0.5) * 0.3\n            });\n        }\n\n        function drawMatrix() {\n            ctx.clearRect(0, 0, width, height);\n            ctx.fillStyle \u003d \u0027#0a0a0a\u0027;\n            ctx.fillRect(0, 0, width, height);\n\n            ctx.strokeStyle \u003d \u0027#161616\u0027;\n            ctx.lineWidth \u003d 1;\n\n            // Draw Subtle Grid\n            const gridSize \u003d 64;\n            for (let x \u003d 0; x \u003c width; x +\u003d gridSize) {\n                ctx.beginPath();\n                ctx.moveTo(x, 0);\n                ctx.lineTo(x, height);\n                ctx.stroke();\n            }\n            for (let y \u003d 0; y \u003c height; y +\u003d gridSize) {\n                ctx.beginPath();\n                ctx.moveTo(0, y);\n                ctx.lineTo(width, y);\n                ctx.stroke();\n            }\n\n            // Draw Tech Nodes\n            ctx.fillStyle \u003d \u0027#222222\u0027;\n            for (let i \u003d 0; i \u003c numPoints; i++) {\n                const p \u003d points[i];\n                p.x +\u003d p.vx;\n                p.y +\u003d p.vy;\n\n                if (p.x \u003c 0 || p.x \u003e width) p.vx *\u003d -1;\n                if (p.y \u003c 0 || p.y \u003e height) p.vy *\u003d -1;\n\n                ctx.beginPath();\n                ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);\n                ctx.fill();\n\n                // Draw logical connections\n                for (let j \u003d i + 1; j \u003c numPoints; j++) {\n                    const p2 \u003d points[j];\n                    const dist \u003d Math.hypot(p.x - p2.x, p.y - p2.y);\n                    if (dist \u003c maxDist) {\n                        ctx.strokeStyle \u003d `rgba(34, 34, 34, ${1 - dist / maxDist})`;\n                        ctx.beginPath();\n                        ctx.moveTo(p.x, p.y);\n                        ctx.lineTo(p2.x, p2.y);\n                        ctx.stroke();\n                    }\n                }\n            }\n            requestAnimationFrame(drawMatrix);\n        }\n\n        drawMatrix();\n\n        window.addEventListener(\u0027resize\u0027, () \u003d\u003e {\n            width \u003d canvas.width \u003d window.innerWidth;\n            height \u003d canvas.height \u003d window.innerHeight;\n        });\n    \u003c/script\u003e\n\u003c/body\u003e\n\u003c/html\u003e\n```",
-      "role": "model",
-      "finishReason": "STOP",
-      "tokenCount": 9242,
-      "parts": [{
-        "text": "Here is a complete, production-ready, single-"
-      }, {
-        "text": "file HTML layout for **Cybernetica**. This implementation combines the developer-first minimalism of Vercel with the industrial"
-      }, {
-        "text": " utility of SpaceX, leveraging Tailwind CSS and custom CSS variables for precision styling.\n\nTo preview this page, save the code below as"
-      }, {
-        "text": " an `.html` file (e.g., `index.html`) and open it in any modern browser.\n\n"
-      }, {
-        "text": "```html\n\u003c!DOCTYPE html\u003e\n\u003chtml lang\u003d\"en\" class\u003d\"scroll-smooth bg-black text-white"
-      }, {
-        "text": " selection:bg-cyan-500 selection:text-black\"\u003e\n\u003chead\u003e\n    \u003cmeta charset\u003d\"UTF-"
-      }, {
-        "text": "8\"\u003e\n    \u003cmeta name\u003d\"viewport\" content\u003d\"width\u003ddevice-width, initial-scale\u003d1."
-      }, {
-        "text": "0\"\u003e\n    \u003ctitle\u003eCYBERNETICA — Premium Gaming \u0026 Esports Advertising\u003c/title\u003e\n    \u003c!-- Fonts --\u003e\n"
-      }, {
-        "text": "    \u003clink rel\u003d\"preconnect\" href\u003d\"https://fonts.googleapis.com\"\u003e\n    \u003clink rel\u003d\"preconnect"
-      }, {
-        "text": "\" href\u003d\"https://fonts.gstatic.com\" crossorigin\u003e\n    \u003clink href\u003d\"https://fonts.googleapis"
-      }, {
-        "text": ".com/css2?family\u003dInter:wght@300;400;500;6"
-      }, {
-        "text": "00;700\u0026family\u003dJetBrains+Mono:wght@300;400;"
-      }, {
-        "text": "500;700\u0026display\u003dswap\" rel\u003d\"stylesheet\"\u003e\n    \u003c!-- Tailwind CSS CDN --\u003e\n    \u003cscript"
-      }, {
-        "text": " src\u003d\"https://cdn.tailwindcss.com\"\u003e\u003c/script\u003e\n    \u003cscript\u003e\n        tailwind.config \u003d {\n            "
-      }, {
-        "text": "theme: {\n                extend: {\n                    fontFamily: {\n                        sans:"
-      }, {
-        "text": " [\u0027Inter\u0027, \u0027sans-serif\u0027],\n                        mono: [\u0027JetBrains Mono\u0027, \u0027monospace\u0027],\n                    },\n                    colors: {\n                        "
-      }, {
-        "text": "obsidian: \u0027#000000\u0027,\n                        silver: \u0027#888888\u0027,\n                        accent"
-      }, {
-        "text": ": \u0027#00F0FF\u0027,\n                        accentPurple: \u0027#7000FF\u0027,\n                        borderDark"
-      }, {
-        "text": ": \u0027#1A1A1A\u0027,\n                        borderHover: \u0027#333333\u0027,\n                    }\n                "
-      }, {
-        "text": "}\n            }\n        }\n    \u003c/script\u003e\n    \u003cstyle\u003e\n        /* Custom UI Reset \u0026"
-      }, {
-        "text": " Focus */\n        body {\n            font-family: \u0027Inter\u0027, sans-serif;\n            background-color: #"
-      }, {
-        "text": "000000;\n        }\n        .mono-text {\n            font-family: \u0027"
-      }, {
-        "text": "JetBrains Mono\u0027, monospace;\n        }\n        /* Custom borders conforming to the 0px-4px radius requirement"
-      }, {
-        "text": " */\n        .sharp-card {\n            border: 1px solid #1A1A1A;\n            border"
-      }, {
-        "text": "-radius: 2px;\n            background-color: #050505;\n            transition"
-      }, {
-        "text": ": all 0.3s cubic-bezier(0.16, 1, 0.3,"
-      }, {
-        "text": " 1);\n        }\n        .sharp-card:hover {\n            border-color: #33"
-      }, {
-        "text": "3333;\n            box-shadow: 0 0 15px rgba(0, 2"
-      }, {
-        "text": "40, 255, 0.03);\n        }\n        .glow-button {\n"
-      }, {
-        "text": "            border: 1px solid #FFFFFF;\n            border-radius: 2px;\n            transition: all"
-      }, {
-        "text": " 0.2s ease;\n        }\n        .glow-button:hover {\n            background-color: #"
-      }, {
-        "text": "FFFFFF;\n            color: #000000;\n            box-shadow: 0 0"
-      }, {
-        "text": " 20px rgba(255, 255, 255, 0.1"
-      }, {
-        "text": "5);\n        }\n        .glow-cyan {\n            border: 1px solid #1A1A1"
-      }, {
-        "text": "A;\n            transition: all 0.2s ease;\n        }\n        .glow-cyan:"
-      }, {
-        "text": "hover {\n            border-color: #00F0FF;\n            box-shadow: 0 "
-      }, {
-        "text": "0 10px rgba(0, 240, 255, 0.2);\n        }"
-      }, {
-        "text": "\n        /* Hide scrollbars but keep functionality */\n        ::-webkit-scrollbar {\n            width: 6px;"
-      }, {
-        "text": "\n            height: 6px;\n        }\n        ::-webkit-scrollbar-track {\n            background:"
-      }, {
-        "text": " #000000;\n        }\n        ::-webkit-scrollbar-thumb {\n            background:"
-      }, {
-        "text": " #1A1A1A;\n            border-radius: 3px;\n        }\n        ::-"
-      }, {
-        "text": "webkit-scrollbar-thumb:hover {\n            background: #333333;\n        }\n"
-      }, {
-        "text": "    \u003c/style\u003e\n\u003c/head\u003e\n\u003cbody class\u003d\"antialiased overflow-x-hidden\"\u003e\n\n    \u003c!-- NAVIGATION"
-      }, {
-        "text": " BAR --\u003e\n    \u003cheader class\u003d\"sticky top-0 z-50 w-full border-b border-border"
-      }, {
-        "text": "Dark bg-black/80 backdrop-blur-md\"\u003e\n        \u003cdiv class\u003d\"max-w-7xl mx-"
-      }, {
-        "text": "auto px-6 h-16 flex items-center justify-between\"\u003e\n            \u003cdiv class\u003d\"flex items-"
-      }, {
-        "text": "center space-x-8\"\u003e\n                \u003c!-- Logo --\u003e\n                \u003ca href\u003d\"#\" class\u003d\"mono-text text"
-      }, {
-        "text": "-lg font-bold tracking-widest text-white flex items-center space-x-2\"\u003e\n                    "
-      }, {
-        "text": "\u003cspan\u003eCYBERNETICA\u003c/span\u003e\n                    \u003cspan class\u003d\"w-1.5 h-1.5 bg-"
-      }, {
-        "text": "accent inline-block animate-pulse\"\u003e\u003c/span\u003e\n                \u003c/a\u003e\n                \u003c!-- Nav Links --\u003e\n                \u003cnav class\u003d\"hidden md"
-      }, {
-        "text": ":flex items-center space-x-6\"\u003e\n                    \u003ca href\u003d\"#manifest\" class\u003d\"text-xs"
-      }, {
-        "text": " mono-text text-silver hover:text-white transition-colors duration-200\"\u003e/Manifest\u003c/a\u003e\n                    \u003c"
-      }, {
-        "text": "a href\u003d\"#analytics\" class\u003d\"text-xs mono-text text-silver hover:text-white transition-colors"
-      }, {
-        "text": " duration-200\"\u003e/Data_Engine\u003c/a\u003e\n                    \u003ca href\u003d\"#services\" class\u003d\"text-xs mono"
-      }, {
-        "text": "-text text-silver hover:text-white transition-colors duration-200\"\u003e/Services\u003c/a\u003e\n                    \u003ca"
-      }, {
-        "text": " href\u003d\"#capture\" class\u003d\"text-xs mono-text text-silver hover:text-white transition-colors duration-20"
-      }, {
-        "text": "0\"\u003e/Reports\u003c/a\u003e\n                \u003c/nav\u003e\n            \u003c/div\u003e\n            \u003c!-- CTA --\u003e\n            \u003cdiv\u003e\n                \u003ca href"
-      }, {
-        "text": "\u003d\"#capture\" class\u003d\"mono-text text-xs uppercase px-4 py-2 glow-cyan bg-black text-"
-      }, {
-        "text": "white tracking-wider\"\u003e\n                    [ Get Strategy ]\n                \u003c/a\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n    \u003c/header\u003e"
-      }, {
-        "text": "\n\n    \u003c!-- HERO SECTION --\u003e\n    \u003csection class\u003d\"relative min-h-screen flex items-center justify-center"
-      }, {
-        "text": " overflow-hidden border-b border-borderDark py-24\"\u003e\n        \u003c!-- SpaceX Matrix Canvas Background --\u003e\n        \u003ccanvas"
-      }, {
-        "text": " id\u003d\"matrixCanvas\" class\u003d\"absolute inset-0 w-full h-full pointer-events-none opacity-45"
-      }, {
-        "text": "\"\u003e\u003c/canvas\u003e\n        \u003cdiv class\u003d\"absolute inset-0 bg-gradient-to-t from-black via-transparent"
-      }, {
-        "text": " to-black pointer-events-none\"\u003e\u003c/div\u003e\n\n        \u003cdiv class\u003d\"relative z-10 max-w-7"
-      }, {
-        "text": "xl mx-auto px-6 w-full text-center md:text-left flex flex-col justify-center"
-      }, {
-        "text": " h-full\"\u003e\n            \u003cdiv class\u003d\"inline-flex items-center space-x-2 border border-borderDark"
-      }, {
-        "text": " bg-black px-3 py-1 mb-8 self-center md:self-start\"\u003e\n                \u003cspan"
-      }, {
-        "text": " class\u003d\"w-2 h-2 bg-accent rounded-full\"\u003e\u003c/span\u003e\n                \u003cspan class\u003d\"mono-text text-"
-      }, {
-        "text": "[10px] uppercase tracking-widest text-silver\"\u003eMARKET STATUS: ACTIVE [2026]\u003c/span\u003e\n            "
-      }, {
-        "text": "\u003c/div\u003e\n            \n            \u003ch1 class\u003d\"text-4xl md:text-7xl font-bold tracking-tight text"
-      }, {
-        "text": "-white mb-6 uppercase max-w-5xl leading-none\"\u003e\n                Cybernetica.\u003cbr/\u003e"
-      }, {
-        "text": "\n                \u003cspan class\u003d\"text-transparent bg-clip-text bg-gradient-to-r from-white via"
-      }, {
-        "text": "-silver to-borderHover\"\u003e\n                    Professional Gateway to Gaming \u0026 Esports.\n                \u003c/span\u003e\n            \u003c/h1\u003e\n\n            \u003cp class"
-      }, {
-        "text": "\u003d\"text-base md:text-lg text-silver max-w-2xl mb-12 font-light"
-      }, {
-        "text": " leading-relaxed\"\u003e\n                The definitive market-leader for brand integration into the gaming ecosystem. Powered by direct publisher APIs, high"
-      }, {
-        "text": "-frequency media buy protocols, and absolute demographic domination.\n            \u003c/p\u003e\n\n            \u003cdiv class\u003d\"flex flex-col"
-      }, {
-        "text": " sm:flex-row items-center justify-center md:justify-start gap-4\"\u003e\n                \u003ca"
-      }, {
-        "text": " href\u003d\"#capture\" class\u003d\"mono-text text-xs uppercase w-full sm:w-auto px-8"
-      }, {
-        "text": " py-4 glow-button text-center bg-white text-black tracking-widest\"\u003e\n                    [ Initiate Integration ]"
-      }, {
-        "text": "\n                \u003c/a\u003e\n                \u003ca href\u003d\"#capture\" class\u003d\"mono-text text-xs text-silver hover:text-white"
-      }, {
-        "text": " transition-all duration-200 uppercase w-full sm:w-auto px-8 py-4 border border"
-      }, {
-        "text": "-borderDark text-center tracking-widest bg-black/50 hover:border-borderHover\"\u003e\n                   "
-      }, {
-        "text": " [ Read Market Report 2026 ]\n                \u003c/a\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    "
-      }, {
-        "text": "\u003c!-- POSITIONING MANIFEST SECTION --\u003e\n    \u003csection id\u003d\"manifest\" class\u003d\"py-32 border-b"
-      }, {
-        "text": " border-borderDark bg-black\"\u003e\n        \u003cdiv class\u003d\"max-w-7xl mx-auto px-"
-      }, {
-        "text": "6\"\u003e\n            \u003cspan class\u003d\"mono-text text-xs text-silver block mb-8 uppercase tracking-widest\"\u003e"
-      }, {
-        "text": "/ POSITIONING MANIFEST\u003c/span\u003e\n            \n            \u003cdiv class\u003d\"manifest-container max-w-5xl\"\u003e"
-      }, {
-        "text": "\n                \u003cp class\u003d\"text-3xl md:text-5xl leading-tight text-silver font-"
-      }, {
-        "text": "light tracking-tight select-none\"\u003e\n                    Establishing infrastructure in \n                    \u003cspan class\u003d\"manifest-word text"
-      }, {
-        "text": "-silver hover:text-white transition-colors duration-150 cursor-pointer inline-block\" data-active"
-      }, {
-        "text": "\u003d\"true\"\u003eGaming in Russia\u003c/span\u003e \n                    requires more than media-buying. It demands \n                    \u003cspan"
-      }, {
-        "text": " class\u003d\"manifest-word text-silver hover:text-white transition-colors duration-150 cursor-pointer"
-      }, {
-        "text": " inline-block\" data-active\u003d\"true\"\u003eCybernetica’s\u003c/span\u003e \n                    proprietary analytical engines and \n"
-      }, {
-        "text": "                    \u003cspan class\u003d\"manifest-word text-silver hover:text-white transition-colors duration-150"
-      }, {
-        "text": " cursor-pointer inline-block\" data-active\u003d\"true\"\u003eAbsolute Expertise\u003c/span\u003e. \n                    We translate cultural capital"
-      }, {
-        "text": " into high-yield enterprise assets.\n                \u003c/p\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n"
-      }, {
-        "text": "    \u003c!-- ANALYTICS \u0026 RESEARCH ENGINE --\u003e\n    \u003csection id\u003d\"analytics\" class\u003d\"py-32 border-"
-      }, {
-        "text": "b border-borderDark bg-black\"\u003e\n        \u003cdiv class\u003d\"max-w-7xl mx-auto px"
-      }, {
-        "text": "-6\"\u003e\n            \u003cdiv class\u003d\"mb-12 flex flex-col md:flex-row justify-between items"
-      }, {
-        "text": "-start md:items-end gap-6\"\u003e\n                \u003cdiv\u003e\n                    \u003cspan class\u003d\"mono-text text-xs"
-      }, {
-        "text": " text-silver block mb-2 uppercase tracking-widest\"\u003e/ DATA ENGINE\u003c/span\u003e\n                    \u003ch2 class\u003d\""
-      }, {
-        "text": "text-3xl font-bold tracking-tight uppercase\"\u003eAnalytics \u0026 Research Terminal\u003c/h2\u003e\n                \u003c/div\u003e\n                \u003cdiv"
-      }, {
-        "text": " class\u003d\"mono-text text-xs text-silver border border-borderDark px-3 py-1 bg-black"
-      }, {
-        "text": "\"\u003e\n                    SYSTEM TIME: \u003cspan id\u003d\"systemTime\"\u003e00:00:00 UTC\u003c/span\u003e\n                "
-      }, {
-        "text": "\u003c/div\u003e\n            \u003c/div\u003e\n\n            \u003c!-- Dashboard Widget Grid --\u003e\n            \u003cdiv class\u003d\"grid grid-cols-1 lg:grid-"
-      }, {
-        "text": "cols-12 gap-px bg-borderDark sharp-card p-1\"\u003e\n                \u003c!-- Left Nav Tabs"
-      }, {
-        "text": " --\u003e\n                \u003cdiv class\u003d\"lg:col-span-4 flex flex-col bg-black divide-y divide-border"
-      }, {
-        "text": "Dark\"\u003e\n                    \u003cbutton onclick\u003d\"switchTab(\u0027market\u0027)\" id\u003d\"tab-btn-market\" class\u003d\"w-full"
-      }, {
-        "text": " text-left p-6 transition-all duration-200 hover:bg-neutral-950 flex"
-      }, {
-        "text": " flex-col justify-between group active-tab border-l-2 border-accent\"\u003e\n                        \u003cspan class\u003d\"mono"
-      }, {
-        "text": "-text text-xs text-silver tracking-widest mb-1\"\u003eMETRIC 01 //\u003c/span\u003e\n                        \u003c"
-      }, {
-        "text": "span class\u003d\"text-lg font-bold tracking-tight uppercase group-hover:text-white transition-colors text-"
-      }, {
-        "text": "white\"\u003eMarket Volume \u0026 Impact\u003c/span\u003e\n                        \u003cspan class\u003d\"text-xs text-silver mt-4\"\u003eTotal address"
-      }, {
-        "text": "able gaming landscape metrics.\u003c/span\u003e\n                    \u003c/button\u003e\n                    \u003cbutton onclick\u003d\"switchTab(\u0027demographics\u0027)\" id\u003d\"tab"
-      }, {
-        "text": "-btn-demographics\" class\u003d\"w-full text-left p-6 transition-all duration-20"
-      }, {
-        "text": "0 hover:bg-neutral-950 flex flex-col justify-between group border-l-2 border"
-      }, {
-        "text": "-transparent\"\u003e\n                        \u003cspan class\u003d\"mono-text text-xs text-silver tracking-widest mb-"
-      }, {
-        "text": "1\"\u003eMETRIC 02 //\u003c/span\u003e\n                        \u003cspan class\u003d\"text-lg font-bold tracking-tight"
-      }, {
-        "text": " uppercase text-silver group-hover:text-white transition-colors\"\u003eTarget Demographics\u003c/span\u003e\n                        \u003cspan class\u003d\"text"
-      }, {
-        "text": "-xs text-silver mt-4\"\u003eGranular player profiles and purchasing behaviors.\u003c/span\u003e\n                    \u003c/button\u003e\n                    \u003cbutton"
-      }, {
-        "text": " onclick\u003d\"switchTab(\u0027forecast\u0027)\" id\u003d\"tab-btn-forecast\" class\u003d\"w-full text-left p"
-      }, {
-        "text": "-6 transition-all duration-200 hover:bg-neutral-950 flex flex-col justify"
-      }, {
-        "text": "-between group border-l-2 border-transparent\"\u003e\n                        \u003cspan class\u003d\"mono-text text-xs"
-      }, {
-        "text": " text-silver tracking-widest mb-1\"\u003eMETRIC 03 //\u003c/span\u003e\n                        \u003cspan class\u003d\""
-      }, {
-        "text": "text-lg font-bold tracking-tight uppercase text-silver group-hover:text-white transition-colors\"\u003e"
-      }, {
-        "text": "2026-2030 Growth Forecast\u003c/span\u003e\n                        \u003cspan class\u003d\"text-xs text-silver mt-"
-      }, {
-        "text": "4\"\u003ePredictive models of ad-spend effectiveness.\u003c/span\u003e\n                    \u003c/button\u003e\n                \u003c/div\u003e\n\n                \u003c!-- Right Display Area"
-      }, {
-        "text": " --\u003e\n                \u003cdiv class\u003d\"lg:col-span-8 bg-black p-6 md:p-"
-      }, {
-        "text": "8 flex flex-col justify-between min-h-[400px]\"\u003e\n                    \u003c!-- Market Tab Content --\u003e\n"
-      }, {
-        "text": "                    \u003cdiv id\u003d\"tab-content-market\" class\u003d\"tab-content space-y-8\"\u003e\n                        "
-      }, {
-        "text": "\u003cdiv class\u003d\"flex items-center justify-between\"\u003e\n                            \u003cspan class\u003d\"mono-text text-xs"
-      }, {
-        "text": " text-accent uppercase tracking-widest\"\u003e[ DATA FEED // ACTIVE ]\u003c/span\u003e\n                            \u003cspan class\u003d\"mono-text text-"
-      }, {
-        "text": "xs text-silver\"\u003eUPDATE: 1m AGO\u003c/span\u003e\n                        \u003c/div\u003e\n                        \u003cdiv class\u003d\"grid grid-cols-"
-      }, {
-        "text": "1 sm:grid-cols-3 gap-6\"\u003e\n                            \u003cdiv class\u003d\"border border-borderDark p"
-      }, {
-        "text": "-4 bg-neutral-950/50\"\u003e\n                                \u003cspan class\u003d\"mono-text text-xs text-"
-      }, {
-        "text": "silver block mb-2\"\u003eACTIVE PLAYERS\u003c/span\u003e\n                                \u003cspan class\u003d\"text-3xl font-bold tracking"
-      }, {
-        "text": "-tight text-white font-sans\"\u003e65.4M+\u003c/span\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class"
-      }, {
-        "text": "\u003d\"border border-borderDark p-4 bg-neutral-950/50\"\u003e\n                                \u003cspan"
-      }, {
-        "text": " class\u003d\"mono-text text-xs text-silver block mb-2\"\u003eREVENUE GENERATED\u003c/span\u003e\n                                \u003cspan class\u003d\""
-      }, {
-        "text": "text-3xl font-bold tracking-tight text-white font-sans\"\u003e$2.1B\u003c/span\u003e\n                            \u003c/div\u003e\n"
-      }, {
-        "text": "                            \u003cdiv class\u003d\"border border-borderDark p-4 bg-neutral-950/50\"\u003e"
-      }, {
-        "text": "\n                                \u003cspan class\u003d\"mono-text text-xs text-silver block mb-2\"\u003eAVG INTEGRATION ROI\u003c/span\u003e\n"
-      }, {
-        "text": "                                \u003cspan class\u003d\"text-3xl font-bold tracking-tight text-accent font-sans\"\u003e+24"
-      }, {
-        "text": "0%\u003c/span\u003e\n                            \u003c/div\u003e\n                        \u003c/div\u003e\n                        \u003c!-- Simple Tech Viz (SpaceX Style Terminal) --\u003e\n                        "
-      }, {
-        "text": "\u003cdiv class\u003d\"border border-borderDark p-4 h-48 flex items-end space-x-2"
-      }, {
-        "text": " relative overflow-hidden bg-neutral-950/30\"\u003e\n                            \u003cdiv class\u003d\"absolute inset-x"
-      }, {
-        "text": "-0 top-0 h-full bg-gradient-to-b from-transparent to-neutral-950"
-      }, {
-        "text": "/80 pointer-events-none z-10\"\u003e\u003c/div\u003e\n                            \u003c!-- Static/Dynamic Grid Overlay --\u003e\n                            \u003c"
-      }, {
-        "text": "div class\u003d\"absolute inset-0 bg-"
-      }, {
-        "text": "[radial-gradient(#1a1a1a_1px,transparent_1px)] [background-size:16px_16px] opacity-40\"\u003e\u003c/div\u003e\n                            \u003c!-- Bar Charts"
-      }, {
-        "text": " --\u003e\n                            \u003cdiv class\u003d\"w-full h-[15%] bg-zinc-800 transition-all duration"
-      }, {
-        "text": "-500 hover:bg-accent z-20\"\u003e\u003c/div\u003e\n                            \u003cdiv class\u003d\"w-full h"
-      }, {
-        "text": "-[40%] bg-zinc-800 transition-all duration-500 hover:bg-accent"
-      }, {
-        "text": " z-20\"\u003e\u003c/div\u003e\n                            \u003cdiv class\u003d\"w-full h-[35%] bg-zinc-"
-      }, {
-        "text": "800 transition-all duration-500 hover:bg-accent z-20\"\u003e\u003c/div\u003e\n                            "
-      }, {
-        "text": "\u003cdiv class\u003d\"w-full h-[65%] bg-zinc-800 transition-all duration-"
-      }, {
-        "text": "500 hover:bg-accent z-20\"\u003e\u003c/div\u003e\n                            \u003cdiv class\u003d\"w-full h"
-      }, {
-        "text": "-[85%] bg-accent transition-all duration-500 hover:bg-accent z-20"
-      }, {
-        "text": "\"\u003e\u003c/div\u003e\n                        \u003c/div\u003e\n                    \u003c/div\u003e\n\n                    \u003c!-- Demographics Tab Content --\u003e\n                    \u003cdiv id\u003d\"tab-"
-      }, {
-        "text": "content-demographics\" class\u003d\"tab-content hidden space-y-8\"\u003e\n                        \u003cdiv class\u003d\"flex"
-      }, {
-        "text": " items-center justify-between\"\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-accentPurple uppercase tracking-wid"
-      }, {
-        "text": "est\"\u003e[ USER PROFILES // STRATIFIED ]\u003c/span\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-silver\"\u003e"
-      }, {
-        "text": "UPDATE: Realtime\u003c/span\u003e\n                        \u003c/div\u003e\n                        \u003cdiv class\u003d\"grid grid-cols-1 sm:grid-"
-      }, {
-        "text": "cols-2 gap-6\"\u003e\n                            \u003cdiv class\u003d\"border border-borderDark p-4 bg-neutral"
-      }, {
-        "text": "-950/50\"\u003e\n                                \u003cspan class\u003d\"mono-text text-xs text-silver block"
-      }, {
-        "text": " mb-2\"\u003ePRIMARY DEMOGRAPHIC\u003c/span\u003e\n                                \u003cspan class\u003d\"text-2xl font-bold text-white\"\u003e"
-      }, {
-        "text": "M/F 18-34 (74%)\u003c/span\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class\u003d\"border"
-      }, {
-        "text": " border-borderDark p-4 bg-neutral-950/50\"\u003e\n                                \u003cspan class\u003d\""
-      }, {
-        "text": "mono-text text-xs text-silver block mb-2\"\u003eAVG DAILY SESSIONS\u003c/span\u003e\n                                \u003cspan class\u003d\""
-      }, {
-        "text": "text-2xl font-bold text-white\"\u003e2.8 hrs\u003c/span\u003e\n                            \u003c/div\u003e\n                        \u003c/div\u003e\n                        \u003cdiv class"
-      }, {
-        "text": "\u003d\"border border-borderDark p-6 bg-neutral-950/30 space-y-4\"\u003e\n"
-      }, {
-        "text": "                            \u003cspan class\u003d\"mono-text text-xs text-silver block\"\u003eTRAFFIC DENSITY INDEX\u003c/span\u003e\n                            \u003c"
-      }, {
-        "text": "div class\u003d\"w-full bg-borderDark h-2 relative\"\u003e\n                                \u003cdiv class\u003d\"absolute top-0 left"
-      }, {
-        "text": "-0 bg-accentPurple w-[82%] h-full\"\u003e\u003c/div\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class\u003d\"flex"
-      }, {
-        "text": " justify-between text-[10px] mono-text text-silver\"\u003e\n                                \u003cspan\u003eTier 3 Cities (1"
-      }, {
-        "text": "8%)\u003c/span\u003e\n                                \u003cspan\u003eMetropolitan Hubs (82%)\u003c/span\u003e\n                            \u003c/div\u003e\n                        \u003c/div\u003e\n                    "
-      }, {
-        "text": "\u003c/div\u003e\n\n                    \u003c!-- Forecast Tab Content --\u003e\n                    \u003cdiv id\u003d\"tab-content-forecast\" class\u003d\"tab-"
-      }, {
-        "text": "content hidden space-y-8\"\u003e\n                        \u003cdiv class\u003d\"flex items-center justify-between\"\u003e\n                            "
-      }, {
-        "text": "\u003cspan class\u003d\"mono-text text-xs text-accent uppercase tracking-widest\"\u003e"
-      }, {
-        "text": "[ ML PROJECTIONS // RUNNING ]\u003c/span\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-silver\"\u003eMODEL V4.12"
-      }, {
-        "text": "\u003c/span\u003e\n                        \u003c/div\u003e\n                        \u003cdiv class\u003d\"grid grid-cols-1 sm:grid-cols-3 gap"
-      }, {
-        "text": "-6\"\u003e\n                            \u003cdiv class\u003d\"border border-borderDark p-4 bg-neutral-950"
-      }, {
-        "text": "/50\"\u003e\n                                \u003cspan class\u003d\"mono-text text-xs text-silver block mb-2\"\u003e"
-      }, {
-        "text": "2026 VALUE\u003c/span\u003e\n                                \u003cspan class\u003d\"text-2xl font-bold text-white\"\u003e$2."
-      }, {
-        "text": "1B\u003c/span\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class\u003d\"border border-borderDark p-4 bg-neutral-9"
-      }, {
-        "text": "50/50\"\u003e\n                                \u003cspan class\u003d\"mono-text text-xs text-silver block mb-"
-      }, {
-        "text": "2\"\u003e2028 VALUE\u003c/span\u003e\n                                \u003cspan class\u003d\"text-2xl font-bold text-white\"\u003e$"
-      }, {
-        "text": "2.9B\u003c/span\u003e\n                            \u003c/div\u003e\n                            \u003cdiv class\u003d\"border border-borderDark p-4 bg-neutral"
-      }, {
-        "text": "-950/50\"\u003e\n                                \u003cspan class\u003d\"mono-text text-xs text-silver block"
-      }, {
-        "text": " mb-2\"\u003e2030 PROJ\u003c/span\u003e\n                                \u003cspan class\u003d\"text-2xl font-bold text-"
-      }, {
-        "text": "accent\"\u003e$4.2B\u003c/span\u003e\n                            \u003c/div\u003e\n                        \u003c/div\u003e\n                        \u003cp class\u003d\"text-xs text-silver"
-      }, {
-        "text": " leading-relaxed border-l-2 border-accent pl-4\"\u003e\n                            Ad spend efficiency indicators suggest high user"
-      }, {
-        "text": " friction reduction in contextual native integrations compared to standard web-native display frameworks over the next decade.\n                        \u003c/p\u003e"
-      }, {
-        "text": "\n                    \u003c/div\u003e\n\n                    \u003c!-- Base Terminal Metadata Footer --\u003e\n                    \u003cdiv class\u003d\"mt-8 pt-4 border-t"
-      }, {
-        "text": " border-borderDark flex items-center justify-between text-[10px] mono-text text-silver\"\u003e\n                        \u003cspan\u003e"
-      }, {
-        "text": "SYS_STATUS: OPTIMAL\u003c/span\u003e\n                        \u003cspan\u003eNODE_RU: MSK_A1\u003c/span\u003e\n                    \u003c/div\u003e\n                \u003c/div\u003e"
-      }, {
-        "text": "\n            \u003c/div\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003c!-- SERVICE MATRIX (Bento Grid) --\u003e\n    \u003csection id"
-      }, {
-        "text": "\u003d\"services\" class\u003d\"py-32 border-b border-borderDark bg-black\"\u003e\n        \u003cdiv"
-      }, {
-        "text": " class\u003d\"max-w-7xl mx-auto px-6\"\u003e\n            \u003cspan class\u003d\"mono-text"
-      }, {
-        "text": " text-xs text-silver block mb-2 uppercase tracking-widest\"\u003e/ CAPABILITIES\u003c/span\u003e\n            \u003ch2 class"
-      }, {
-        "text": "\u003d\"text-3xl font-bold tracking-tight uppercase mb-12\"\u003eThe Service Matrix\u003c/h2\u003e\n\n            \u003c!--"
-      }, {
-        "text": " Bento Grid --\u003e\n            \u003cdiv class\u003d\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols"
-      }, {
-        "text": "-4 gap-6\"\u003e\n                \u003c!-- Card 1 --\u003e\n                \u003cdiv class\u003d\"sharp-card p-6 flex"
-      }, {
-        "text": " flex-col justify-between min-h-[280px]\"\u003e\n                    \u003cdiv\u003e\n                        \u003cdiv class\u003d\""
-      }, {
-        "text": "w-8 h-8 flex items-center justify-center border border-borderDark mb-6 bg-neutral-"
-      }, {
-        "text": "950\"\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-accent\"\u003e01\u003c/span\u003e\n"
-      }, {
-        "text": "                        \u003c/div\u003e\n                        \u003ch3 class\u003d\"text-lg font-bold uppercase tracking-tight mb-2 text-"
-      }, {
-        "text": "white\"\u003eEsports Sponsorships\u003c/h3\u003e\n                        \u003cp class\u003d\"text-xs text-silver leading-relaxed font-light\"\u003e\n"
-      }, {
-        "text": "                            Direct inventory placement within flagship regional leagues, tier-1 teams, and independent regional tournament streams.\n                        \u003c/p\u003e"
-      }, {
-        "text": "\n                    \u003c/div\u003e\n                    \u003cdiv class\u003d\"mt-8 pt-4 border-t border-borderDark/5"
-      }, {
-        "text": "0 flex justify-between items-center text-[10px] mono-text text-silver\"\u003e\n                        \u003cspan\u003eSCALE"
-      }, {
-        "text": ": MACRO\u003c/span\u003e\n                        \u003cspan\u003e[ CONNECT ]\u003c/span\u003e\n                    \u003c/div\u003e\n                \u003c/div\u003e\n\n                \u003c!-- Card 2 --\u003e\n                "
-      }, {
-        "text": "\u003cdiv class\u003d\"sharp-card p-6 flex flex-col justify-between min-h-"
-      }, {
-        "text": "[280px]\"\u003e\n                    \u003cdiv\u003e\n                        \u003cdiv class\u003d\"w-8 h-8 flex items-center justify-center"
-      }, {
-        "text": " border border-borderDark mb-6 bg-neutral-950\"\u003e\n                            \u003cspan class\u003d\"mono-"
-      }, {
-        "text": "text text-xs text-accent\"\u003e02\u003c/span\u003e\n                        \u003c/div\u003e\n                        \u003ch3 class\u003d\"text-lg"
-      }, {
-        "text": " font-bold uppercase tracking-tight mb-2 text-white\"\u003eIn-Game Integrations\u003c/h3\u003e\n                        \u003cp"
-      }, {
-        "text": " class\u003d\"text-xs text-silver leading-relaxed font-light\"\u003e\n                            Native SDK-level product placements, dynamic virtual"
-      }, {
-        "text": " billboarding, and personalized server-side activations.\n                        \u003c/p\u003e\n                    \u003c/div\u003e\n                    \u003cdiv class\u003d\"mt"
-      }, {
-        "text": "-8 pt-4 border-t border-borderDark/50 flex justify-between items-center text-"
-      }, {
-        "text": "[10px] mono-text text-silver\"\u003e\n                        \u003cspan\u003eSCALE: NATIVE\u003c/span\u003e\n                        \u003cspan\u003e"
-      }, {
-        "text": "[ CONNECT ]\u003c/span\u003e\n                    \u003c/div\u003e\n                \u003c/div\u003e\n\n                \u003c!-- Card 3 --\u003e\n                \u003cdiv class\u003d\"sharp-card"
-      }, {
-        "text": " p-6 flex flex-col justify-between min-h-[280px]\"\u003e\n                    \u003cdiv\u003e\n                        \u003c"
-      }, {
-        "text": "div class\u003d\"w-8 h-8 flex items-center justify-center border border-borderDark mb-6"
-      }, {
-        "text": " bg-neutral-950\"\u003e\n                            \u003cspan class\u003d\"mono-text text-xs text-accent\"\u003e"
-      }, {
-        "text": "03\u003c/span\u003e\n                        \u003c/div\u003e\n                        \u003ch3 class\u003d\"text-lg font-bold uppercase tracking-tight mb"
-      }, {
-        "text": "-2 text-white\"\u003eStreamer Campaigns\u003c/h3\u003e\n                        \u003cp class\u003d\"text-xs text-silver leading-"
-      }, {
-        "text": "relaxed font-light\"\u003e\n                            Coordinated interactive media bursts across key platform networks with automated performance compliance tracking.\n                        "
-      }, {
-        "text": "\u003c/p\u003e\n                    \u003c/div\u003e\n                    \u003cdiv class\u003d\"mt-8 pt-4 border-t border-border"
-      }, {
-        "text": "Dark/50 flex justify-between items-center text-[10px] mono-text text-silver\"\u003e"
-      }, {
-        "text": "\n                        \u003cspan\u003eSCALE: AD-HOC\u003c/span\u003e\n                        \u003cspan\u003e[ CONNECT ]\u003c/span\u003e\n                    \u003c/div\u003e\n                \u003c/div\u003e\n\n                \u003c!--"
-      }, {
-        "text": " Card 4 --\u003e\n                \u003cdiv class\u003d\"sharp-card p-6 flex flex-col justify-between min"
-      }, {
-        "text": "-h-[280px]\"\u003e\n                    \u003cdiv\u003e\n                        \u003cdiv class\u003d\"w-8 h-8 flex"
-      }, {
-        "text": " items-center justify-center border border-borderDark mb-6 bg-neutral-950\"\u003e\n                            "
-      }, {
-        "text": "\u003cspan class\u003d\"mono-text text-xs text-accent\"\u003e04\u003c/span\u003e\n                        \u003c/div\u003e\n                        \u003ch"
-      }, {
-        "text": "3 class\u003d\"text-lg font-bold uppercase tracking-tight mb-2 text-white\"\u003eCustom Gaming Content\u003c/h3\u003e"
-      }, {
-        "text": "\n                        \u003cp class\u003d\"text-xs text-silver leading-relaxed font-light\"\u003e\n                            Execution of custom maps"
-      }, {
-        "text": ", custom mod development, and dynamic mini-games crafted for massive community distribution networks.\n                        \u003c/p\u003e\n                    "
-      }, {
-        "text": "\u003c/div\u003e\n                    \u003cdiv class\u003d\"mt-8 pt-4 border-t border-borderDark/50 flex"
-      }, {
-        "text": " justify-between items-center text-[10px] mono-text text-silver\"\u003e\n                        \u003cspan\u003eSCALE:"
-      }, {
-        "text": " BESPOKE\u003c/span\u003e\n                        \u003cspan\u003e[ CONNECT ]\u003c/span\u003e\n                    \u003c/div\u003e\n                \u003c/div\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n    "
-      }, {
-        "text": "\u003c/section\u003e\n\n    \u003c!-- B2B LEAD CAPTURE \u0026 REPORT DOWNLOAD --\u003e\n    \u003csection id\u003d\"capture"
-      }, {
-        "text": "\" class\u003d\"py-32 border-b border-borderDark bg-neutral-950/30"
-      }, {
-        "text": "\"\u003e\n        \u003cdiv class\u003d\"max-w-7xl mx-auto px-6\"\u003e\n            \u003cdiv"
-      }, {
-        "text": " class\u003d\"grid grid-cols-1 lg:grid-cols-12 gap-12 items-center\"\u003e\n"
-      }, {
-        "text": "                \u003c!-- Left Content: PDF Preview Card --\u003e\n                \u003cdiv class\u003d\"lg:col-span-5 space-y"
-      }, {
-        "text": "-6\"\u003e\n                    \u003cspan class\u003d\"mono-text text-xs text-accent block uppercase tracking-widest"
-      }, {
-        "text": "\"\u003e/ STRATEGIC RESOURCE\u003c/span\u003e\n                    \u003ch2 class\u003d\"text-3xl font-bold uppercase tracking-tight\"\u003e"
-      }, {
-        "text": "Access Exclusive Market Intelligence\u003c/h2\u003e\n                    \u003cp class\u003d\"text-sm text-silver leading-relaxed font-light\"\u003e\n                        Request"
-      }, {
-        "text": " our 2026 report analyzing audience shift patterns, advertising elasticity coefficients, and structural integration strategies within the Russian esports"
-      }, {
-        "text": " matrix.\n                    \u003c/p\u003e\n\n                    \u003c!-- Preview Graphic (Minimalist book design) --\u003e\n                    \u003cdiv class\u003d\"border"
-      }, {
-        "text": " border-borderDark bg-black p-6 flex items-center space-x-6 sharp-card mt-8\"\u003e\n"
-      }, {
-        "text": "                        \u003cdiv class\u003d\"w-24 h-32 bg-neutral-900 border border-borderDark"
-      }, {
-        "text": " flex flex-col justify-between p-3 relative flex-shrink-0\"\u003e\n                            \u003cdiv class\u003d\"absolute"
-      }, {
-        "text": " inset-0 bg-gradient-to-tr from-accent/5 to-transparent pointer-events-none\"\u003e\u003c/div\u003e\n                            "
-      }, {
-        "text": "\u003cspan class\u003d\"mono-text text-[6px] text-accent font-bold\"\u003eCYBERNETICA DATA"
-      }, {
-        "text": " DOC\u003c/span\u003e\n                            \u003cspan class\u003d\"text-[8px] font-bold text-white uppercase leading-none\"\u003eAUD"
-      }, {
-        "text": "IENCE REPORT 2026\u003c/span\u003e\n                            \u003cspan class\u003d\"mono-text text-[6px] text-silver text-"
-      }, {
-        "text": "right\"\u003eSECURE // SEC_01\u003c/span\u003e\n                        \u003c/div\u003e\n                        \u003cdiv\u003e\n                            \u003cspan class\u003d\"mono-text text-"
-      }, {
-        "text": "[10px] text-accent block mb-1\"\u003e[ 148 PAGES // PDF ]\u003c/span\u003e\n                            \u003ch4"
-      }, {
-        "text": " class\u003d\"text-sm font-bold text-white mb-2 uppercase\"\u003eRussian Esports Landscape v3.0\u003c/h4\u003e\n"
-      }, {
-        "text": "                            \u003cp class\u003d\"text-xs text-silver font-light\"\u003eAggregated player demographic mapping, platform indices, and budget"
-      }, {
-        "text": " allocation guidance matrices.\u003c/p\u003e\n                        \u003c/div\u003e\n                    \u003c/div\u003e\n                \u003c/div\u003e\n\n                \u003c!-- Right Content: Minimal Form Container --\u003e\n                "
-      }, {
-        "text": "\u003cdiv class\u003d\"lg:col-span-7 sharp-card bg-black p-8 md:p-"
-      }, {
-        "text": "10 border border-borderDark\"\u003e\n                    \u003ch3 class\u003d\"text-lg font-bold uppercase tracking-"
-      }, {
-        "text": "tight text-white mb-6\"\u003eInitialize Report Access\u003c/h3\u003e\n                    \u003cform class\u003d\"space-y-6\" on"
-      }, {
-        "text": "submit\u003d\"event.preventDefault(); alert(\u0027Request logged. Intelligence dispatch confirmed.\u0027);\"\u003e\n                        \u003cdiv class\u003d\"grid grid-cols-"
-      }, {
-        "text": "1 sm:grid-cols-2 gap-6\"\u003e\n                            \u003cdiv\u003e\n                                \u003clabel class\u003d\"mono-text"
-      }, {
-        "text": " text-[10px] uppercase tracking-wider text-silver block mb-2\"\u003eFull Name\u003c/label\u003e\n"
-      }, {
-        "text": "                                \u003cinput type\u003d\"text\" placeholder\u003d\"e.g. Victor Volkov\" required class\u003d\"w-full bg-neutral"
-      }, {
-        "text": "-950 text-white border border-borderDark px-4 py-3 text-sm focus:outline"
-      }, {
-        "text": "-none focus:border-accent transition-colors duration-150 rounded-[2px] placeholder:text-neutral-7"
-      }, {
-        "text": "00\"\u003e\n                            \u003c/div\u003e\n                            \u003cdiv\u003e\n                                \u003clabel class\u003d\"mono-text text-[10px]"
-      }, {
-        "text": " uppercase tracking-wider text-silver block mb-2\"\u003eCorporate Email\u003c/label\u003e\n                                \u003cinput type\u003d\"email\" placeholder"
-      }, {
-        "text": "\u003d\"e.g. volkov@cybernetica.ru\" required class\u003d\"w-full bg-neutral-"
-      }, {
-        "text": "950 text-white border border-borderDark px-4 py-3 text-sm focus:outline-"
-      }, {
-        "text": "none focus:border-accent transition-colors duration-150 rounded-[2px] placeholder:text-neutral"
-      }, {
-        "text": "-700\"\u003e\n                            \u003c/div\u003e\n                        \u003c/div\u003e\n                        \u003cdiv\u003e\n                            \u003clabel class\u003d\"mono-text text-"
-      }, {
-        "text": "[10px] uppercase tracking-wider text-silver block mb-2\"\u003eCompany / Enterprise Entity\u003c/label\u003e\n                            \u003cinput type"
-      }, {
-        "text": "\u003d\"text\" placeholder\u003d\"e.g. Cybernetica Global\" required class\u003d\"w-full bg-neutral-9"
-      }, {
-        "text": "50 text-white border border-borderDark px-4 py-3 text-sm focus:outline-none"
-      }, {
-        "text": " focus:border-accent transition-colors duration-150 rounded-[2px] placeholder:text-neutral-"
-      }, {
-        "text": "700\"\u003e\n                        \u003c/div\u003e\n                        \u003cdiv class\u003d\"pt-4\"\u003e\n                            \u003cbutton type\u003d\"submit\""
-      }, {
-        "text": " class\u003d\"w-full mono-text text-xs uppercase bg-white text-black font-bold py-4 glow-button"
-      }, {
-        "text": " tracking-widest\"\u003e\n                                [ Download Report ]\n                            \u003c/button\u003e\n                        \u003c/div\u003e\n                        \u003cp class\u003d\""
-      }, {
-        "text": "text-[10px] mono-text text-silver text-center\"\u003e\n                            By clicking download you acknowledge the absolute"
-      }, {
-        "text": " privacy frameworks under protocol RU-2026-X.\n                        \u003c/p\u003e\n                    \u003c/form\u003e\n"
-      }, {
-        "text": "                \u003c/div\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n    \u003c/section\u003e\n\n    \u003c!-- FOOTER --\u003e\n    \u003cfooter class"
-      }, {
-        "text": "\u003d\"bg-black py-24 border-t border-borderDark\"\u003e\n        \u003cdiv class\u003d\"max-"
-      }, {
-        "text": "w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg"
-      }, {
-        "text": ":grid-cols-12 gap-12\"\u003e\n            \u003c!-- Col 1: Brand Info --\u003e\n            "
-      }, {
-        "text": "\u003cdiv class\u003d\"lg:col-span-4 space-y-4\"\u003e\n                \u003ca href\u003d\"#\" class"
-      }, {
-        "text": "\u003d\"mono-text text-lg font-bold tracking-widest text-white flex items-center space-x"
-      }, {
-        "text": "-2\"\u003e\n                    \u003cspan\u003eCYBERNETICA\u003c/span\u003e\n                \u003c/a\u003e\n                \u003cp class\u003d\"text-xs text"
-      }, {
-        "text": "-silver font-light max-w-sm leading-relaxed\"\u003e\n                    Engineering next-generation brand infrastructures across sovereign"
-      }, {
-        "text": " and global gaming networks. Verified metrics. Certified execution.\n                \u003c/p\u003e\n                \u003cdiv class\u003d\"pt-4 flex"
-      }, {
-        "text": " items-center space-x-2 text-[10px] mono-text text-accent\"\u003e\n                    \u003c"
-      }, {
-        "text": "span class\u003d\"w-2.5 h-2.5 bg-accent inline-block animate-ping rounded-full"
-      }, {
-        "text": " absolute\"\u003e\u003c/span\u003e\n                    \u003cspan class\u003d\"w-2.5 h-2.5 bg-accent inline-block rounded-"
-      }, {
-        "text": "full\"\u003e\u003c/span\u003e\n                    \u003cspan class\u003d\"pl-2\"\u003eSYSTEM NODE: MSK // ONLINE\u003c/span\u003e\n                \u003c/div\u003e\n            \u003c/div\u003e"
-      }, {
-        "text": "\n\n            \u003c!-- Col 2: Services Quick links --\u003e\n            \u003cdiv class\u003d\"lg:col-span-3 space-"
-      }, {
-        "text": "y-4\"\u003e\n                \u003ch4 class\u003d\"mono-text text-xs uppercase text-white tracking-wid"
-      }, {
-        "text": "est\"\u003e/ DIRECTORIES\u003c/h4\u003e\n                \u003cul class\u003d\"space-y-2 text-xs text-silver\"\u003e"
-      }, {
-        "text": "\n                    \u003cli\u003e\u003ca href\u003d\"#services\" class\u003d\"hover:text-white transition-colors\"\u003eEsports Partnerships\u003c/a\u003e\u003c/li\u003e\n                    "
-      }, {
-        "text": "\u003cli\u003e\u003ca href\u003d\"#services\" class\u003d\"hover:text-white transition-colors\"\u003eIn-Game Placements\u003c/a\u003e"
-      }, {
-        "text": "\u003c/li\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#services\" class\u003d\"hover:text-white transition-colors\"\u003eCreator Networks\u003c/a\u003e\u003c/li\u003e\n                    "
-      }, {
-        "text": "\u003cli\u003e\u003ca href\u003d\"#services\" class\u003d\"hover:text-white transition-colors\"\u003eInteractive Tech R\u0026D\u003c/a\u003e\u003c/li\u003e\n                "
-      }, {
-        "text": "\u003c/ul\u003e\n            \u003c/div\u003e\n\n            \u003c!-- Col 3: Legal \u0026 Regulatory --\u003e\n            \u003cdiv class\u003d\"lg:col"
-      }, {
-        "text": "-span-3 space-y-4\"\u003e\n                \u003ch4 class\u003d\"mono-text text-xs uppercase"
-      }, {
-        "text": " text-white tracking-widest\"\u003e/ REGULATORY\u003c/h4\u003e\n                \u003cul class\u003d\"space-y-2 text"
-      }, {
-        "text": "-xs text-silver\"\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#\" class\u003d\"hover:text-white transition-colors\"\u003e"
-      }, {
-        "text": "Privacy Frameworks\u003c/a\u003e\u003c/li\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#\" class\u003d\"hover:text-white transition-colors\"\u003ePublisher"
-      }, {
-        "text": " API Limits\u003c/a\u003e\u003c/li\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#\" class\u003d\"hover:text-white transition-colors\"\u003eCorporate Governance\u003c/a\u003e\u003c/li\u003e\n"
-      }, {
-        "text": "                    \u003cli\u003e\u003ca href\u003d\"#\" class\u003d\"hover:text-white transition-colors\"\u003eCompliance Verification\u003c/a\u003e\u003c/li\u003e\n                \u003c/ul\u003e"
-      }, {
-        "text": "\n            \u003c/div\u003e\n\n            \u003c!-- Col 4: Network Channels --\u003e\n            \u003cdiv class\u003d\"lg:col-span"
-      }, {
-        "text": "-2 space-y-4\"\u003e\n                \u003ch4 class\u003d\"mono-text text-xs uppercase text-"
-      }, {
-        "text": "white tracking-widest\"\u003e/ NETWORKS\u003c/h4\u003e\n                \u003cul class\u003d\"space-y-2 text-xs"
-      }, {
-        "text": " text-silver\"\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#\" class\u003d\"hover:text-white transition-colors\"\u003eTelegram //"
-      }, {
-        "text": " Channel\u003c/a\u003e\u003c/li\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#\" class\u003d\"hover:text-white transition-colors\"\u003eVK // Official"
-      }, {
-        "text": " Group\u003c/a\u003e\u003c/li\u003e\n                    \u003cli\u003e\u003ca href\u003d\"#\" class\u003d\"hover:text-white transition-colors\"\u003eGitHub // Ecosystem"
-      }, {
-        "text": "\u003c/a\u003e\u003c/li\u003e\n                \u003c/ul\u003e\n            \u003c/div\u003e\n        \u003c/div\u003e\n\n        \u003cdiv class\u003d\"max-w-7xl mx"
-      }, {
-        "text": "-auto px-6 pt-16 mt-16 border-t border-borderDark flex flex-col sm"
-      }, {
-        "text": ":flex-row justify-between items-center gap-4 text-[10px] mono-text text-silver\"\u003e\n"
-      }, {
-        "text": "            \u003cspan\u003e© 2026 CYBERNETICA. ALL CORE FRAMEWORKS RESERVED.\u003c/span\u003e\n            \u003cspan\u003eBUILD: "
-      }, {
-        "text": "0x93FA8D2F // V2.0.26\u003c/span\u003e\n        \u003c/div\u003e\n    \u003c/footer\u003e\n\n"
-      }, {
-        "text": "    \u003c!-- INTERACTION SCRIPTS --\u003e\n    \u003cscript\u003e\n        // Real-time Dashboard Clock\n        function updateTime"
-      }, {
-        "text": "() {\n            const timeSpan \u003d document.getElementById(\u0027systemTime\u0027);\n            const now \u003d new Date();\n"
-      }, {
-        "text": "            const timeString \u003d now.toISOString().replace(\u0027T\u0027, \u0027 \u0027).substring(0, 19) + \u0027 UTC\u0027;"
-      }, {
-        "text": "\n            timeSpan.textContent \u003d timeString;\n        }\n        setInterval(updateTime, 1000);"
-      }, {
-        "text": "\n        updateTime();\n\n        // High-Tech Interactive Tab Switcher\n        function switchTab(tabId) {\n"
-      }, {
-        "text": "            // Hide all contents\n            document.querySelectorAll(\u0027.tab-content\u0027).forEach(element \u003d\u003e {\n                element."
-      }, {
-        "text": "classList.add(\u0027hidden\u0027);\n            });\n            // Show target\n            document.getElementById(`tab-content-${tabId"
-      }, {
-        "text": "}`).classList.remove(\u0027hidden\u0027);\n\n            // Handle active button styles\n            const buttons \u003d"
-      }, {
-        "text": " [\u0027market\u0027, \u0027demographics\u0027, \u0027forecast\u0027];\n            buttons.forEach(bId \u003d\u003e {\n                const btn \u003d document.getElementById(`tab-btn-${"
-      }, {
-        "text": "bId}`);\n                if (bId \u003d\u003d\u003d tabId) {\n                    btn.classList.add(\u0027border-"
-      }, {
-        "text": "accent\u0027);\n                    btn.classList.remove(\u0027border-transparent\u0027);\n                    btn.querySelector(\u0027span.text-"
-      }, {
-        "text": "lg\u0027).classList.remove(\u0027text-silver\u0027);\n                    btn.querySelector(\u0027span.text-lg\u0027).classList."
-      }, {
-        "text": "add(\u0027text-white\u0027);\n                } else {\n                    btn.classList.remove(\u0027border-accent\u0027);\n"
-      }, {
-        "text": "                    btn.classList.add(\u0027border-transparent\u0027);\n                    btn.querySelector(\u0027span.text-lg\u0027).classList"
-      }, {
-        "text": ".add(\u0027text-silver\u0027);\n                    btn.querySelector(\u0027span.text-lg\u0027).classList.remove(\u0027text"
-      }, {
-        "text": "-white\u0027);\n                }\n            });\n        }\n\n        // Space Matrix Canvas Background (SpaceX subtle technological"
-      }, {
-        "text": " mesh)\n        const canvas \u003d document.getElementById(\u0027matrixCanvas\u0027);\n        const ctx \u003d canvas.getContext(\u00272d\u0027);"
-      }, {
-        "text": "\n\n        let width \u003d canvas.width \u003d window.innerWidth;\n        let height \u003d canvas.height \u003d window."
-      }, {
-        "text": "innerHeight;\n\n        const points \u003d [];\n        const numPoints \u003d 45;\n        const maxDist \u003d "
-      }, {
-        "text": "180;\n\n        for (let i \u003d 0; i \u003c numPoints; i++) {\n            points."
-      }, {
-        "text": "push({\n                x: Math.random() * width,\n                y: Math.random() * height,\n                vx"
-      }, {
-        "text": ": (Math.random() - 0.5) * 0.3,\n                vy: (Math.random"
-      }, {
-        "text": "() - 0.5) * 0.3\n            });\n        }\n\n        function drawMatrix() {\n            "
-      }, {
-        "text": "ctx.clearRect(0, 0, width, height);\n            ctx.fillStyle \u003d \u0027#0a0a0a"
-      }, {
-        "text": "\u0027;\n            ctx.fillRect(0, 0, width, height);\n\n            ctx.strokeStyle \u003d \u0027#16"
-      }, {
-        "text": "1616\u0027;\n            ctx.lineWidth \u003d 1;\n\n            // Draw Subtle Grid\n            const gridSize \u003d 6"
-      }, {
-        "text": "4;\n            for (let x \u003d 0; x \u003c width; x +\u003d gridSize) {\n                ctx"
-      }, {
-        "text": ".beginPath();\n                ctx.moveTo(x, 0);\n                ctx.lineTo(x, height);"
-      }, {
-        "text": "\n                ctx.stroke();\n            }\n            for (let y \u003d 0; y \u003c height; y"
-      }, {
-        "text": " +\u003d gridSize) {\n                ctx.beginPath();\n                ctx.moveTo(0, y);\n                ctx."
-      }, {
-        "text": "lineTo(width, y);\n                ctx.stroke();\n            }\n\n            // Draw Tech Nodes\n            ctx"
-      }, {
-        "text": ".fillStyle \u003d \u0027#222222\u0027;\n            for (let i \u003d 0; i \u003c num"
-      }, {
-        "text": "Points; i++) {\n                const p \u003d points[i];\n                p.x +\u003d p.vx;"
-      }, {
-        "text": "\n                p.y +\u003d p.vy;\n\n                if (p.x \u003c 0 || p.x \u003e"
-      }, {
-        "text": " width) p.vx *\u003d -1;\n                if (p.y \u003c 0 || p.y \u003e height)"
-      }, {
-        "text": " p.vy *\u003d -1;\n\n                ctx.beginPath();\n                ctx.arc(p.x, p.y"
-      }, {
-        "text": ", 1.5, 0, Math.PI * 2);\n                ctx.fill();\n\n                "
-      }, {
-        "text": "// Draw logical connections\n                for (let j \u003d i + 1; j \u003c numPoints; j++) {\n"
-      }, {
-        "text": "                    const p2 \u003d points[j];\n                    const dist \u003d Math.hypot(p.x - p"
-      }, {
-        "text": "2.x, p.y - p2.y);\n                    if (dist \u003c maxDist) {\n"
-      }, {
-        "text": "                        ctx.strokeStyle \u003d `rgba(34, 34, 34, ${1 - dist / maxDist})`;"
-      }, {
-        "text": "\n                        ctx.beginPath();\n                        ctx.moveTo(p.x, p.y);\n                        ctx."
-      }, {
-        "text": "lineTo(p2.x, p2.y);\n                        ctx.stroke();\n                    }\n                }"
-      }, {
-        "text": "\n            }\n            requestAnimationFrame(drawMatrix);\n        }\n\n        drawMatrix();\n\n        window.addEventListener"
-      }, {
-        "text": "(\u0027resize\u0027, () \u003d\u003e {\n            width \u003d canvas.width \u003d window.innerWidth;\n            height \u003d canvas."
-      }, {
-        "text": "height \u003d window.innerHeight;\n        });\n    \u003c/script\u003e\n\u003c/body\u003e\n\u003c/html\u003e\n```"
-      }, {
-        "text": "",
-        "thoughtSignature": "EuEZCt4ZAQw51sfjbd7A/Eh9xmLl2jh7coPiW9Hh11DsBnXkRev6Dirv/GfoQOQgpdKPF1kugi20BFU2bnuSRChnUx+0MgESSAh/aoOXvpI905Zwv+aJnjaLedER9Q5gov04CGZ0GgPttn05e3z7InsBtY329S2DNm6W6JnkothbcMdRH6BlCm/gFc0App646eogPUX3jyJRNk1j8u3JziC1C52J12dBKI1XAdqQb+KETEqW9LnUmfQwJkz4wo/IdVw6q/NZ+q3uOtOu9XPormgNCGUR6igHjRZpC46B2G14BIRYsvn8zfbvwT/zAbYt7hdPtYp6HX6t6xCTsvSgKOfCEOBxlrnpl9am24OmzGf2FtWBIKSUMimaf7I9g1eaVZba3fTIbdckDJ706tXOSD0UwyOD565sDAoyjwL1T0PMoCB3zavM0Qpxqh55I7tkHYc2Rpk6SPLHfqn2ntOAVDtXnP427EoJnm5Hs0027cref4iRFeqFx9ZcvMPzvjW1lfF/w0RS9wIHxJnYynuoC03O1/AbiRzk1ebbXrk7lpUioFwu45mXeo+AcfkjjNXoRKyEnijVwZHqzSV9PROmE/CDK4jqPTvST+BXYKl9UM3RVEhfpKrOuDJWzGShyCOjun29MVOb8L//UIuI+nnV5slszXgP3qyVI5FQiYHH3xAzULgpE16DTm38Td6VLazMf3UFPKZ9+a1iXtcZ765mYZAQIPC2QwP9j76vJlHOIAqH3RpWEpAiX74XExhy6lcGAz1Cj6HeRb7SEDC5bos3deq1Z37p9vp3Pj9HwZyRgNlE11hG8IpIxMyWjnogDIks1ohJ/l0SjIzWBpMGlgT/hMJ/adYazXPUmH6c/0D4yhC9g4CexDIlpHN3eVpAxN35DSa9UjEGwosAmEkuR6OMfT8RTvcw9BZoEDcU4xdxe7CxT7zwB9m5vR/NHdYxklJaZnivCtvHayk1+XsshjXA/FzyO7RMe0Svwvh1iAmno2o0lliAdLCaXkU7rTQe0sWZX9xmyJCGjmnM75Z/B/Y0AXe5JvwIueOpnadMswsDUzxIhMKwRuAUQvOYMSqYhcMj/fqZkO8MVhzctmvgXeH5MiJ6Y5NaD3Fn07OwhIKgHHxPDJVCVtpk8AIcBLS/WmwSnfvf5VYG3v9mpRcauRwHCPFSXNnJbnsH78ew7Wp1kfdyaHdtrDo3Wst56/rU5HEO1zQqGlzfBxg848otTXPu6ShMDVB+mFEltLNirh4lOHI1/tV2/NFpQ5tbwNrwb2rcR+2ZQ6vLOUB+vl8bGxr/p8RgDGZlAk4Gcg+tyaWOWgOUAVYuX7l8UrnVeteJ1m7RcX6FyrSrqaN5zHBowNNZr6Wg6xmj+TEaD4Zu2rFOodVCQETnkBiaoxR5T1oGjpWmAghZ5Hl/ZpRRBlO7lb+J4sMTQwjQZ1kVqfPcW+0mKutLmSobWd4TEvzTfE6kwouO3VEkpGAbLHAvU/6Sc5/eAG4D6vOp3zMpnQIj5T8XUZdNZeacGv5cUBpJWsgZvv4m9cacwale9fZtgSmSYBK2lBcgXMgcavHkcK1b7zXdepQMFwRaEHRlD8pPd9/7uVyL8vVLxDFOyJ6SIECbsGlRf8n1EhfVl/LsYjgpOENCU6I/kGlB4TQDaBRBtTcIrYdEiJWadBNYd9Wduo2hJ09fu6MyIYgRzGNSBye40/GmMd8OkTqlvW+XYHWsdk/nqc3PH0EI/m9ucOweRSvJiXcwjJVMV1bfBa5M2fjTTXM6pIABD+e9dONzLcfukp+C2eiSlT/CWy2V+9ZaIxRbtBosqclQqyFsg7rGTN+CLmt61CgLgf0CIZgQzmsKTDVoNi8vVdmXAaBItBrACqvug/+IMxXUrHqWw4SW4H5zfOd18c8HJqRqljsB64kyHKrRWOotFoHxrTFSaidWevRfR9zhEPn7aCiJ7TE6lVcxMgkXEFtQA7SUdm26C6IMDD3Qik1imQht9isckg7ZzkM2dG+fwrgoMBc5zegko5Cg0llnETPUjT7f9AjeUMC7VVCVHNX6qEvMnGGvAe9cLaUslwO63cqp4XiARAqNxKFjVQ6SF7iVJz4mwxb7vQVGGa2xjzi/J6VA01apJmO7RA+WkpQnnnj7a83kECsayJboPjEe5lqwS+gnGYjOmeJVPiZYNTr+pRpv5/Pom50J2kknFyIGKunnzzRnyqXKl4jr2HtryeGERYyIbGL913PxqViSmEu+9zVugxR04dzY3EmBH+5ZMwIsFVU69CbQKAmMnY4FRCl9NDT5NrJN46OvlaNnOERGo9Tt3ase7Ux1FBQHQdDxOYFvm775ug5qpNWKjcXV9K5/nfvfichZ5+qJvxJGlQinN0HY5eqO1C6Amcjvgoxx2IMFZQn+jQZAWHxXd91S5tUFHNhQA42dI0itW+DdGxPX9ctYezd+FRnQMDYs/2aNgbcBDWkiobXpL9sXThPg5glhSF5fH5h5Oa9Y/iSuQoylBBciR+E9Z1efQBviljk0DTcaUacna6d/9Q+S18HLYwwAQ0/ut2MQqktZagPiAYMmOrMgvqu34s3Yuu11SEYzxjUJH7UVgOuUdcjye2b3Z9z4b6ltVku+UjYvXnQNai9MMLWPPzZWQElca3eNsjotNUXkHCCI8x2mtZcjGQxEK/MPihnI0DHx7bEN5szjJ0bFIPjkMNJqoqWAYX++0vxTKbTKwrd9AQxTKilaKRp6WDbdiWB9wA54nNBf1W7Z6QAtucGBCulWu0Uts9/pIxWcuXFNVOZ89DH/MsbYkeeqOZkhrCUJkQiabGyJBPmGVSzYBJ25Djv4DB7djDX1TRUNMLRs5HxCpv2BQROHKM0k1Pc1Ht9DN/9bAwBLQ9hGEvGZW+vvCP3Y5js5IV7YLPxvq44Rw+ysHamzbhpCmbEE7GYwvnAB3i5jMOvI5eTlIdMLI4ZblDnBd6lLT4HS9aUYx5mfsLnScG4A9ovcJSJrp+pKhSpnT5h3dZnc3x9Bzgv502Hr0OBnNpaLrGMRBa+l//vEURZ1dy2auisZGXuW1tJyw+j2jIuEV3CTyaOM+CzGk1yCqkG0mQ5d6btjbRXE8lA2zjIK1oPJklN7YIYFM8b0SaWdZkr78MVEncjS/zOJmHFVyw/Fb5ZJqMQxm1VYkyCEUs5NddWryvmZYRFUCCODxg//7hE6jerNz6N5pNkMEELWhM2bwY/R6ZLlV5/yZAkEVRHKcye+FP/ZZFp4QODZBN3MxU1042fg/J47Lxml2hyfrGGJO05UgJXhSL1gT65uUxGg3PxoZaWpoacbrs+sG2H1GJd6LNBGqKRMOCvDTya5b68tw8mqINx4YLEy4aiBq1WJHXvM283806o7c8moekgiGdt9WNycpLWBoUVKpf7nPkkeJaoff2VEiGoQ5+YZAv8PVici9iSsiBAiOav/ewSVXDDVMsvQXZnBQhO7n1zNgbkKo6Dh351sMhqUWe/LETT5MAKnE9DcP63GteK6jKp79cFHPBTJy6D3Lg3J7FJUSx0Q6qeIGywylbUMHzQhZeAUWq7uBu45MTohM8b65ztMzovujumzkn35h3eC1oxNKuOqmkE9QpAZ/wG+cVew8jhSlkH0y47oLvi7cnV5aSh9UhEUBewBVPfRJqm77HLt7xJHzkCsSILZIs30NjEYFMCzIGhVs5hfGcsCTmivXkTHvRJVXp+qWuB+h8DOGgkMLPfXX9A5KE6L6J9W4Ejj/ry3EkN3Yl9yXX77VtMHJjJrmKTx/TOVmGvvRHVaO6dXNBb28qYHKmrvtZTLDfRFu1KO9PIZ7bTx4RA/OC3AYXqeMi5zrqQKB6kbCrdz7T5p1nDfLYNKr4585gq1l8Fk93b0mdKzFy6s+dXfYxfNYmps7o2mZt2sbgklLpAv3iCYiwWpOwWSDp7eO7ltXiyg5jMP/zPZ4Ci17wpTWgOx7JVI9re6r12M+dTImi4Orej2rsSsr0ooKCjC5uqcbJZmI7gKEJQzyTZPAexdXuQIoxl4cp4sneFnWeDTBFaflaNBPo495uxYELtDrLEN1P+/ixH2qrtcv8KF4jwyRsQhRjRuKmKhIn3t7ftAbzX5hoDFLbOtAMc6zo6K15x7No0dD9ZMND3v+BvNQp/kV8moPfUWbA/BC1iLTbiYve4NLqwZMmQpyVkz1mKVs9wiov9z8f5Gz+qmpfVqlXhJt/rT6LTgo8yE6PLFoakUsNfMrVsrCyT0Lp571P7SsSu6hYEEqVgPJ3yUh+drbl5I/fy0AM9Ha6b2xgnSBR4jh+4NzxISd+VX9ssl9P/5q/uxkyuNSfRHbYtCrcy8iCogoNVKvJwnQn0kR24pAqHibFfCoY8xlmg+jmh39bgrU8vqZoM6cBKVvRMgv+Rk6wLdCSDmVuhq"
-      }],
-      "createTime": "2026-05-19T20:59:16.793Z"
-    }],
-    "pendingInputs": [{
-      "text": "",
-      "role": "user"
-    }]
-  }
-}
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #000000;
+    }
+    .mono-text {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .sharp-card {
+      border: 1px solid #1A1A1A;
+      border-radius: 2px;
+      background-color: #050505;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .sharp-card:hover {
+      border-color: #333333;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.03);
+    }
+    .glow-button {
+      border: 1px solid #FFFFFF;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+    .glow-button:hover {
+      background-color: #FFFFFF;
+      color: #000000;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    }
+    .glow-cyan {
+      border: 1px solid #1A1A1A;
+      transition: all 0.2s ease;
+    }
+    .glow-cyan:hover {
+      border-color: #00F0FF;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #000000;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1A1A1A;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #333333;
+    }
+  </style>
+</head>
+<body class="antialiased overflow-x-hidden text-white bg-black">
+
+  <header class="sticky top-0 z-50 w-full border-b border-borderDark bg-black/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-8">
+        <a href="#" class="mono-text text-lg font-bold tracking-widest text-white flex items-center space-x-2">
+          <span>CYBERNETICA</span>
+          <span class="w-1.5 h-1.5 bg-accent inline-block animate-pulse"></span>
+        </a>
+        <nav class="hidden md:flex items-center space-x-6">
+          <a href="#manifest" class="text-xs mono-text text-silver hover:text-white transition-colors duration-200">/Manifest</a>
+          <a href="#analytics" class="text-xs mono-text text-silver hover:text-white transition-colors duration-200">/Data_Engine</a>
+          <a href="#services" class="text-xs mono-text text-silver hover:text-white transition-colors duration-200">/Services</a>
+          <a href="#capture" class="text-xs mono-text text-silver hover:text-white transition-colors duration-200">/Reports</a>
+        </nav>
+      </div>
+      <div>
+        <a href="#capture" class="mono-text text-xs uppercase px-4 py-2 glow-cyan bg-black text-white tracking-wider">
+          [ Get Strategy ]
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden border-b border-borderDark py-24">
+    <canvas id="matrixCanvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-45"></canvas>
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 w-full text-center md:text-left flex flex-col justify-center h-full">
+      <div class="inline-flex items-center space-x-2 border border-borderDark bg-black px-3 py-1 mb-8 self-center md:self-start">
+        <span class="w-2 h-2 bg-accent rounded-full"></span>
+        <span class="mono-text text-[10px] uppercase tracking-widest text-silver">MARKET STATUS: ACTIVE [2026]</span>
+      </div>
+      
+      <h1 class="text-4xl md:text-7xl font-bold tracking-tight text-white mb-6 uppercase max-w-5xl leading-none">
+        Cybernetica.<br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-silver to-borderHover">
+          Professional Gateway to Gaming & Esports.
+        </span>
+      </h1>
+
+      <p class="text-base md:text-lg text-silver max-w-2xl mb-12 font-light leading-relaxed">
+        The definitive market-leader for brand integration into the gaming ecosystem. Powered by direct publisher APIs, high-frequency media buy protocols, and absolute demographic domination.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+        <a href="#capture" class="mono-text text-xs uppercase w-full sm:w-auto px-8 py-4 glow-button text-center bg-white text-black tracking-widest">
+          [ Initiate Integration ]
+        </a>
+        <a href="#capture" class="mono-text text-xs text-silver hover:text-white transition-all duration-200 uppercase w-full sm:w-auto px-8 py-4 border border-borderDark text-center tracking-widest bg-black/50 hover:border-borderHover">
+          [ Read Market Report 2026 ]
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="manifest" class="py-32 border-b border-borderDark bg-black">
+    <div class="max-w-7xl mx-auto px-6">
+      <span class="mono-text text-xs text-silver block mb-8 uppercase tracking-widest">/ POSITIONING MANIFEST</span>
+      <div class="manifest-container max-w-5xl">
+        <p class="text-3xl md:text-5xl leading-tight text-silver font-light tracking-tight select-none">
+          Establishing infrastructure in <span class="manifest-word text-white transition-colors duration-150 cursor-pointer inline-block">Gaming in Russia</span> requires more than media-buying. It demands <span class="manifest-word text-white transition-colors duration-150 cursor-pointer inline-block">Cybernetica’s</span> proprietary analytical engines and <span class="manifest-word text-white transition-colors duration-150 cursor-pointer inline-block">Absolute Expertise</span>. We translate cultural capital into high-yield enterprise assets.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="analytics" class="py-32 border-b border-borderDark bg-black">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+        <div>
+          <span class="mono-text text-xs text-silver block mb-2 uppercase tracking-widest">/ DATA ENGINE</span>
+          <h2 class="text-3xl font-bold tracking-tight uppercase">Analytics & Research Terminal</h2>
+        </div>
+        <div class="mono-text text-xs text-silver border border-borderDark px-3 py-1 bg-black">
+          SYSTEM TIME: <span id="systemTime">00:00:00 UTC</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-px bg-borderDark sharp-card p-1">
+        <div class="lg:col-span-4 flex flex-col bg-black divide-y divide-borderDark">
+          <button onclick="switchTab('market')" id="tab-btn-market" class="w-full text-left p-6 transition-all duration-200 hover:bg-neutral-950 flex flex-col justify-between group active-tab border-l-2 border-accent">
+            <span class="mono-text text-xs text-silver tracking-widest mb-1">METRIC 01 //</span>
+            <span class="text-lg font-bold tracking-tight uppercase group-hover:text-white transition-colors text-white">Market Volume & Impact</span>
+            <span class="text-xs text-silver mt-4">Total addressable gaming landscape metrics.</span>
+          </button>
+          <button onclick="switchTab('demographics')" id="tab-btn-demographics" class="w-full text-left p-6 transition-all duration-200 hover:bg-neutral-950 flex flex-col justify-between group border-l-2 border-transparent">
+            <span class="mono-text text-xs text-silver tracking-widest mb-1">METRIC 02 //</span>
+            <span class="text-lg font-bold tracking-tight uppercase text-silver group-hover:text-white transition-colors">Target Demographics</span>
+            <span class="text-xs text-silver mt-4">Granular player profiles and purchasing behaviors.</span>
+          </button>
+          <button onclick="switchTab('forecast')" id="tab-btn-forecast" class="w-full text-left p-6 transition-all duration-200 hover:bg-neutral-950 flex flex-col justify-between group border-l-2 border-transparent">
+            <span class="mono-text text-xs text-silver tracking-widest mb-1">METRIC 03 //</span>
+            <span class="text-lg font-bold tracking-tight uppercase text-silver group-hover:text-white transition-colors">2026-2030 Growth Forecast</span>
+            <span class="text-xs text-silver mt-4">Predictive models of ad-spend effectiveness.</span>
+          </button>
+        </div>
+
+        <div class="lg:col-span-8 bg-black p-6 md:p-8 flex flex-col justify-between min-h-[400px]">
+          <div id="tab-content-market" class="tab-content space-y-8">
+            <div class="flex items-center justify-between">
+              <span class="mono-text text-xs text-accent uppercase tracking-widest">[ DATA FEED // ACTIVE ]</span>
+              <span class="mono-text text-xs text-silver">UPDATE: 1m AGO</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div class="border border-borderDark p-4 bg-neutral-950/50">
+                <span class="mono-text text-xs text-silver block mb-2">ACTIVE PLAYERS</span>
+                <span class="text-3xl font-bold tracking-tight text-white font-sans">65.4M+</span>
+              </div>
+              <div class="border border-borderDark p-4 bg-neutral-950/50">
+                <span class="mono-text text-xs text-silver block mb-2">REVENUE GENERATED</span>
+                <span class="text-3xl font-bold tracking-tight text-white font-sans">$2.1B</span>
+              </div>
+              <div class="border border-borderDark p-4 bg-neutral-950/50">
+                <span class="mono-text text-xs text-silver block mb-2">AVG INTEGRATION ROI</span>
+                <span class="text-3xl font-bold tracking-tight text-accent font-sans">+240%</span>
+              </div>
+            </div>
+            <div class="border border-borderDark p-4 h-48 flex items-end space-x-2 relative overflow-hidden bg-neutral-950/30">
+              <div class="absolute inset-x-0 top-0 h-full bg-gradient-to-b from-transparent to-neutral-950/80 pointer-events-none z-10"></div>
+              <div class="absolute inset-0 bg-[radial-gradient(#1a1a1a_1px,transparent_1px)] [background-size:16px_16px] opacity-40"></div>
+              <div class="w-full h-[15%] bg-zinc-800 transition-all duration-500 hover:bg-accent z-20"></div>
+              <div class="w-full h-[40%] bg-zinc-800 transition-all duration-500 hover:bg-accent z-20"></div>
+              <div class="w-full h-[35%] bg-zinc-800 transition-all duration-500 hover:bg-accent z-20"></div>
+              <div class="w-full h-[65%] bg-zinc-800 transition-all duration-500 hover:bg-accent z-20"></div>
+              <div class="w-full h-[85%] bg-accent transition-all duration-500 hover:bg-accent z-20"></div>
+            </div>
+          </div>
+
+          <div id="tab-content-demographics" class="tab-content hidden space-y-8">
+            <div class="flex items-center justify-between">
+              <span class="mono-text text-xs text-accentPurple uppercase tracking-widest">[ USER PROFILES // STRATIFIED ]</span>
+              <span class="mono-text text-xs text-silver">UPDATE: Realtime</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="border border-borderDark p-4 bg-neutral-950/50">
+                <span class="mono-text text-xs text-silver block mb-2">PRIMARY DEMOGRAPHIC</span>
+                <span class="text-2xl font-bold text-white">M/F 18-34 (74%)</span>
+              </div>
+              <div class="border border-borderDark p-4 bg-neutral-950/50">
+                <span class="mono-text text-xs text-silver block mb-2">AVG DAILY SESSIONS</span>
+                <span class="text-2xl font-bold text-white">2.8 hrs</span>
+              </div>
+            </div>
+            <div class="border border-borderDark p-6 bg-neutral-950/30 space-y-4">
+              <span class="mono-text text-xs text-silver block">TRAFFIC DENSITY INDEX</span>
+              <div class="w-full bg-borderDark h-2 relative">
+                <div class="absolute top-0 left-0 bg-accentPurple w-[82%] h-full"></div>
+              </div>
+              <div class="flex justify-between text-[10px] mono-text text-silver">
+                <span>Tier 3 Cities (18%)</span>
+                <span>Metropolitan Hubs (82%)</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="tab-content-forecast" class="tab-content hidden space-y-8">
+            <div class="flex items-center justify-between">
+              <span class="mono-text text-xs text-accent uppercase tracking-widest">[ ML PROJECTIONS // RUNNING ]</span>
+              <span class="mono-text text-xs text-silver">MODEL V4.12</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div class="border border-borderDark p-4 bg-neutral-950/50">
+                <span class="mono-text text-xs text-silver block mb-2">2026 VALUE</span>
+                <span class="text-2xl font-bold text-white">$2.1B</span>
+              </div>
+              <div class="border border-borderDark p-4 bg-neutral-950/50">
+                <span class="mono-text text-xs text-silver block mb-2">2028 VALUE</span>
+                <span class="text-2xl font-bold text-white">$2.9B</span>
+              </div>
+              <div class="border border-borderDark p-4 bg-neutral-950/50">
+                <span class="mono-text text-xs text-silver block mb-2">2030 PROJ</span>
+                <span class="text-2xl font-bold text-accent">$4.2B</span>
+              </div>
+            </div>
+            <p class="text-xs text-silver leading-relaxed border-l-2 border-accent pl-4">
+              Ad spend efficiency indicators suggest high user friction reduction in contextual native integrations compared to standard web-native display frameworks over the next decade.
+            </p>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-borderDark flex items-center justify-between text-[10px] mono-text text-silver">
+            <span>SYS_STATUS: OPTIMAL</span>
+            <span>NODE_RU: MSK_A1</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-32 border-b border-borderDark bg-black">
+    <div class="max-w-7xl mx-auto px-6">
+      <span class="mono-text text-xs text-silver block mb-2 uppercase tracking-widest">/ CAPABILITIES</span>
+      <h2 class="text-3xl font-bold tracking-tight uppercase mb-12">The Service Matrix</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="sharp-card p-6 flex flex-col justify-between min-h-[280px]">
