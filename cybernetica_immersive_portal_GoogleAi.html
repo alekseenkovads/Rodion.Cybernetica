@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybernetica: Digital Core of Gaming & Esports Advertising</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #111;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #222;
+        }
+
+        #webgl-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        #viewport-container {
+            position: relative;
+            z-index: 20;
+            width: 100%;
+        }
+
+        .section-panel {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            pointer-events: none;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .section-panel.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .manifesto-text-reveal {
+            background: linear-gradient(to right, #ffffff 50%, #222222 50%);
+            background-size: 200% 100%;
+            background-position-x: 100%;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            transition: background-position 0.1s linear;
+        }
+
+        .holographic-card {
+            position: relative;
+            background: rgba(3, 3, 3, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid #111111;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            overflow: hidden;
+        }
+
+        .holographic-card:hover {
+            border-color: #00ff88;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.05);
+        }
+
+        .holographic-card::before {
+            content: '';
+            position: absolute;
+            top: var(--mouse-y, -100px);
+            left: var(--mouse-x, -100px);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0,255,136,0.08) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .cyber-button {
+            position: relative;
+            overflow: hidden;
+            background: transparent;
+            border: 1px solid #222;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            padding: 1rem 2.5rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .cyber-button:hover {
+            border-color: #00ff88;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
+            color: #00ff88;
+        }
+
+        .cyber-button::before,
+        .cyber-button::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            opacity: 0;
+        }
+
+        .cyber-button:hover::before {
+            opacity: 0.5;
+            color: #ff0055;
+            transform: translate(-1px, 1px);
+            animation: glitch-anim 0.2s infinite linear alternate-reverse;
+        }
+
+        .cyber-button:hover::after {
+            opacity: 0.5;
+            color: #00ffff;
+            transform: translate(1px, -1px);
+            animation: glitch-anim2 0.2s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip-path: inset(10% 0 80% 0); }
+            100% { clip-path: inset(80% 0 10% 0); }
+        }
+        @keyframes glitch-anim2 {
+            0% { clip-path: inset(30% 0 60% 0); }
+            100% { clip-path: inset(50% 0 40% 0); }
+        }
+
+        .audio-toggle {
+            border: 1px solid #222;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+        .audio-toggle:hover {
+            border-color: #ffffff;
+            color: #00ff88;
+        }
+
+        input, textarea {
+            background: #030303 !important;
+            border: 1px solid #1a1a1a !important;
+            font-family: 'JetBrains Mono', monospace;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #00ff88 !important;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Audio Element Placeholder for Ambient -->
+    <audio id="ambient-drone" loop src="https://actions.google.com/sounds/v1/ambiences/ambient_hum_air_conditioner.ogg"></audio>
+
+    <!-- Top Sticky Header -->
+    <header class="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center border-b border-[#111111]/50 bg-black/20 backdrop-blur-md">
+        <div class="flex items-center gap-2">
+            <div class="w-3 h-3 bg-[#00ff88] rounded-full animate-pulse"></div>
+            <span class="font-mono text-xs tracking-[0.3em] font-bold text-white uppercase">CYBERNETICA</span>
+        </div>
+        <nav class="hidden md:flex gap-8 text-[11px] font-mono tracking-widest text-gray-500">
+            <span class="text-white">01 // THE CORE</span>
+            <span>02 // MANIFESTO</span>
+            <span>03 // TELEMETRY</span>
+            <span>04 // INTEL</span>
+        </nav>
+        <button id="btn-audio" class="audio-toggle font-mono text-[9px] tracking-widest px-3 py-1.5 text-gray-400 uppercase" onclick="toggleAudio()">
+            AUDIO: OFF
+        </button>
+    </header>
+
+    <!-- Background Canvas for WebGL Matrix -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- Master Pin Viewport Scroll Container -->
+    <div id="viewport-container">
+        
+        <!-- PANEL 1: Hero Block -->
+        <section id="panel-hero" class="section-panel active">
+            <div class="max-w-4xl text-center z-30">
+                <p class="font-mono text-[10px] tracking-[0.4em] text-gray-500 uppercase mb-4">// PROFESSIONAL GATEWAY TO GAMING & ESPORTS</p>
+                <h1 class="text-5xl md:text-8xl font-black tracking-tighter text-white uppercase mb-6 leading-none">
+                    CYBERNETICA.<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 via-gray-400 to-gray-600">THE GAMING CORE.</span>
+                </h1>
+                <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base tracking-wide font-light mb-8">
+                    The definitive market leader for brand integration into the Russian gaming ecosystem. Built on hard telemetry, execution, and expert-tier authority.
+                </p>
+                <div class="flex justify-center gap-4">
+                    <button class="cyber-button" data-text="Initiate Integration" onclick="window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'})">Initiate Integration</button>
+                </div>
+            </div>
+            
+            <!-- Absolute Bottom Layout Status Specs -->
+            <div class="absolute bottom-6 left-6 right-6 flex justify-between items-center text-[10px] font-mono text-gray-600 z-30">
+                <div>SYS.STATUS // ACTIVE_FEED_CONNECTED</div>
+                <div>REGION // RUSSIAN FEDERATION</div>
+            </div>
+        </section>
+
+        <!-- PANEL 2: The Statement Manifesto -->
+        <section id="panel-manifesto" class="section-panel">
+            <div class="max-w-5xl px-4 text-left z-30">
+                <p class="font-mono text-[10px] tracking-[0.4em] text-[#00ff88] uppercase mb-6">// ABSOLUTE DOMINANCE</p>
+                <h2 class="text-3xl md:text-6xl font-extrabold tracking-tight leading-tight uppercase">
+                    <span class="manifesto-text-reveal block">IF YOU THINK ABOUT ESPORTS OR</span>
+                    <span class="manifesto-text-reveal block">REERTISING IN GAMING IN RUSSIA,</span>
+                    <span class="manifesto-text-reveal block">YOU THINK ABOUT CYBERNETICA.</span>
+                    <span class="manifesto-text-reveal block mt-4 text-gray-600">THERE IS NO HIGHER STANDARD.</span>
+                </h2>
+            </div>
+        </section>
+
+        <!-- PANEL 3: Telemetry Bento Grid Dashboard -->
+        <section id="panel-telemetry" class="section-panel">
+            <div class="w-full max-w-6xl mx-auto z-30 px-4">
+                <p class="font-mono text-[10px] tracking-[0.4em] text-gray-500 uppercase mb-6 text-center">// QUANTUM DATA STREAM ACTIVE</p>
+                
+                <div class="grid grid-cols-12 gap-4 w-full">
+                    
+                    <!-- Metric Box -->
+                    <div class="col-span-12 md:col-span-8 border border-[#111111] hover:border-[#222222] bg-[#020202]/80 backdrop-blur-md p-8 transition-colors duration-300 relative cursor-crosshair">
+                        <span class="text-[9px] font-mono tracking-widest text-[#555] block mb-2">AUDIENCE ENCOMPASSED</span>
+                        <h2 class="text-5xl md:text-8xl font-black tracking-tighter text-white select-none transition-all duration-300" id="matrix-metric">
+                            65,000,000+
+                        </h2>
+                        <span class="text-[10px] font-mono text-[#00ff88] block mt-4">// TELEMETRY LEVEL: MAXIMUM CORE INFILTRATION</span>
+                    </div>
+
+                    <!-- Waveform Diagnostic -->
+                    <div class="col-span-12 md:col-span-4 border border-[#222222] bg-[#030303]/90 backdrop-blur-md p-6 relative overflow-hidden flex flex-col justify-between">
+                        <div class="absolute top-3 right-3 w-2 h-2 bg-[#00ff88] rounded-full animate-ping"></div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[9px] font-mono tracking-widest text-[#555]">SYSTEM REFRESH RA</span>
+                            <span class="text-[9px] font-mono text-[#00ff88]" id="live-status">LIVE STREAMING</span>
+                        </div>
+                        <div class="h-24 flex items-end gap-1 px-2" id="visualizer-container">
+                            <!-- JS populated blocks -->
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-[#111] text-[10px] font-mono text-gray-500">
+                            FEED_ID: // 09X-CB7
+                        </div>
+                    </div>
+
+                    <!-- Service Matrix Items (Bento Cards) -->
+                    <div class="col-span-12 md:col-span-4 holographic-card p-6 rounded-sm">
+                        <span class="text-[9px] font-mono text-gray-600 block mb-3">CORE SERVICE // 01</span>
+                        <h3 class="text-lg font-bold text-white uppercase mb-2 decrypt-text">Esports Sponsorships</h3>
+                        <p class="text-xs text-gray-400 font-mono leading-relaxed">// Full tournament integrations, native brand placements, and strategic team partnerships across major titles.</p>
+                    </div>
+
+                    <div class="col-span-12 md:col-span-4 holographic-card p-6 rounded-sm">
+                        <span class="text-[9px] font-mono text-gray-600 block mb-3">CORE SERVICE // 02</span>
+                        <h3 class="text-lg font-bold text-white uppercase mb-2 decrypt-text">In-Game Integrations</h3>
+                        <p class="text-xs text-gray-400 font-mono leading-relaxed">// Custom map builds, interactive mods, and brand-native gameplay items designed from deep player telemetry.</p>
+                    </div>
+
+                    <div class="col-span-12 md:col-span-4 holographic-card p-6 rounded-sm">
+                        <span class="text-[9px] font-mono text-gray-600 block mb-3">CORE SERVICE // 03</span>
+                        <h3 class="text-lg font-bold text-white uppercase mb-2 decrypt-text">Streamer Campaigns</h3>
+                        <p class="text-xs text-gray-400 font-mono leading-relaxed">// High-impact native integrations with tier-1 creators, real-time attribution matrix setups.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PANEL 4: Intelligence Lead Vault Container -->
+        <section id="panel-vault" class="section-panel">
+            <div class="w-full max-w-xl mx-auto z-30 px-4">
+                <div class="border border-[#111] bg-black/90 p-8 relative">
+                    <span class="text-[9px] font-mono text-[#00ff88] block mb-2 tracking-[0.3em]">// ACCESS VAULT TERMINAL</span>
+                    <h2 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-2">Request Intelligence</h2>
+                    <p class="text-xs font-mono text-gray-500 mb-6">// Receive exclusive market metrics and target audience telemetry report 2026.</p>
+                    
+                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('Telemetry channel initialized. Preparing dossier transmission.');">
+                        <div>
+                            <label class="block text-[9px] font-mono text-gray-400 mb-1 uppercase">Operator Name</label>
+                            <input type="text" required placeholder="e.g. Alex Harrison" class="w-full px-4 py-3 text-sm text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[9px] font-mono text-gray-400 mb-1 uppercase">Corporate Entity</label>
+                            <input type="text" required placeholder="e.g. Apex Marketing Corp" class="w-full px-4 py-3 text-sm text-white">
+                        </div>
+                        <div>
+                            <label class="block text-[9px] font-mono text-gray-400 mb-1 uppercase">Secure Email Interface</label>
+                            <input type="email" required placeholder="operator@entity.com" class="w-full px-4 py-3 text-sm text-white">
+                        </div>
+                        <div class="pt-2">
+                            <button type="submit" class="cyber-button w-full text-center" data-text="Download Intelligence Report">Download Intelligence Report</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <footer class="mt-12 text-center text-[10px] font-mono text-gray-700">
+                    CYBERNETICA INC. © 2026 // ALL INTEL CHANNELS SECURED.
+                </footer>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Shaders Configuration Script -->
+    <script>
+        const vertexShaderSource = `
+            uniform float uTime;
+            uniform vec2 uMouse;
+            uniform float uMouseVelocity;
+            varying vec3 vPosition;
+            varying float vNoise;
+
+            vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
+            vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
+            float snoise(vec3 v){
+                const vec2 C = vec2(1.0/6.0, 1.0/3.0) ;
+                const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+                vec3 i = floor(v + dot(v, D.yyy) );
+                vec3 x0 = v - i + dot(i, D.xxx) ;
+                vec3 g = step(x0.yzx, x0.xyz);
+                vec3 l = 1.0 - g;
+                vec3 i1 = min( g.xyz, l.zxy );
+                vec3 i2 = max( g.xyz, l.zxy );
+                vec3 x3 = x0 - D.yyy;
+                vec3 x1 = x0 - i1 + 1.0 * C.xxx;
+                vec3 x2 = x0 - i2 + 2.0 * C.xxx;
+                i = mod(i, 289.0 );
+                vec4 p = permute( permute( permute(
+                                 i.z + vec4(0.0, i1.z, i2.z, 1.0 ))
+                               + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))
+                               + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));
+                float n_ = 0.142857142857;
+                vec3 ns = n_ * D.wyz - D.xzx;
+                vec4 j = p - 49.0 * floor(p * ns.z *ns.z);
+                vec4 x_ = floor(j * ns.z);
+                vec4 y_ = floor(j - 7.0 * x_ );
+                vec4 x = x_ *ns.x + ns.yyyy;
+                vec4 y = y_ *ns.x + ns.yyyy;
+                vec4 h = 1.0 - abs(x) - abs(y);
+                vec4 b0 = vec4( x.xy, y.xy );
+                vec4 b1 = vec4( x.zw, y.zw );
+                vec4 s0 = floor(b0)*2.0 + 1.0;
+                vec4 s1 = floor(b1)*2.0 + 1.0;
+                vec4 sh = -step(h, vec4(0.0));
+                vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;
+                vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;
+                vec3 p0 = vec3(a0.xy,h.x);
+                vec3 p1 = vec3(a0.zw,h.y);
+                vec3 p2 = vec3(a1.xy,h.z);
+                vec3 p3 = vec3(a1.zw,h.w);
+                vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
+                p0 *= norm.x;
+                p1 *= norm.y;
+                p2 *= norm.z;
+                p3 *= norm.w;
+                vec3 m = max(0.6 - vec3(dot(x0,x0), dot(x1,x1), dot(x2,x2)).xyzz, 0.0);
+                m = m * m;
+                return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3) ) );
+            }
+
+            void main() {
+                vPosition = position;
+                float noise = snoise(position * 1.5 + uTime * 0.2);
+                vNoise = noise;
+                
+                vec3 target = vec3(uMouse * 2.5, 0.0);
+                float dist = distance(position, target);
+                float force = smoothstep(4.0, 0.0, dist) * uMouseVelocity;
+                
+                vec3 displacedPosition = position + normal * (noise * 0.25) + (target - position) * force * 0.4;
+                
+                vec4 mvPosition = modelViewMatrix * vec4(displacedPosition, 1.0);
+                gl_Position = projectionMatrix * mvPosition;
+                gl_PointSize = (12.0 / -mvPosition.z) * (1.0 + noise * 0.4);
+            }
+        `;
+
+        const fragmentShaderSource = `
+            varying vec3 vPosition;
+            varying float vNoise;
+
+            void main() {
+                float r = 0.0;
+                float g = 0.9 - (vNoise * 0.2);
+                float b = 0.6 + (vNoise * 0.4);
+                
+                vec2 temp = gl_PointCoord - vec2(0.5);
+                float dist = dot(temp, temp);
+                if (dist > 0.25) discard;
+                
+                float alpha = smoothstep(0.25, 0.0, dist) * 0.7;
+                gl_FragColor = vec4(vec3(r, g, b) * 1.8, alpha);
+            }
+        `;
+    </script>
+
+    <!-- Master UI & Logic Script orchestration -->
+    <script>
+        // Audio handler
+        function toggleAudio() {
+            const audio = document.getElementById('ambient-drone');
+            const btn = document.getElementById('btn-audio');
+            if (audio.paused) {
+                audio.play().catch(()=>{});
+                btn.innerText = "AUDIO: ON";
+                btn.style.color = "#00ff88";
+                btn.style.borderColor = "#00ff88";
+            } else {
+                audio.pause();
+                btn.innerText = "AUDIO: OFF";
+                btn.style.color = "#888";
+                btn.style.borderColor = "#222";
+            }
+        }
+
+        // Initialize Three.js scene
+        const canvas = document.getElementById('webgl-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+        camera.position.z = 3.5;
+
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // Create core particles geometry
+        const geometry = new THREE.SphereGeometry(1.2, 96, 96);
+        
+        // Material configuration via custom uniforms
+        const uniforms = {
+            uTime: { value: 0 },
+            uMouse: { value: new THREE.Vector2(0,0) },
+            uMouseVelocity: { value: 1.0 }
+        };
+
+        const material = new THREE.ShaderMaterial({
+            vertexShader: vertexShaderSource,
+            fragmentShader: fragmentShaderSource,
+            uniforms: uniforms,
+            transparent: true,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+
+        // Track global interaction telemetry
+        let mouse = new THREE.Vector2(0,0);
+        let targetMouse = new THREE.Vector2(0,0);
+        let currentVelocity = 0;
+        let lastMousePosition = new THREE.Vector2(0,0);
+
+        window.addEventListener('mousemove', (e) => {
+            targetMouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+            targetMouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Diagnostic visualizer generator
+        const visContainer = document.getElementById('visualizer-container');
+        const totalBars = 24;
+        const barsArray = [];
+        for(let i=0; i<totalBars; i++) {
+            const bar = document.createElement('div');
+            bar.style.width = "100%";
+            bar.style.backgroundColor = i % 3 === 0 ? "#00ff88" : "#111111";
+            bar.style.height = "10%";
+            visContainer.appendChild(bar);
+            barsArray.push(bar);
+        }
+
+        function updateVisualizer() {
+            barsArray.forEach((bar, idx) => {
+                const noiseVal = Math.sin(Date.now() * 0.005 + idx * 0.4) * 45 + 55;
+                bar.style.height = `${noiseVal}%`;
+                if(noiseVal > 80 && idx % 3 === 0) {
+                    bar.style.backgroundColor = "#00ff88";
+                } else if(idx % 3 === 0) {
+                    bar.style.backgroundColor = "#009955";
+                }
+            });
+        }
+
+        // Matrix number scramble mechanic
+        document.querySelectorAll('.holographic-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+
+                const decryptTarget = card.querySelector('.decrypt-text');
+                if (decryptTarget && !decryptTarget.dataset.animating) {
+                    decryptTarget.dataset.animating = "true";
+                    decryptEffect(decryptTarget);
+                }
+            });
+        });
+
+        function decryptEffect(element) {
+            const original = element.innerText;
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#$%&*XØ";
+            let iterations = 0;
+            const interval = setInterval(() => {
+                element.innerText = original.split("")
+                    .map((char, index) => {
+                        if (char === " " || index < iterations) return original[index];
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    })
+                    .join("");
+                if (iterations >= original.length) {
+                    clearInterval(interval);
+                    delete element.dataset.animating;
+                }
+                iterations += 1/2;
+            }, 25);
+        }
+
+        // Setup Scroll Sequencer via GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        const panels = ['#panel-hero', '#panel-manifesto', '#panel-telemetry', '#panel-vault'];
+        
+        // Setup sequence mapping
+        const masterTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#viewport-container",
+                start: "top top",
+                end: "+=400%",
+                scrub: 1.2,
+                pin: true,
+                anticipatePin: 1,
+                onUpdate: (self) => {
+                    // Update active step panels based on trigger progress benchmarks
+                    const prog = self.progress;
+                    let activeIndex = 0;
+                    
+                    if (prog < 0.25) activeIndex = 0;
+                    else if (prog >= 0.25 && prog < 0.5) activeIndex = 1;
+                    else if (prog >= 0.5 && prog < 0.78) activeIndex = 2;
+                    else activeIndex = 3;
+
+                    panels.forEach((p, idx) => {
+                        document.querySelector(p).classList.toggle('active', idx === activeIndex);
+                    });
+
+                    // Direct WebGL adjustments via scrolling benchmarks
+                    if (prog < 0.25) {
+                        // Expansion transition
+                        const pProg = prog / 0.25;
+                        camera.position.z = 3.5 - (pProg * 2.2);
+                        particles.rotation.y = pProg * Math.PI;
+                        uniforms.uMouseVelocity.value = 1.0 + pProg * 4.0;
+                    } else if (prog >= 0.25 && prog < 0.5) {
+                        // Reveal text configuration
+                        const pProg = (prog - 0.25) / 0.25;
+                        camera.position.z = 1.3;
+                        particles.rotation.x = pProg * 0.5;
+                        
+                        document.querySelectorAll('.manifesto-text-reveal').forEach((el) => {
+                            el.style.backgroundPositionX = `${100 - (pProg * 100)}%`;
+                        });
+                    } else {
+                        // Dashboard settling state
+                        const pProg = (prog - 0.5) / 0.5;
+                        camera.position.z = 1.3 + (pProg * 2.5);
+                        camera.position.y = -pProg * 1.2;
+                        particles.rotation.y = Date.now() * 0.0002;
+                        uniforms.uMouseVelocity.value = 1.5;
+                    }
+                }
+            }
+        });
+
+        // Dynamic metrics fluctuation for bento grid
+        const metricEl = document.getElementById('matrix-metric');
+        setInterval(() => {
+            if(document.querySelector('#panel-telemetry').classList.contains('active')) {
+                const base = 65000000;
+                const randomAddition = Math.floor(Math.random() * 240);
+                metricEl.innerText = (base + randomAddition).toLocaleString() + "+";
+            }
+        }, 400);
+
+        // Core animation rendering loop logic
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const elapsedTime = clock.getElapsedTime();
+            uniforms.uTime.value = elapsedTime;
+
+            // Interpolate tracking coordinates smoothly
+            mouse.x += (targetMouse.x - mouse.x) * 0.08;
+            mouse.y += (targetMouse.y - mouse.y) * 0.08;
+            uniforms.uMouse.value.copy(mouse);
+
+            // Compute spatial interaction velocities
+            const speed = mouse.distanceTo(lastMousePosition);
+            currentVelocity += (speed - currentVelocity) * 0.1;
+            lastMousePosition.copy(mouse);
+
+            // Rotate system geometry autonomously
+            if (!ScrollTrigger.isScrolling) {
+                particles.rotation.y += 0.002;
+                particles.rotation.x += 0.001;
+            }
+
+            updateVisualizer();
+
+            renderer.render(scene, camera);
+        }
+
+        // Handle responsive dimension reshaping
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+    </script>
+</body>
+</html>
