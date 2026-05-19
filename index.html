@@ -112,7 +112,7 @@
 
   .rings-row {
     display: flex;
-    gap: 28px;
+    gap: 20px;
     flex-wrap: wrap;
   }
 
@@ -230,7 +230,7 @@
   .tool-card .deco-ring-inner {
     position: absolute;
     right: 30px;
-    top: 50%;h
+    top: 50%;
     transform: translateY(-50%);
     width: 80px;
     height: 80px;
@@ -357,12 +357,11 @@
   <div class="header-meta">github.io / Cybernetica<br>Май 2026</div>
 </header>
 
-<!-- LEFT -->
 <div class="left">
   <div>
     <div class="hero-label">// workspace</div>
     <h1 class="hero-title">Cyber<br>netica<br><em>workspace</em></h1>
-    <p class="hero-sub">Документы агентства: лендинг, брифинг и аналитика рынка.</p>
+    <p class="hero-sub">Документы агентства: лендинг, управление, автоматизация и аналитика рынка.</p>
   </div>
 
   <div class="rings-block">
@@ -384,6 +383,13 @@
       </div>
       <div class="ring-item">
         <div class="ring-wrap">
+          <svg viewBox="0 0 76 76"><circle class="ring-bg" cx="38" cy="38" r="31.5"/><circle class="ring-fill rf-dark" cx="38" cy="38" r="31.5" data-pct="65"/></svg>
+          <div class="ring-num">AI</div>
+        </div>
+        <div class="ring-label">Интеграция</div>
+      </div>
+      <div class="ring-item">
+        <div class="ring-wrap">
           <svg viewBox="0 0 76 76"><circle class="ring-bg" cx="38" cy="38" r="31.5"/><circle class="ring-fill rf-muted" cx="38" cy="38" r="31.5" data-pct="40"/></svg>
           <div class="ring-num">26</div>
         </div>
@@ -401,55 +407,71 @@
   </div>
 </div>
 
-<!-- RIGHT -->
 <div class="right">
   <a class="tool-card" href="CyberneticaWeb.html" target="_blank" rel="noopener">
-  <div class="deco-ring"></div>
-  <div class="deco-ring-inner"></div>
-  <div class="deco-sector"></div>
-  <div class="card-num">01 / Product</div>
-  <div class="card-title">Cybernetica<br>Web</div>
-  <p class="card-desc">Лендинг агентства. Гейминг в России — позиционирование и бренд.</p>
-  <div class="card-pills">
-    <span class="pill">Gaming</span>
-    <span class="pill">Brand</span>
-    <span class="pill">Landing</span>
-  </div>
-  <div class="card-arrow">→</div>
-</a>
-<a class="tool-card" href="owner-briefing.html" target="_blank" rel="noopener">
-  <div class="deco-ring"></div>
-  <div class="deco-ring-inner"></div>
-  <div class="deco-sector"></div>
-  <div class="card-num">02 / Internal</div>
-  <div class="card-title">Owner<br>Briefing</div>
-  <p class="card-desc">Внутренний документ для владельца. Реструктуризация и план перехода на COO.</p>
-  <div class="card-pills">
-    <span class="pill">COO</span>
-    <span class="pill">Operations</span>
-    <span class="pill">Plan</span>
-  </div>
-  <div class="card-arrow">→</div>
-</a>
-<a class="tool-card" href="cybernetica-transcribator.html" target="_blank" rel="noopener">
-  <div class="deco-ring"></div>
-  <div class="deco-ring-inner"></div>
-  <div class="deco-sector"></div>
-  <div class="card-num">03 / Research</div>
-  <div class="card-title">Transcription<br>Market 2025</div>
-  <p class="card-desc">Анализ рынка AI-транскрибаторов — игроки, цены, языки и точность.</p>
-  <div class="card-pills">
-    <span class="pill">Market</span>
-    <span class="pill">Speech-to-text</span>
-    <span class="pill">Benchmarks</span>
-  </div>
-  <div class="card-arrow">→</div>
-</a>
+    <div class="deco-ring"></div>
+    <div class="deco-ring-inner"></div>
+    <div class="deco-sector"></div>
+    <div class="card-num">01 / Product</div>
+    <div class="card-title">Cybernetica<br>Web</div>
+    <p class="card-desc">Лендинг агентства. Гейминг в России — позиционирование и бренд.</p>
+    <div class="card-pills">
+      <span class="pill">Gaming</span>
+      <span class="pill">Brand</span>
+      <span class="pill">Landing</span>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a class="tool-card" href="owner-briefing.html" target="_blank" rel="noopener">
+    <div class="deco-ring"></div>
+    <div class="deco-ring-inner"></div>
+    <div class="deco-sector"></div>
+    <div class="card-num">02 / Internal</div>
+    <div class="card-title">Owner<br>Briefing</div>
+    <p class="card-desc">Внутренний документ для владельца. Реструктуризация и план перехода на COO.</p>
+    <div class="card-pills">
+      <span class="pill">COO</span>
+      <span class="pill">Operations</span>
+      <span class="pill">Plan</span>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a class="tool-card" href="cyberneticaWebGemini.html" target="_blank" rel="noopener">
+    <div class="deco-ring"></div>
+    <div class="deco-ring-inner"></div>
+    <div class="deco-sector"></div>
+    <div class="card-num">03 / AI Core</div>
+    <div class="card-title">Cybernetica<br>Web Gemini</div>
+    <p class="card-desc">Интеграция генеративных систем. Автоматизация процессов и протоколы Gemini API.</p>
+    <div class="card-pills">
+      <span class="pill">AI Core</span>
+      <span class="pill">Gemini API</span>
+      <span class="pill">Automation</span>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
+
+  <a class="tool-card" href="cybernetica-transcribator.html" target="_blank" rel="noopener">
+    <div class="deco-ring"></div>
+    <div class="deco-ring-inner"></div>
+    <div class="deco-sector"></div>
+    <div class="card-num">04 / Research</div>
+    <div class="card-title">Transcription<br>Market 2025</div>
+    <p class="card-desc">Анализ рынка AI-транскрибаторов — игроки, цены, языки и точность.</p>
+    <div class="card-pills">
+      <span class="pill">Market</span>
+      <span class="pill">Speech-to-text</span>
+      <span class="pill">Benchmarks</span>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
 </div>
 
 <footer>
   <span><span class="dot"></span>alekseenkovads.github.io/Rodion.Cybernetica</span>
-  <span>3 documents · updated may 2026</span>
+  <span>4 documents · updated may 2026</span>
 </footer>
 
 </div>
@@ -465,10 +487,3 @@
     }, 350);
     setTimeout(() => {
       document.querySelectorAll('.bar-fill').forEach(el => {
-        el.style.width = el.dataset.w + '%';
-      });
-    }, 450);
-  });
-</script>
-</body>
-</html>
