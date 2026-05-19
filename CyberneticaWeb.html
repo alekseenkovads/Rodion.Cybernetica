@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cybeRnetica — Гейминг в России</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #000000;
+    --white: #ffffff;
+    --divider: #222222;
+    --card-bg: #111111;
+  }
+
+  html {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    cursor: none;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+    .btn, .nav-cta { cursor: pointer; }
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--white);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease, opacity 0.2s;
+  }
+
+  /* Navbar */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 48px;
+    background: transparent;
+  }
+
+  .logo {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 18px;
+    letter-spacing: 0.12em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .logo span { font-weight: 400; }
+
+  .nav-cta {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: transparent;
+    border: none;
+    cursor: none;
+    padding: 0;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 1; }
+
+  /* Sections */
+  section {
+    scroll-snap-align: start;
+    min-height: 100vh;
+    min-height: 100dvh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  /* Fade-up animation */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-up.delay-1 { transition-delay: 0.1s; }
+  .fade-up.delay-2 { transition-delay: 0.2s; }
+  .fade-up.delay-3 { transition-delay: 0.35s; }
+  .fade-up.delay-4 { transition-delay: 0.5s; }
+
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--white);
+    border: none;
+    border-radius: 0;
+    padding: 14px 32px;
+    cursor: none;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn:hover { opacity: 0.85; }
+
+  /* ── HERO ── */
+  #hero {
+    justify-content: flex-end;
+    padding-bottom: 0;
+  }
+
+  #sphere-canvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -52%);
+    width: 62vw;
+    height: 62vw;
+    max-width: 720px;
+    max-height: 720px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 0 48px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 7.5vw, 110px);
+    letter-spacing: 0.05em;
+    line-height: 0.93;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+
+  .hero-sub {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 36px;
+    max-width: 420px;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.35;
+  }
+  .scroll-indicator .line {
+    width: 1px;
+    height: 48px;
+    background: var(--white);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  .scroll-indicator span {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.15); }
+  }
+
+  /* ── NUMBERS ── */
+  #numbers {
+    padding: 0;
+  }
+
+  .numbers-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .number-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 48px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .number-block:last-child { border-bottom: none; }
+
+  .number-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 14vw, 180px);
+    letter-spacing: 0.03em;
+    line-height: 0.85;
+    color: var(--white);
+  }
+
+  .number-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    margin-top: 20px;
+  }
+
+  /* ── PRINCIPLES ── */
+  #principles {
+    align-items: flex-start;
+    padding: 0 48px;
+  }
+
+  .principles-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .principle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(38px, 5.5vw, 78px);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--white);
+    padding: 52px 0;
+    border-bottom: 1px solid var(--divider);
+  }
+  .principle:first-child { border-top: 1px solid var(--divider); }
+
+  /* ── ANALYTICS ── */
+  #analytics {
+    align-items: flex-start;
+    padding: 80px 48px;
+    justify-content: center;
+  }
+
+  .analytics-header {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .analytics-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 7vw, 96px);
+    letter-spacing: 0.05em;
+    line-height: 0.9;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .analytics-sub {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--divider);
+    width: 100%;
+    margin-bottom: 48px;
+  }
+
+  .card {
+    background: var(--card-bg);
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.25);
+  }
+
+  .card-title {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    line-height: 1.45;
+  }
+
+  .card-desc {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.45);
+  }
+
+  .email-row {
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .email-input {
+    flex: 1;
+    min-width: 0;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    background: transparent;
+    border: 1px solid var(--divider);
+    border-right: none;
+    color: var(--white);
+    padding: 14px 16px;
+    outline: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+  }
+  .email-input::placeholder { color: rgba(255,255,255,0.25); letter-spacing: 0.1em; }
+  .email-input:focus { border-color: rgba(255,255,255,0.3); }
+
+  /* ── STATUS ── */
+  #status {
+    align-items: flex-start;
+    padding: 0 48px;
+  }
+
+  .status-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 64px;
+    display: block;
+  }
+
+  .partners-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  .partner-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 8vw, 120px);
+    letter-spacing: 0.04em;
+    line-height: 0.9;
+    color: var(--white);
+    padding: 28px 0;
+    border-bottom: 1px solid var(--divider);
+    display: block;
+    transition: letter-spacing 0.4s ease;
+  }
+  .partner-name:first-child { border-top: 1px solid var(--divider); }
+  .partner-name:hover { letter-spacing: 0.08em; }
+
+  /* ── CONTACT ── */
+  #contact {
+    justify-content: center;
+    padding: 0 48px;
+  }
+
+  .contact-inner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .contact-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 14vw, 200px);
+    letter-spacing: 0.03em;
+    line-height: 0.85;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+
+  .contact-sub {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 40px;
+    text-transform: uppercase;
+  }
+
+  /* Footer */
+  footer {
+    position: relative;
+    z-index: 2;
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--divider);
+  }
+
+  footer span {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 20px 20px; }
+    .logo { font-size: 15px; letter-spacing: 0.08em; }
+    .nav-cta { font-size: 10px; }
+
+    .hero-content { padding: 0 20px 72px; }
+    #sphere-canvas {
+      width: 88vw;
+      height: 88vw;
+      top: 36%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .hero-title { font-size: clamp(40px, 10vw, 64px); }
+    .hero-sub { font-size: 12px; max-width: 100%; }
+
+    .number-block { padding: 44px 20px; }
+    .number-value { font-size: clamp(60px, 16vw, 100px); }
+    .number-label { font-size: 11px; }
+
+    #principles { padding: 0 20px; }
+    .principle { font-size: clamp(26px, 7vw, 46px); padding: 28px 0; }
+
+    #analytics { padding: 56px 20px; min-height: auto; }
+    .analytics-title { font-size: clamp(40px, 9vw, 72px); }
+    .analytics-sub { font-size: 11px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .card { padding: 28px 20px; }
+    .email-row { max-width: 100%; }
+
+    #status { padding: 0 20px; }
+    .status-label { margin-bottom: 40px; }
+    .partner-name { font-size: clamp(32px, 9vw, 64px); padding: 20px 0; }
+
+    #contact { padding: 0 20px; }
+    .contact-title { font-size: clamp(52px, 14vw, 90px); }
+    .contact-sub { font-size: 11px; }
+
+    footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">cybe<span>R</span>netica</a>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Связаться</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="sphere-canvas"></canvas>
+  <div class="hero-content">
+    <h1 class="hero-title fade-up">КИБЕРНЕТИКА.<br>ГЕЙМИНГ В РОССИИ —<br>ЭТО МЫ.</h1>
+    <p class="hero-sub fade-up delay-1">Прямой доступ к 65 миллионам геймеров. Без посредников.</p>
+    <a href="#contact" class="btn fade-up delay-2">Обсудить проект</a>
+  </div>
+  <div class="scroll-indicator">
+    <div class="line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section id="numbers">
+  <div class="numbers-inner">
+    <div class="number-block">
+      <div class="number-value fade-up">65 МЛН</div>
+      <div class="number-label fade-up delay-1">Геймеров в России прямо сейчас</div>
+    </div>
+    <div class="number-block">
+      <div class="number-value fade-up">20%</div>
+      <div class="number-label fade-up delay-1">Ежегодный рост аудитории</div>
+    </div>
+    <div class="number-block">
+      <div class="number-value fade-up">№ 1</div>
+      <div class="number-label fade-up delay-1">Агентство с прямым доступом к рынку</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section id="principles">
+  <div class="principles-inner">
+    <div class="principle fade-up">МЫ ЗНАЕМ ЭТОТ РЫНОК<br>ИЗНУТРИ.</div>
+    <div class="principle fade-up delay-1">МЫ ОТКАЗЫВАЕМ,<br>ЕСЛИ КАМПАНИЯ НЕ СРАБОТАЕТ.</div>
+    <div class="principle fade-up delay-2">КЕЙСЫ —<br>ТОЛЬКО НА ВСТРЕЧЕ.</div>
+  </div>
+</section>
+
+<!-- ANALYTICS -->
+<section id="analytics">
+  <div class="analytics-header">
+    <h2 class="analytics-title fade-up">ИНДУСТРИЯ,<br>КОТОРУЮ МЫ ЗНАЕМ</h2>
+    <p class="analytics-sub fade-up delay-1">Данные, которые не найти в открытом доступе. Готовим к публикации.</p>
+  </div>
+
+  <div class="cards-grid fade-up delay-2">
+    <div class="card">
+      <span class="card-num">01</span>
+      <div class="card-title">Аудитория геймеров 2025</div>
+      <div class="card-desc">Кто они, сколько зарабатывают и почему им не верит традиционный маркетинг</div>
+    </div>
+    <div class="card">
+      <span class="card-num">02</span>
+      <div class="card-title">Карта рынка</div>
+      <div class="card-desc">Издатели, платформы, турниры — полная структура индустрии</div>
+    </div>
+    <div class="card">
+      <span class="card-num">03</span>
+      <div class="card-title">2026–2030</div>
+      <div class="card-desc">Куда движется рынок и где деньги</div>
+    </div>
+  </div>
+
+  <div class="email-row fade-up delay-3">
+    <input type="email" class="email-input" placeholder="your@email.com">
+    <button class="btn">Получить первым</button>
+  </div>
+</section>
+
+<!-- STATUS -->
+<section id="status">
+  <span class="status-label fade-up">Нам доверяют</span>
+  <div class="partners-list">
+    <span class="partner-name fade-up">СБЕР</span>
+    <span class="partner-name fade-up delay-1">FORBES</span>
+    <span class="partner-name fade-up delay-2">МИНЦИФРА</span>
+    <span class="partner-name fade-up delay-3">ФЕДЕРАЦИЯ КИБЕРСПОРТА РОССИИ</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <h2 class="contact-title fade-up">ПОГОВОРИМ.</h2>
+    <p class="contact-sub fade-up delay-1">Расскажите о задаче — мы скажем, можем ли помочь</p>
+    <div class="email-row fade-up delay-2">
+      <input type="email" class="email-input" placeholder="your@email.com">
+      <button class="btn">Написать нам</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>cybeRnetica © 2025</span>
+  <span>Москва, Россия</span>
+</footer>
+
+<script>
+// ── CURSOR ──
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+
+function animateRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('a, button, .partner-name').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.width = '4px';
+    cursor.style.height = '4px';
+    ring.style.width = '48px';
+    ring.style.height = '48px';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.width = '8px';
+    cursor.style.height = '8px';
+    ring.style.width = '32px';
+    ring.style.height = '32px';
+  });
+});
+
+// ── SPHERE ──
+const canvas = document.getElementById('sphere-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, points = [];
+const NUM_POINTS = 180;
+const CONNECT_DIST = 0.38;
+let rotY = 0, rotX = 0.2;
+
+function resize() {
+  const size = Math.min(window.innerWidth * 0.62, 720);
+  canvas.width = size;
+  canvas.height = size;
+  W = canvas.width;
+  H = canvas.height;
+}
+
+function initPoints() {
+  points = [];
+  for (let i = 0; i < NUM_POINTS; i++) {
+    // Fibonacci sphere
+    const phi = Math.acos(1 - 2*(i+0.5)/NUM_POINTS);
+    const theta = Math.PI * (1 + Math.sqrt(5)) * i;
+    points.push({
+      ox: Math.sin(phi) * Math.cos(theta),
+      oy: Math.cos(phi),
+      oz: Math.sin(phi) * Math.sin(theta),
+    });
+  }
+}
+
+function project(x, y, z) {
+  const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+  const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+  let x1 = x * cosY - z * sinY;
+  let z1 = x * sinY + z * cosY;
+  let y1 = y * cosX - z1 * sinX;
+  let z2 = y * sinX + z1 * cosX;
+  const fov = 2.8;
+  const scale = W / fov;
+  return {
+    sx: W/2 + x1 * scale,
+    sy: H/2 - y1 * scale,
+    z: z2
+  };
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  rotY += 0.0028;
+
+  const projected = points.map(p => {
+    const pr = project(p.ox, p.oy, p.oz);
+    return { ...pr, ox: p.ox, oy: p.oy, oz: p.oz };
+  });
+
+  // Lines
+  for (let i = 0; i < projected.length; i++) {
+    for (let j = i+1; j < projected.length; j++) {
+      const a = projected[i], b = projected[j];
+      const dx = a.ox - b.ox, dy = a.oy - b.oy, dz = a.oz - b.oz;
+      const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+      if (dist < CONNECT_DIST) {
+        const depthA = (a.z + 1) / 2;
+        const depthB = (b.z + 1) / 2;
+        const alpha = ((depthA + depthB) / 2) * 0.22 * (1 - dist / CONNECT_DIST);
+        ctx.beginPath();
+        ctx.moveTo(a.sx, a.sy);
+        ctx.lineTo(b.sx, b.sy);
+        ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+
+  // Dots
+  for (const p of projected) {
+    const depth = (p.z + 1) / 2;
+    const alpha = 0.15 + depth * 0.7;
+    const r = 0.8 + depth * 1.4;
+    ctx.beginPath();
+    ctx.arc(p.sx, p.sy, r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+    ctx.fill();
+  }
+
+  requestAnimationFrame(draw);
+}
+
+resize();
+initPoints();
+draw();
+window.addEventListener('resize', () => { resize(); });
+
+// ── INTERSECTION OBSERVER ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Trigger hero immediately
+setTimeout(() => {
+  document.querySelectorAll('#hero .fade-up').forEach(el => el.classList.add('visible'));
+}, 100);
+</script>
+</body>
+</html>
