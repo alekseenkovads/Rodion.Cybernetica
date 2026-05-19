@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cybernetica — Workspace</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -467,11 +468,26 @@
     </div>
     <div class="card-arrow">→</div>
   </a>
+
+  <a class="tool-card" href="Обзор%20категории%20Gaming%20и%20Cybersport%20By%20Rodion.html" target="_blank" rel="noopener">
+    <div class="deco-ring"></div>
+    <div class="deco-ring-inner"></div>
+    <div class="deco-sector"></div>
+    <div class="card-num">05 / Market Insights</div>
+    <div class="card-title">Gaming &<br>Cybersport</div>
+    <p class="card-desc">Глубокий аналитический обзор вертикали гейминга и киберспорта.</p>
+    <div class="card-pills">
+      <span class="pill">Gaming</span>
+      <span class="pill">Cybersport</span>
+      <span class="pill">Review</span>
+    </div>
+    <div class="card-arrow">→</div>
+  </a>
 </div>
 
 <footer>
   <span><span class="dot"></span>alekseenkovads.github.io/Rodion.Cybernetica</span>
-  <span>4 documents · updated may 2026</span>
+  <span>5 documents · updated may 2026</span>
 </footer>
 
 </div>
@@ -487,3 +503,10 @@
     }, 350);
     setTimeout(() => {
       document.querySelectorAll('.bar-fill').forEach(el => {
+        el.style.width = el.dataset.w + '%';
+      });
+    }, 450);
+  });
+</script>
+</body>
+</html>
