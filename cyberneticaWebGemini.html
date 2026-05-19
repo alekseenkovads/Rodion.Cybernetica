@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cybernetica — Professional Gateway to Gaming & Esports</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #000000;
+    --surface: #0a0a0a;
+    --surface2: #111111;
+    --border: #1a1a1a;
+    --border2: #222222;
+    --text-primary: #ffffff;
+    --text-secondary: #888888;
+    --text-muted: #444444;
+    --accent-cyan: #00f0ff;
+    --accent-purple: #7000ff;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-sans: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: #222; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo-mark {
+    width: 20px; height: 20px;
+    border: 1px solid var(--accent-cyan);
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .nav-logo-mark::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--accent-cyan);
+    display: block;
+  }
+
+  .nav-links {
+    display: flex; gap: 40px; list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text-primary); }
+
+  .nav-cta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--text-primary);
+    text-decoration: none;
+    border: 1px solid var(--border2);
+    padding: 8px 16px;
+    transition: border-color 0.3s, box-shadow 0.3s, color 0.3s;
+    cursor: pointer;
+    background: transparent;
+  }
+
+  .nav-cta:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 12px rgba(0,240,255,0.15), inset 0 0 12px rgba(0,240,255,0.04);
+    color: var(--accent-cyan);
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 48px 96px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute; inset: 0; z-index: 0;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 1100px; }
+
+  .hero-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent-cyan);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--accent-cyan);
+    display: block;
+  }
+
+  h1.hero-title {
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+  }
+
+  h1.hero-title span { color: var(--text-secondary); }
+
+  .hero-subtitle {
+    font-size: clamp(15px, 1.6vw, 19px);
+    color: var(--text-secondary);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .hero-actions { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    background: var(--text-primary);
+    color: var(--bg);
+    border: none;
+    padding: 14px 28px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, box-shadow 0.3s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: #e8e8e8;
+    box-shadow: 0 0 24px rgba(255,255,255,0.12);
+  }
+
+  .btn-ghost {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border2);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover { color: var(--text-primary); border-color: var(--text-secondary); }
+
+  .hero-stats {
+    position: absolute; right: 48px; bottom: 96px; z-index: 2;
+    display: flex; flex-direction: column; gap: 1px;
+  }
+
+  .hero-stat-item {
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    background: var(--surface);
+    min-width: 180px;
+  }
+
+  .hero-stat-num {
+    font-family: var(--font-mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: block;
+    line-height: 1.1;
+  }
+
+  .hero-stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 120px 48px; }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 60px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 80px; }
+
+  /* ─── MANIFEST ─── */
+  #manifest {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 96px 48px;
+  }
+
+  .manifest-text {
+    font-size: clamp(22px, 3.5vw, 44px);
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--text-muted);
+    max-width: 1100px;
+    letter-spacing: -0.01em;
+    cursor: default;
+  }
+
+  .manifest-text .keyword {
+    color: var(--text-muted);
+    transition: color 0.25s;
+    cursor: default;
+  }
+
+  .manifest-text:hover .keyword { color: var(--text-primary); }
+
+  .manifest-text .always-white { color: var(--text-primary); }
+
+  /* ─── ANALYTICS DASHBOARD ─── */
+  #analytics { padding-top: 0; }
+
+  .analytics-wrap {
+    border: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 480px;
+  }
+
+  .analytics-tabs {
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column;
+  }
+
+  .analytics-tab-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .analytics-tab-btn {
+    padding: 18px 24px;
+    border: none; border-bottom: 1px solid var(--border);
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--text-secondary);
+    transition: color 0.2s, background 0.2s;
+    position: relative;
+  }
+
+  .analytics-tab-btn::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: transparent;
+    transition: background 0.2s;
+  }
+
+  .analytics-tab-btn:hover { color: var(--text-primary); background: var(--surface); }
+
+  .analytics-tab-btn.active {
+    color: var(--text-primary);
+    background: var(--surface);
+  }
+
+  .analytics-tab-btn.active::before { background: var(--accent-cyan); }
+
+  .analytics-content {
+    padding: 28px 36px;
+  }
+
+  .analytics-panel { display: none; }
+  .analytics-panel.active { display: block; }
+
+  .analytics-panel-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-bottom: 32px;
+    border: 1px solid var(--border);
+  }
+
+  .metric-cell {
+    padding: 20px 20px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+  }
+
+  .metric-cell:last-child { border-right: none; }
+
+  .metric-val {
+    font-family: var(--font-mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.1;
+  }
+
+  .metric-val.cyan { color: var(--accent-cyan); }
+
+  .metric-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  .metric-delta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: #00c97a;
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  /* Chart */
+  .chart-wrap {
+    height: 160px;
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .chart-svg { width: 100%; height: 100%; }
+
+  .chart-bar-group { transition: opacity 0.3s; }
+  .chart-bar-group:hover { opacity: 0.8; }
+
+  .chart-label-row {
+    display: flex; justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    margin-top: 8px;
+  }
+
+  .audience-bars { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+
+  .aud-row { display: grid; grid-template-columns: 100px 1fr 60px; align-items: center; gap: 12px; }
+
+  .aud-label { font-size: 12px; color: var(--text-secondary); }
+
+  .aud-track { height: 4px; background: var(--border2); position: relative; }
+
+  .aud-fill {
+    position: absolute; left: 0; top: 0; bottom: 0;
+    background: var(--accent-cyan);
+    transition: width 1s ease;
+  }
+
+  .aud-pct {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-align: right;
+  }
+
+  /* Forecast sparklines */
+  .forecast-table { width: 100%; border-collapse: collapse; }
+  .forecast-table th {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .forecast-table td {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 12px 12px;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-mono);
+  }
+  .forecast-table td.grow { color: #00c97a; }
+  .forecast-table td.primary { color: var(--text-primary); }
+
+  /* ─── SERVICE MATRIX ─── */
+  #services { padding-top: 0; }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    border: 1px solid var(--border);
+  }
+
+  .bento-card {
+    background: var(--surface);
+    padding: 32px 28px;
+    border-right: 1px solid var(--border);
+    transition: background 0.25s;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .bento-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: transparent;
+    transition: background 0.3s;
+  }
+
+  .bento-card:hover { background: var(--surface2); }
+  .bento-card:hover::after { background: var(--accent-cyan); }
+
+  .bento-card:last-child { border-right: none; }
+
+  .bento-icon {
+    width: 32px; height: 32px;
+    border: 1px solid var(--border2);
+    margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  .bento-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+  }
+
+  .bento-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .bento-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .bento-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .bento-card:hover .bento-link { color: var(--accent-cyan); }
+
+  /* ─── LEAD CAPTURE ─── */
+  #leads {
+    border-top: 1px solid var(--border);
+  }
+
+  .leads-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .leads-report-card {
+    border: 1px solid var(--border2);
+    background: var(--surface);
+    overflow: hidden;
+  }
+
+  .report-preview-bar {
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+  }
+
+  .report-body { padding: 32px 28px; }
+
+  .report-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-cyan);
+    margin-bottom: 16px;
+  }
+
+  .report-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  .report-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .report-specs {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+
+  .report-spec-row {
+    display: flex; justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 8px 0;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  .report-spec-row span:last-child { color: var(--text-secondary); }
+
+  /* FORM */
+  .leads-form-wrap h2 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .form-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 36px;
+  }
+
+  .form-field {
+    margin-bottom: 16px;
+  }
+
+  .form-field label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .form-field input {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--border2);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  .form-field input:focus {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 0 3px rgba(0,240,255,0.06);
+  }
+
+  .form-field input::placeholder { color: var(--text-muted); font-size: 13px; }
+
+  .btn-submit {
+    width: 100%;
+    margin-top: 8px;
+    padding: 14px 24px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    background: var(--text-primary);
+    color: var(--bg);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.3s;
+  }
+
+  .btn-submit:hover {
+    background: #d8d8d8;
+    box-shadow: 0 0 24px rgba(255,255,255,0.08);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 60px 48px 40px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 60px;
+  }
+
+  .footer-col-title {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text-primary); }
+
+  .footer-logo-text {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+
+  .footer-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 280px;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .footer-legal { font-size: 12px; color: var(--text-muted); }
+
+  .footer-status {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #00c97a;
+    box-shadow: 0 0 8px rgba(0,201,122,0.5);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ─── GRID BG ANIMATION ─── */
+  @keyframes gridMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(40px); }
+  }
+
+  .grid-line-h {
+    animation: gridMove 8s linear infinite;
+  }
+
+  /* ─── REVEAL ANIMATION ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-mark"></span>
+    CYBERNETICA
+  </a>
+  <ul class="nav-links">
+    <li><a href="#analytics">Expertise</a></li>
+    <li><a href="#analytics">Data & Analytics</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#leads">Case Studies</a></li>
+  </ul>
+  <a href="#leads" class="nav-cta">[ Get Strategy ]</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <svg class="hero-grid-bg" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+        <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#00f0ff" stroke-width="0.4" opacity="0.4"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid)" class="grid-line-h"/>
+    <radialGradient id="heroGlow" cx="30%" cy="70%" r="50%">
+      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <rect width="100%" height="100%" fill="url(#heroGlow)"/>
+    <!-- Data points -->
+    <circle cx="200" cy="400" r="1.5" fill="#00f0ff" opacity="0.6"/>
+    <circle cx="480" cy="240" r="1" fill="#00f0ff" opacity="0.4"/>
+    <circle cx="720" cy="500" r="2" fill="#7000ff" opacity="0.5"/>
+    <circle cx="1100" cy="320" r="1.5" fill="#00f0ff" opacity="0.4"/>
+    <circle cx="1300" cy="650" r="1" fill="#00f0ff" opacity="0.5"/>
+    <!-- Connecting lines -->
+    <line x1="200" y1="400" x2="480" y2="240" stroke="#00f0ff" stroke-width="0.3" opacity="0.2"/>
+    <line x1="480" y1="240" x2="720" y2="500" stroke="#00f0ff" stroke-width="0.3" opacity="0.2"/>
+    <line x1="720" y1="500" x2="1100" y2="320" stroke="#7000ff" stroke-width="0.3" opacity="0.2"/>
+  </svg>
+
+  <div class="hero-content reveal">
+    <div class="hero-tag">EST. 2018 · MOSCOW · RU_001</div>
+    <h1 class="hero-title">
+      Cybernetica.<br/>
+      <span>Professional Gateway to</span><br/>
+      Gaming & Esports.
+    </h1>
+    <p class="hero-subtitle">
+      The definitive market-leader for brand integration into the gaming ecosystem. From in-game placements to full-scale esports sponsorships — we engineer audience connection.
+    </p>
+    <div class="hero-actions">
+      <a href="#leads" class="btn-primary">[ Initiate Integration ]</a>
+      <a href="#analytics" class="btn-ghost">[ Read Market Report 2026 ]</a>
+    </div>
+  </div>
+
+  <div class="hero-stats reveal" style="transition-delay: 0.3s;">
+    <div class="hero-stat-item">
+      <span class="hero-stat-num">65M+</span>
+      <span class="hero-stat-label">Active Players · RU</span>
+    </div>
+    <div class="hero-stat-item">
+      <span class="hero-stat-num" style="color: var(--accent-cyan);">+240%</span>
+      <span class="hero-stat-label">Avg. Campaign ROI</span>
+    </div>
+    <div class="hero-stat-item">
+      <span class="hero-stat-num">340+</span>
+      <span class="hero-stat-label">Brands Activated</span>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFEST -->
+<section id="manifest">
+  <div class="manifest-text reveal">
+    The <span class="keyword">Gaming industry in Russia</span> is not a subculture — it is
+    the dominant media reality of an entire generation.
+    <span class="always-white"> Cybernetica </span>
+    exists at its exact center. With unmatched
+    <span class="keyword">data infrastructure</span>,
+    <span class="keyword">creative authority</span>, and
+    <span class="keyword">absolute expertise</span>
+    across every vertical — from
+    <span class="keyword">mobile gaming</span> to
+    <span class="keyword">championship esports</span> —
+    we deliver what no other agency can:
+    <span class="always-white"> genuine cultural access. </span>
+  </div>
+</section>
+
+<!-- ANALYTICS -->
+<section id="analytics">
+  <div class="section-label reveal">
+    <span>Analytics & Research Engine</span>
+  </div>
+  <div class="analytics-wrap reveal">
+    <div class="analytics-tabs">
+      <div class="analytics-tab-header">DATASETS / v3.2</div>
+      <button class="analytics-tab-btn active" data-tab="market">Market Volume</button>
+      <button class="analytics-tab-btn" data-tab="audience">Target Audience</button>
+      <button class="analytics-tab-btn" data-tab="forecast">2026–2030 Forecast</button>
+    </div>
+    <div class="analytics-content">
+
+      <!-- Market Volume Panel -->
+      <div class="analytics-panel active" id="panel-market">
+        <div class="analytics-panel-title">// MARKET_VOLUME · RU_GAMING_2026</div>
+        <div class="metric-grid">
+          <div class="metric-cell">
+            <div class="metric-val cyan">₽312B</div>
+            <div class="metric-label">Total Market</div>
+            <div class="metric-delta">↑ +31% YoY</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-val">65M+</div>
+            <div class="metric-label">Active Players</div>
+            <div class="metric-delta">↑ +8.4M New</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-val">₽48B</div>
+            <div class="metric-label">Ad Spend · Gaming</div>
+            <div class="metric-delta">↑ +44% YoY</div>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <svg class="chart-svg" viewBox="0 0 680 160" xmlns="http://www.w3.org/2000/svg">
+            <!-- Grid lines -->
+            <line x1="0" y1="40" x2="680" y2="40" stroke="#1a1a1a" stroke-width="1"/>
+            <line x1="0" y1="80" x2="680" y2="80" stroke="#1a1a1a" stroke-width="1"/>
+            <line x1="0" y1="120" x2="680" y2="120" stroke="#1a1a1a" stroke-width="1"/>
+            <!-- Y labels -->
+            <text x="0" y="38" fill="#444" font-size="9" font-family="JetBrains Mono, monospace">400B</text>
+            <text x="0" y="78" fill="#444" font-size="9" font-family="JetBrains Mono, monospace">200B</text>
+            <text x="0" y="118" fill="#444" font-size="9" font-family="JetBrains Mono, monospace">100B</text>
+            <!-- Bars: Market volumes 2021–2026 -->
+            <g class="chart-bar-group">
+              <rect x="50" y="130" width="40" height="20" fill="#1a1a1a"/>
+              <rect x="50" y="116" width="40" height="34" fill="#222"/>
+            </g>
+            <g class="chart-bar-group">
+              <rect x="130" y="105" width="40" height="45" fill="#222"/>
+            </g>
+            <g class="chart-bar-group">
+              <rect x="210" y="92" width="40" height="58" fill="#2a2a2a"/>
+            </g>
+            <g class="chart-bar-group">
+              <rect x="290" y="78" width="40" height="72" fill="#333"/>
+            </g>
+            <g class="chart-bar-group">
+              <rect x="370" y="60" width="40" height="90" fill="#3a3a3a"/>
+            </g>
+            <g class="chart-bar-group">
+              <rect x="450" y="38" width="40" height="112" fill="#00f0ff" opacity="0.25"/>
+              <rect x="450" y="38" width="40" height="4" fill="#00f0ff"/>
+            </g>
+            <!-- Trend line -->
+            <polyline points="70,148 150,127 230,121 310,114 390,105 470,42" fill="none" stroke="#00f0ff" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="chart-label-row">
+          <span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span><span style="color: var(--accent-cyan);">2026E</span>
+        </div>
+      </div>
+
+      <!-- Audience Panel -->
+      <div class="analytics-panel" id="panel-audience">
+        <div class="analytics-panel-title">// TARGET_AUDIENCE · DEMOGRAPHICS</div>
+        <div class="metric-grid">
+          <div class="metric-cell">
+            <div class="metric-val cyan">18–35</div>
+            <div class="metric-label">Core Age Range</div>
+            <div class="metric-delta">71% of audience</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-val">68%</div>
+            <div class="metric-label">Male / 32% Female</div>
+            <div class="metric-delta">↑ F +12% YoY</div>
+          </div>
+          <div class="metric-cell">
+            <div class="metric-val">4.2h</div>
+            <div class="metric-label">Daily Session</div>
+            <div class="metric-delta">avg. engagement</div>
+          </div>
+        </div>
+        <div class="audience-bars">
+          <div class="aud-row">
+            <span class="aud-label">Ages 16–24</span>
+            <div class="aud-track"><div class="aud-fill" style="width: 82%"></div></div>
+            <span class="aud-pct">82%</span>
+          </div>
+          <div class="aud-row">
+            <span class="aud-label">Ages 25–34</span>
+            <div class="aud-track"><div class="aud-fill" style="width: 61%"></div></div>
+            <span class="aud-pct">61%</span>
+          </div>
+          <div class="aud-row">
+            <span class="aud-label">Ages 35–44</span>
+            <div class="aud-track"><div class="aud-fill" style="width: 38%"></div></div>
+            <span class="aud-pct">38%</span>
+          </div>
+          <div class="aud-row">
+            <span class="aud-label">Mobile Platform</span>
+            <div class="aud-track"><div class="aud-fill" style="width: 74%"></div></div>
+            <span class="aud-pct">74%</span>
+          </div>
+          <div class="aud-row">
+            <span class="aud-label">PC / Console</span>
+            <div class="aud-track"><div class="aud-fill" style="width: 54%"></div></div>
+            <span class="aud-pct">54%</span>
+          </div>
+          <div class="aud-row">
+            <span class="aud-label">Watches Streams</span>
+            <div class="aud-track"><div class="aud-fill" style="width: 66%"></div></div>
+            <span class="aud-pct">66%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Forecast Panel -->
+      <div class="analytics-panel" id="panel-forecast">
+        <div class="analytics-panel-title">// INDUSTRY_FORECAST · 2026–2030</div>
+        <table class="forecast-table">
+          <thead>
+            <tr>
+              <th>YEAR</th>
+              <th>MARKET SIZE</th>
+              <th>YoY GROWTH</th>
+              <th>AD SPEND</th>
+              <th>PLAYERS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="primary">2026</td>
+              <td class="primary">₽312B</td>
+              <td class="grow">+31%</td>
+              <td>₽48B</td>
+              <td>65M</td>
+            </tr>
+            <tr>
+              <td>2027</td>
+              <td>₽398B</td>
+              <td class="grow">+28%</td>
+              <td>₽64B</td>
+              <td>72M</td>
+            </tr>
+            <tr>
+              <td>2028</td>
+              <td>₽497B</td>
+              <td class="grow">+25%</td>
+              <td>₽83B</td>
+              <td>79M</td>
+            </tr>
+            <tr>
+              <td>2029</td>
+              <td>₽611B</td>
+              <td class="grow">+23%</td>
+              <td>₽105B</td>
+              <td>85M</td>
+            </tr>
+            <tr>
+              <td>2030</td>
+              <td>₽740B</td>
+              <td class="grow">+21%</td>
+              <td>₽132B</td>
+              <td>91M</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-top: 20px; display: flex; gap: 28px;">
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px;">CAGR 2026–2030</div>
+            <div style="font-family: var(--font-mono); font-size: 26px; font-weight: 700; color: var(--accent-cyan);">+24.2%</div>
+          </div>
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px;">PROJECTED PLAYERS</div>
+            <div style="font-family: var(--font-mono); font-size: 26px; font-weight: 700; color: var(--text-primary);">91M+</div>
+          </div>
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px;">AD SPEND ×2030</div>
+            <div style="font-family: var(--font-mono); font-size: 26px; font-weight: 700; color: var(--text-primary);">₽132B</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label reveal">
+    <span>Service Matrix</span>
+  </div>
+  <div class="bento-grid reveal">
+    <div class="bento-card">
+      <div class="bento-num">01</div>
+      <div class="bento-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="1" y="1" width="6" height="6" stroke="#888" stroke-width="1"/>
+          <rect x="9" y="1" width="6" height="6" stroke="#888" stroke-width="1"/>
+          <rect x="1" y="9" width="6" height="6" stroke="#888" stroke-width="1"/>
+          <rect x="9" y="9" width="6" height="6" stroke="#00f0ff" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="bento-title">Esports Sponsorships</div>
+      <div class="bento-desc">Full-cycle tournament and team sponsorship deals — from naming rights to activations. Access Russia's top-tier competitive ecosystems: Dota 2, CS2, Valorant, and mobile leagues.</div>
+      <a href="#" class="bento-link">[ Explore → ]</a>
+    </div>
+    <div class="bento-card">
+      <div class="bento-num">02</div>
+      <div class="bento-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="6.5" stroke="#888" stroke-width="1"/>
+          <circle cx="8" cy="8" r="2.5" stroke="#00f0ff" stroke-width="1"/>
+          <line x1="8" y1="1.5" x2="8" y2="5.5" stroke="#888" stroke-width="1"/>
+          <line x1="8" y1="10.5" x2="8" y2="14.5" stroke="#888" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="bento-title">In-Game Integrations</div>
+      <div class="bento-desc">Seamless brand placement within game environments — skins, map branding, UI elements, and native ad units. Zero-friction audience exposure with high dwell time.</div>
+      <a href="#" class="bento-link">[ Explore → ]</a>
+    </div>
+    <div class="bento-card">
+      <div class="bento-num">03</div>
+      <div class="bento-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <polyline points="1,12 5,6 9,9 13,3" stroke="#888" stroke-width="1" fill="none"/>
+          <circle cx="13" cy="3" r="2" stroke="#00f0ff" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+      <div class="bento-title">Streamer Campaigns</div>
+      <div class="bento-desc">Precision-matched influencer and streamer partnerships across Twitch, YouTube, VK Play Live. Audience-first targeting. Authentic integrations. Full performance analytics.</div>
+      <a href="#" class="bento-link">[ Explore → ]</a>
+    </div>
+    <div class="bento-card">
+      <div class="bento-num">04</div>
+      <div class="bento-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <rect x="1" y="3" width="14" height="10" stroke="#888" stroke-width="1"/>
+          <line x1="4" y1="3" x2="4" y2="13" stroke="#444" stroke-width="0.5"/>
+          <line x1="8" y1="3" x2="8" y2="13" stroke="#444" stroke-width="0.5"/>
+          <line x1="12" y1="3" x2="12" y2="13" stroke="#444" stroke-width="0.5"/>
+          <rect x="5" y="6" width="6" height="4" stroke="#00f0ff" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="bento-title">Custom Gaming Content</div>
+      <div class="bento-desc">Bespoke creative production — branded mini-games, tournaments, cinematic ad formats, and interactive mechanics built natively for gaming culture. Original. Unskippable.</div>
+      <a href="#" class="bento-link">[ Explore → ]</a>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD CAPTURE -->
+<section id="leads">
+  <div class="section-label reveal">
+    <span>Knowledge Hub</span>
+  </div>
+  <div class="leads-wrap">
+    <div class="leads-report-card reveal">
+      <div class="report-preview-bar"></div>
+      <div class="report-body">
+        <div class="report-tag">// REPORT_2026 · EXCLUSIVE</div>
+        <div class="report-title">Cybernetica Report:<br/>Gaming Audience Behavior<br/>& Ad Effectiveness 2026</div>
+        <div class="report-sub">Proprietary research spanning 65M+ player data points. The most comprehensive gaming ad intelligence available in the Russian market.</div>
+        <div class="report-specs">
+          <div class="report-spec-row"><span>Format</span><span>PDF · 84 Pages</span></div>
+          <div class="report-spec-row"><span>Coverage</span><span>RU / CIS Markets</span></div>
+          <div class="report-spec-row"><span>Datasets</span><span>Q1–Q4 2025 + Projections</span></div>
+          <div class="report-spec-row"><span>Access</span><span>Corporate Only · NDA</span></div>
+          <div class="report-spec-row"><span>Updated</span><span>March 2026</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="leads-form-wrap reveal" style="transition-delay: 0.15s;">
+      <h2>Access Exclusive<br/>Market Intelligence</h2>
+      <p class="form-sub">Request access for qualified brand and agency partners. No spam. Ever.</p>
+
+      <div class="form-field">
+        <label>Full Name</label>
+        <input type="text" placeholder="Ivan Petrov" />
+      </div>
+      <div class="form-field">
+        <label>Company</label>
+        <input type="text" placeholder="Company Name" />
+      </div>
+      <div class="form-field">
+        <label>Corporate Email</label>
+        <input type="email" placeholder="ivan@company.ru" />
+      </div>
+
+      <button class="btn-submit">[ Download Report ]</button>
+
+      <p style="margin-top: 16px; font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 0.06em;">
+        BY SUBMITTING YOU AGREE TO OUR TERMS · DATA PROTECTED · NO RESALE
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-text">CYBERNETICA</div>
+      <div class="footer-desc">The definitive gaming & esports advertising agency in Russia. Precision. Data. Culture.</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#">Esports Sponsorships</a></li>
+        <li><a href="#">In-Game Integrations</a></li>
+        <li><a href="#">Streamer Campaigns</a></li>
+        <li><a href="#">Custom Content</a></li>
+        <li><a href="#">Programmatic Gaming</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">About Cybernetica</a></li>
+        <li><a href="#">Case Studies</a></li>
+        <li><a href="#">Research Hub</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press Kit</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect</div>
+      <ul class="footer-links">
+        <li><a href="#">Telegram Channel</a></li>
+        <li><a href="#">VK Community</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">contact@cybernetica.ru</a></li>
+        <li><a href="#">+7 495 000-00-00</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">
+      © 2026 Cybernetica LLC · Moscow, Russia · ОГРН 1187748000000 · All rights reserved.
+    </div>
+    <div class="footer-status">
+      <span class="status-dot"></span>
+      SYS.STATUS: OPERATIONAL · BUILD_2026.05.R3 · UTC+3
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Tab switching
+  const tabBtns = document.querySelectorAll('.analytics-tab-btn');
+  const panels = document.querySelectorAll('.analytics-panel');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const panelId = 'panel-' + btn.dataset.tab;
+      document.getElementById(panelId).classList.add('active');
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  revealEls.forEach(el => observer.observe(el));
+
+  // Timestamp
+  function updateTime() {
+    const now = new Date();
+    const ts = now.toISOString().replace('T', ' ').substring(0, 19);
+    const el = document.querySelector('.footer-status');
+    if (el) {
+      el.innerHTML = `<span class="status-dot"></span>SYS.STATUS: OPERATIONAL · BUILD_2026.05.R3 · ${ts} UTC`;
+    }
+  }
+  updateTime();
+  setInterval(updateTime, 1000);
+</script>
+</body>
+</html>
