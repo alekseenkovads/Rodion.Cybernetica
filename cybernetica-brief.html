@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бриф — Кибернетика</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F6F2;
+    --bg-2: #EFEDE7;
+    --surface: #ffffff;
+    --ink: #1A1A1A;
+    --ink-mid: #6B6B6B;
+    --ink-dim: #ADADAD;
+    --accent: #1A1A1A;
+    --flag: #E8431A;
+    --flag-bg: #FFF0EC;
+    --done: #2A7A4B;
+    --done-bg: #EDF7F1;
+    --border: #DDDBD5;
+    --mono: 'IBM Plex Mono', monospace;
+    --serif: 'Playfair Display', serif;
+    --sans: 'Manrope', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* ── HEADER ── */
+  .doc-header {
+    background: var(--ink);
+    color: #fff;
+    padding: 56px 64px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .doc-header::before {
+    content: 'БРИФ';
+    position: absolute;
+    right: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--serif);
+    font-size: 120px;
+    color: rgba(255,255,255,0.04);
+    letter-spacing: -4px;
+    pointer-events: none;
+    user-select: none;
+  }
+  .doc-meta {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .doc-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 4px 10px;
+  }
+  .doc-tag.active {
+    color: #fff;
+    border-color: rgba(255,255,255,0.35);
+  }
+  .doc-title {
+    font-family: var(--serif);
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+  .doc-title strong {
+    font-weight: 600;
+  }
+  .doc-subtitle {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar-wrap {
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 64px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .progress-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    white-space: nowrap;
+  }
+  .progress-track {
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    position: relative;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 55%;
+    background: var(--ink);
+    position: relative;
+  }
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 8px; height: 8px;
+    background: var(--ink);
+    border-radius: 50%;
+  }
+  .progress-pct {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* ── LAYOUT ── */
+  .doc-body {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 64px 64px 120px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 72px;
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-dim);
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+  }
+
+  /* ── TABLE ── */
+  .brief-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .brief-table tr {
+    border-bottom: 1px solid var(--border);
+  }
+  .brief-table tr:last-child {
+    border-bottom: none;
+  }
+  .brief-table td {
+    padding: 14px 0;
+    vertical-align: top;
+  }
+  .brief-table td:first-child {
+    width: 220px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--ink-mid);
+    padding-right: 24px;
+    padding-top: 16px;
+  }
+  .brief-table td:last-child {
+    font-size: 14px;
+    color: var(--ink);
+  }
+
+  /* ── STATUS TAGS ── */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 2px;
+  }
+  .tag-done {
+    background: var(--done-bg);
+    color: var(--done);
+  }
+  .tag-todo {
+    background: var(--flag-bg);
+    color: var(--flag);
+  }
+  .tag::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  /* ── OPEN QUESTION ── */
+  .open-q {
+    background: var(--flag-bg);
+    border-left: 3px solid var(--flag);
+    padding: 14px 18px;
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .open-q-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--flag);
+    margin-bottom: 6px;
+  }
+
+  /* ── FILLED VALUE ── */
+  .val {
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .val-note {
+    font-size: 12px;
+    color: var(--ink-mid);
+    margin-top: 3px;
+  }
+
+  /* ── THESIS CARDS ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .card {
+    background: var(--surface);
+    padding: 24px 24px 28px;
+  }
+  .card-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-dim);
+    margin-bottom: 10px;
+  }
+  .card-text {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  /* ── STRUCTURE TABLE ── */
+  .struct-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .struct-table thead tr {
+    border-bottom: 2px solid var(--ink);
+  }
+  .struct-table th {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    padding: 0 0 12px;
+    text-align: left;
+    font-weight: 500;
+  }
+  .struct-table th:last-child { text-align: center; }
+  .struct-table tbody tr {
+    border-bottom: 1px solid var(--border);
+  }
+  .struct-table tbody tr:last-child { border-bottom: none; }
+  .struct-table td {
+    padding: 14px 0;
+    font-size: 14px;
+    vertical-align: top;
+  }
+  .struct-table td:first-child {
+    width: 36px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-dim);
+    padding-right: 16px;
+  }
+  .struct-table td:nth-child(2) {
+    padding-right: 32px;
+  }
+  .struct-table td:last-child {
+    text-align: center;
+  }
+
+  /* ── QUESTIONS BLOCK ── */
+  .q-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .q-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: border-color 0.15s;
+  }
+  .q-item:hover {
+    border-color: var(--flag);
+  }
+  .q-index {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-dim);
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .q-body {}
+  .q-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .q-text {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.55;
+  }
+
+  /* ── VISUAL DIRECTION ── */
+  .ref-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 28px 28px 32px;
+  }
+  .ref-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .ref-card-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 400;
+  }
+  .ref-url {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-dim);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  .ref-url:hover { color: var(--ink); }
+  .ref-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ref-points li {
+    font-size: 13px;
+    color: var(--ink-mid);
+    display: flex;
+    gap: 10px;
+    line-height: 1.5;
+  }
+  .ref-points li::before {
+    content: '—';
+    color: var(--ink-dim);
+    flex-shrink: 0;
+  }
+
+  .synthesis-box {
+    margin-top: 20px;
+    background: var(--ink);
+    color: #fff;
+    padding: 24px 28px;
+  }
+  .synthesis-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 12px;
+  }
+  .synthesis-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* ── PALETTE ROW ── */
+  .palette-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+  }
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .swatch-color {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--border);
+  }
+  .swatch-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-mid);
+    text-align: center;
+  }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .doc-footer-left {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-dim);
+    letter-spacing: 0.08em;
+  }
+  .legend {
+    display: flex;
+    gap: 20px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-mid);
+  }
+
+  /* ── DIVIDER ── */
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 28px 0;
+  }
+
+  @media (max-width: 700px) {
+    .doc-header { padding: 40px 24px 36px; }
+    .doc-body { padding: 40px 24px 80px; }
+    .progress-bar-wrap { padding: 16px 24px; }
+    .doc-footer { padding: 20px 24px; flex-direction: column; gap: 16px; }
+    .card-grid { grid-template-columns: 1fr; }
+    .brief-table td:first-child { width: 140px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="doc-header">
+  <div class="doc-meta">
+    <span class="doc-tag active">Бриф</span>
+    <span class="doc-tag">v1.1</span>
+    <span class="doc-tag">Май 2025</span>
+  </div>
+  <div class="doc-title">Разработка сайта<br><strong>Кибернетика</strong></div>
+  <div class="doc-subtitle">Маркетинговое агентство — гейминг &amp; киберспорт · Россия</div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-bar-wrap">
+  <span class="progress-label">Заполнен</span>
+  <div class="progress-track">
+    <div class="progress-fill"></div>
+  </div>
+  <span class="progress-pct">~55%</span>
+</div>
+
+<!-- BODY -->
+<div class="doc-body">
+
+  <!-- 1. ПРОЕКТ -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <span class="section-title">Проект</span>
+    </div>
+    <table class="brief-table">
+      <tr>
+        <td>Компания</td>
+        <td class="val">Кибернетика</td>
+      </tr>
+      <tr>
+        <td>Тип сайта</td>
+        <td class="val">Лендинг — один длинный скролл</td>
+      </tr>
+      <tr>
+        <td>Цель</td>
+        <td class="val">Генерация входящих заявок от рекламодателей</td>
+      </tr>
+      <tr>
+        <td>Целевое действие</td>
+        <td class="val">Заполнить форму / написать на email</td>
+      </tr>
+      <tr>
+        <td>Срок</td>
+        <td>
+          <div class="open-q">
+            <div class="open-q-label">Нужен ответ</div>
+            Когда нужно запустить? Есть дедлайн?
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Бюджет</td>
+        <td>
+          <div class="open-q">
+            <div class="open-q-label">Нужен ответ</div>
+            Есть ли бюджет на разработку / дизайн?
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 2. АУДИТОРИЯ -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <span class="section-title">Целевая аудитория</span>
+    </div>
+    <table class="brief-table">
+      <tr>
+        <td>Кто приходит</td>
+        <td class="val">
+          Директора по маркетингу крупных брендов.<br>
+          Медиа-байеры и стратеги из агентств.
+          <div class="val-note">Люди, которые не разбираются в гейминге — но хотят туда зайти.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>Боль</td>
+        <td class="val">
+          Не понимают рынок — боятся ошибиться.<br>
+          Не знают, кому доверять в нише.<br>
+          Хотят доказательств, что бюджет не сольют.
+        </td>
+      </tr>
+      <tr>
+        <td>Что даёт сайт</td>
+        <td class="val">
+          Убеждает, что Кибернетика — безопасный и компетентный партнёр.<br>
+          Снимает тревогу. Не продаёт — приглашает к разговору.
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 3. ПОЗИЦИОНИРОВАНИЕ -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <span class="section-title">Позиционирование и тональность</span>
+    </div>
+    <table class="brief-table">
+      <tr>
+        <td>Суть</td>
+        <td class="val" style="font-style:italic;font-size:15px;">
+          «Кибернетика — единственное российское агентство, которое формирует гейминг-рынок изнутри и открывает его для серьёзных брендов.»
+        </td>
+      </tr>
+      <tr>
+        <td>Тональность</td>
+        <td class="val">
+          Уверенный, без доказательств собственной крутости.<br>
+          Не продающий — констатирующий.<br>
+          Без сленга, без геймерской эстетики. Деловой язык с экспертным весом.
+          <div class="val-note">Референс тона: Citibank. Просто является лидером — не доказывает.</div>
+        </td>
+      </tr>
+      <tr>
+        <td>Запрещено</td>
+        <td class="val" style="color:#C0392B">
+          Геймификация, пиксели, персонажи.<br>
+          Кричащие цвета, «взрывная» энергетика.<br>
+          Перегруженные слайды «посмотрите как мы умеем».
+        </td>
+      </tr>
+    </table>
+
+    <hr class="divider">
+    <div style="margin-bottom:12px;font-family:var(--mono);font-size:11px;color:var(--ink-mid);letter-spacing:0.08em;text-transform:uppercase;">4 принципа — тезисы для сайта</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-num">01</div>
+        <div class="card-text">Мы не реализуем свои амбиции за счёт бюджета клиента</div>
+      </div>
+      <div class="card">
+        <div class="card-num">02</div>
+        <div class="card-text">Мы отказываем в неэффективных кампаниях — даже если клиент настаивает</div>
+      </div>
+      <div class="card">
+        <div class="card-num">03</div>
+        <div class="card-text">У нас есть доступ туда, куда другие не могут даже дозвониться</div>
+      </div>
+      <div class="card">
+        <div class="card-num">04</div>
+        <div class="card-text">Наши кейсы — по запросу. Потому что репутация важнее портфолио</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. ВИЗУАЛЬНОЕ НАПРАВЛЕНИЕ -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <span class="section-title">Визуальное направление</span>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-card-head">
+        <div class="ref-card-title">Референс — White Circle</div>
+        <a href="https://whitecircle.ai" class="ref-url" target="_blank">whitecircle.ai ↗</a>
+      </div>
+      <ul class="ref-points">
+        <li>Один центральный визуальный объект (кольцо) — живёт через весь сайт, становится айдентикой страницы</li>
+        <li>Структура через глаголы-действия (Test / Protect / Observe / Improve) — не «кто мы», а «что происходит»</li>
+        <li>Легитимность через имена и логотипы, а не текстовые абзацы</li>
+        <li>Тёмный фон, одна акцентная форма, много воздуха</li>
+        <li>Минимум слов — максимум уверенности</li>
+      </ul>
+      <div class="synthesis-box">
+        <div class="synthesis-label">Синтез — направление для Кибернетики</div>
+        <div class="synthesis-text">
+          Нужен собственный визуальный символ — образ, который появляется в hero и сопровождает весь скролл.
+          Структура через глаголы вместо описательных заголовков.
+          Партнёры и упоминания — логотипами и именами, без текста.
+          Минимум слов, максимум подтверждённых фактов.
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <table class="brief-table">
+      <tr>
+        <td>Визуальный символ</td>
+        <td>
+          <div class="open-q">
+            <div class="open-q-label">Ключевой вопрос</div>
+            Есть ли у агентства фирменный графический образ помимо логотипа? Или его нужно придумать? Варианты: абстрактная геометрия, сетка, динамичная форма на основе логотипа.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Акцентный цвет</td>
+        <td>
+          <div class="palette-row">
+            <div class="swatch">
+              <div class="swatch-color" style="background:#06060A;border-color:#ccc;"></div>
+              <div class="swatch-label">Фон<br>#06060A</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#00e5ff;"></div>
+              <div class="swatch-label">Акцент<br>#00E5FF</div>
+            </div>
+          </div>
+          <div class="open-q" style="margin-top:12px">
+            <div class="open-q-label">Нужен ответ</div>
+            Оставить циан #00E5FF или есть фирменные цвета? Существует ли брендбук?
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Типографика</td>
+        <td>
+          <div class="val">Bebas Neue (заголовки) + Manrope (текст) — текущий вариант</div>
+          <div class="open-q" style="margin-top:8px">
+            <div class="open-q-label">Нужен ответ</div>
+            Bebas Neue устраивает или нужен другой display-шрифт?
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Логотип</td>
+        <td class="val">Предоставлен — белый PNG на прозрачном фоне ✓</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 5. СТРУКТУРА -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <span class="section-title">Структура страницы</span>
+    </div>
+    <table class="struct-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Блок</th>
+          <th>Примечание</th>
+          <th>Статус</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>Hero</strong> — слоган + один CTA «Обсудить проект»</td>
+          <td style="font-size:13px;color:var(--ink-mid)">Мощный, минималистичный</td>
+          <td><span class="tag tag-done">Готово</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>Тезисы</strong> — 4 принципа работы</td>
+          <td style="font-size:13px;color:var(--ink-mid)">Без заголовка «кто мы»</td>
+          <td><span class="tag tag-done">Готово</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>Почему гейминг</strong> — цифры, рост рынка, инфографика</td>
+          <td style="font-size:13px;color:var(--ink-mid)">Визуальный акцент, не текстовая стена</td>
+          <td><span class="tag tag-done">Готово</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>Экспертиза</strong> — Forbes, Минцифра, ФКС, китайские издатели</td>
+          <td style="font-size:13px;color:var(--ink-mid)">Логотипы / имена / факты</td>
+          <td><span class="tag tag-done">Готово</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>Контакт</strong> — форма + email, кейсы по запросу</td>
+          <td style="font-size:13px;color:var(--ink-mid)">Минималистично</td>
+          <td><span class="tag tag-done">Готово</span></td>
+        </tr>
+        <tr>
+          <td>?</td>
+          <td><strong>Услуги / Формат работы</strong></td>
+          <td style="font-size:13px;color:var(--ink-mid)">Нужен блок или нет?</td>
+          <td><span class="tag tag-todo">Вопрос</span></td>
+        </tr>
+        <tr>
+          <td>?</td>
+          <td><strong>Клиенты / партнёры</strong> — логотипы без деталей</td>
+          <td style="font-size:13px;color:var(--ink-mid)">Есть разрешение на публикацию?</td>
+          <td><span class="tag tag-todo">Вопрос</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 6. ОТКРЫТЫЕ ВОПРОСЫ -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <span class="section-title">Открытые вопросы по контенту</span>
+    </div>
+    <div class="q-list">
+      <div class="q-item">
+        <span class="q-index">Q1</span>
+        <div class="q-body">
+          <div class="q-title">Слоган hero-блока</div>
+          <div class="q-text">«Кибернетика — это и есть гейминг в России» — устраивает или нужен другой вариант? Хотите несколько опций на выбор?</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <span class="q-index">Q2</span>
+        <div class="q-body">
+          <div class="q-title">Логотипы для блока экспертизы</div>
+          <div class="q-text">Forbes, Минцифра, ФКС — есть разрешение использовать их визуально на сайте?</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <span class="q-index">Q3</span>
+        <div class="q-body">
+          <div class="q-title">Публичный email</div>
+          <div class="q-text">Какой адрес показывать на сайте в контактной форме?</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <span class="q-index">Q4</span>
+        <div class="q-body">
+          <div class="q-title">Клиенты — Сбер и федерации</div>
+          <div class="q-text">Публично не показываем. Тогда как? Логотипы без названий? Или только строчка «кейсы по запросу»?</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <span class="q-index">Q5</span>
+        <div class="q-body">
+          <div class="q-title">Блок услуг</div>
+          <div class="q-text">Рассказываем ли что именно делаем (спонсорства, турниры, стриминг, интеграции) — или это тоже только по запросу?</div>
+        </div>
+      </div>
+      <div class="q-item">
+        <span class="q-index">Q6</span>
+        <div class="q-body">
+          <div class="q-title">Визуальный символ агентства</div>
+          <div class="q-text">Есть ли фирменный графический образ помимо логотипа? Или его нужно создать с нуля под сайт?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. ТЕХНИКА -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">07</span>
+      <span class="section-title">Технические требования</span>
+    </div>
+    <table class="brief-table">
+      <tr>
+        <td>Формат</td>
+        <td class="val">Один HTML-файл — CSS и JS встроены</td>
+      </tr>
+      <tr>
+        <td>Адаптивность</td>
+        <td class="val">Mobile-first, полностью адаптивный</td>
+      </tr>
+      <tr>
+        <td>Анимации</td>
+        <td class="val">Появление блоков при скролле (IntersectionObserver)</td>
+      </tr>
+      <tr>
+        <td>Зависимости</td>
+        <td class="val">Только Google Fonts — никаких фреймворков</td>
+      </tr>
+      <tr>
+        <td>Хостинг</td>
+        <td>
+          <div class="open-q">
+            <div class="open-q-label">Нужен ответ</div>
+            Где планируется размещение сайта?
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Домен</td>
+        <td>
+          <div class="open-q">
+            <div class="open-q-label">Нужен ответ</div>
+            Какой домен? cybernetica.ru / другой?
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Аналитика</td>
+        <td>
+          <div class="open-q">
+            <div class="open-q-label">Нужен ответ</div>
+            Нужна? Google Analytics, Яндекс.Метрика или другое?
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</div><!-- /doc-body -->
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <div class="doc-footer-left">КИБЕРНЕТИКА · БРИФ v1.1 · МАЙ 2025</div>
+  <div class="legend">
+    <div class="legend-item"><span class="tag tag-done" style="padding:2px 7px;">Готово</span> — определено</div>
+    <div class="legend-item"><span class="tag tag-todo" style="padding:2px 7px;">Вопрос</span> — нужен ответ</div>
+  </div>
+</div>
+
+</body>
+</html>
