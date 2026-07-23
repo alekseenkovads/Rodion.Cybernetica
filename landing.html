@@ -173,11 +173,14 @@
     0%, 100% { opacity: 0.55; }
     50% { opacity: 1; }
   }
-  /* въезд из-за края экрана */
-  #vf-head { top: 9vh;  right: -2%; width: min(300px, 32vw); transform: translateX(130%); }
-  #vf-arm  { top: 17vh; left: -2%;  width: min(420px, 44vw); transform: translateX(-135%); }
-  #vf-leg  { bottom: 7vh; right: -2%; width: min(330px, 36vw); transform: translateX(130%); }
-  #vf-head.on, #vf-arm.on, #vf-leg.on { transform: translateX(0); }
+  /* части целого человека торчат из-за краёв кадра (правка Родиона) */
+  #vf-arm  { top: 28vh; left: 0; width: min(520px, 50vw); transform: translateX(-135%); }
+  #vf-arm.on { transform: translateX(-46%); }
+  #vf-leg  { top: 16vh; right: 0; width: min(440px, 44vw); transform: translateX(135%); }
+  #vf-leg.on { transform: translateX(44%); }
+  #vf-head { bottom: 0; left: 50%; width: min(400px, 44vw); transform: translate(-50%, 130%); }
+  #vf-head.on { transform: translate(-50%, 40%); }
+  #status { overflow: hidden; }
 
   /* юридический футер */
   #legal {
@@ -246,22 +249,24 @@
 
   <!-- 2. ЦИФРЫ -->
   <section id="numbers">
-    <div class="vfrag" id="vf-head">
-      <img id="vfHeadImg" alt="">
-      <svg class="cmap" viewBox="0 0 520 486">
-        <path class="cline" pathLength="1" d="M 85 400 L 185 320 L 178 255 L 205 155 L 265 140 L 330 155 L 368 250 L 382 305 L 305 352 L 430 390"/>
-        <circle class="cstar" cx="85" cy="400" r="4"/>
-        <circle class="cstar" cx="185" cy="320" r="3.4" style="animation-delay:.3s"/>
-        <circle class="cstar" cx="178" cy="255" r="4.2" style="animation-delay:.7s"/>
-        <circle class="cstar" cx="205" cy="155" r="3.2" style="animation-delay:1.1s"/>
-        <circle class="cstar" cx="265" cy="140" r="4.6" style="animation-delay:.5s"/>
-        <circle class="cstar" cx="330" cy="155" r="3.2" style="animation-delay:1.5s"/>
-        <circle class="cstar" cx="368" cy="250" r="4.2" style="animation-delay:.2s"/>
-        <circle class="cstar" cx="382" cy="305" r="3.4" style="animation-delay:1.8s"/>
-        <circle class="cstar" cx="305" cy="352" r="4" style="animation-delay:.9s"/>
-        <circle class="cstar" cx="430" cy="390" r="4.4" style="animation-delay:1.3s"/>
+    <div class="vfrag" id="vf-arm">
+      <img id="vfArmImg" alt="">
+      <svg class="cmap" viewBox="0 0 520 271">
+        <path class="cline" pathLength="1" d="M 50 182 L 130 120 L 230 85 L 320 60 L 395 45 L 445 25 M 50 182 L 150 190 L 250 175 L 340 185 L 400 195 L 460 200"/>
+        <circle class="cstar" cx="50" cy="182" r="4.6"/>
+        <circle class="cstar" cx="130" cy="120" r="3.4" style="animation-delay:.4s"/>
+        <circle class="cstar" cx="230" cy="85" r="4" style="animation-delay:.8s"/>
+        <circle class="cstar" cx="320" cy="60" r="3.2" style="animation-delay:1.2s"/>
+        <circle class="cstar" cx="395" cy="45" r="4.2" style="animation-delay:.2s"/>
+        <circle class="cstar" cx="445" cy="25" r="4.6" style="animation-delay:1.6s"/>
+        <circle class="cstar" cx="150" cy="190" r="3.4" style="animation-delay:.6s"/>
+        <circle class="cstar" cx="250" cy="175" r="4" style="animation-delay:1.0s"/>
+        <circle class="cstar" cx="340" cy="185" r="3.2" style="animation-delay:1.4s"/>
+        <circle class="cstar" cx="400" cy="195" r="4.2" style="animation-delay:.3s"/>
+        <circle class="cstar" cx="460" cy="200" r="4.4" style="animation-delay:1.9s"/>
       </svg>
     </div>
+
     <div class="num-block reveal">
       <div class="big">90%</div>
       <p>покупательской аудитории 18–35 через 10 лет будут геймерами</p>
@@ -311,23 +316,7 @@
 
   <!-- 3. ПРИНЦИПЫ -->
   <section id="principles">
-    <div class="vfrag" id="vf-arm">
-      <img id="vfArmImg" alt="">
-      <svg class="cmap" viewBox="0 0 520 271">
-        <path class="cline" pathLength="1" d="M 50 182 L 130 120 L 230 85 L 320 60 L 395 45 L 445 25 M 50 182 L 150 190 L 250 175 L 340 185 L 400 195 L 460 200"/>
-        <circle class="cstar" cx="50" cy="182" r="4.6"/>
-        <circle class="cstar" cx="130" cy="120" r="3.4" style="animation-delay:.4s"/>
-        <circle class="cstar" cx="230" cy="85" r="4" style="animation-delay:.8s"/>
-        <circle class="cstar" cx="320" cy="60" r="3.2" style="animation-delay:1.2s"/>
-        <circle class="cstar" cx="395" cy="45" r="4.2" style="animation-delay:.2s"/>
-        <circle class="cstar" cx="445" cy="25" r="4.6" style="animation-delay:1.6s"/>
-        <circle class="cstar" cx="150" cy="190" r="3.4" style="animation-delay:.6s"/>
-        <circle class="cstar" cx="250" cy="175" r="4" style="animation-delay:1.0s"/>
-        <circle class="cstar" cx="340" cy="185" r="3.2" style="animation-delay:1.4s"/>
-        <circle class="cstar" cx="400" cy="195" r="4.2" style="animation-delay:.3s"/>
-        <circle class="cstar" cx="460" cy="200" r="4.4" style="animation-delay:1.9s"/>
-      </svg>
-    </div>
+
     <h2 class="reveal">МЫ НЕ РАБОТАЕМ С ТЕМИ,<br>КТО ХОЧЕТ ОБМАНУТЬ АУДИТОРИЮ.</h2>
     <p class="psub reveal">Никаких агрессивных и навязчивых интеграций — уважение к игрокам окупается.</p>
     <h2 class="reveal">МЫ ОТКАЗЫВАЕМ<br>В НЕЭФФЕКТИВНЫХ КАМПАНИЯХ.</h2>
@@ -338,6 +327,20 @@
 
   <!-- 4. АНАЛИТИКА -->
   <section id="analytics">
+    <div class="vfrag" id="vf-leg">
+      <img id="vfLegImg" alt="">
+      <svg class="cmap" viewBox="0 0 520 522">
+        <path class="cline" pathLength="1" d="M 95 40 L 120 120 L 135 195 L 160 230 L 185 300 L 235 370 L 255 395 L 330 390"/>
+        <circle class="cstar" cx="95" cy="40" r="4.6"/>
+        <circle class="cstar" cx="120" cy="120" r="3.4" style="animation-delay:.5s"/>
+        <circle class="cstar" cx="135" cy="195" r="4.4" style="animation-delay:.9s"/>
+        <circle class="cstar" cx="160" cy="230" r="3.2" style="animation-delay:1.3s"/>
+        <circle class="cstar" cx="185" cy="300" r="4" style="animation-delay:.2s"/>
+        <circle class="cstar" cx="235" cy="370" r="3.4" style="animation-delay:1.7s"/>
+        <circle class="cstar" cx="255" cy="395" r="4.2" style="animation-delay:.7s"/>
+        <circle class="cstar" cx="330" cy="390" r="4.6" style="animation-delay:1.1s"/>
+      </svg>
+    </div>
     <h2 class="reveal">МЫ НЕ ВАНГУЕМ БУДУЩЕЕ.<br>МЫ ЕГО СОЗДАЁМ.</h2>
     <div class="sub reveal">Собственные исследования и индустриальные отчёты, на основе которых бренды принимают решения.</div>
     <div class="cards reveal">
@@ -354,20 +357,23 @@
 
   <!-- 5. СТАТУС -->
   <section id="status">
-    <div class="vfrag" id="vf-leg">
-      <img id="vfLegImg" alt="">
-      <svg class="cmap" viewBox="0 0 520 522">
-        <path class="cline" pathLength="1" d="M 95 40 L 120 120 L 135 195 L 160 230 L 185 300 L 235 370 L 255 395 L 330 390"/>
-        <circle class="cstar" cx="95" cy="40" r="4.6"/>
-        <circle class="cstar" cx="120" cy="120" r="3.4" style="animation-delay:.5s"/>
-        <circle class="cstar" cx="135" cy="195" r="4.4" style="animation-delay:.9s"/>
-        <circle class="cstar" cx="160" cy="230" r="3.2" style="animation-delay:1.3s"/>
-        <circle class="cstar" cx="185" cy="300" r="4" style="animation-delay:.2s"/>
-        <circle class="cstar" cx="235" cy="370" r="3.4" style="animation-delay:1.7s"/>
-        <circle class="cstar" cx="255" cy="395" r="4.2" style="animation-delay:.7s"/>
-        <circle class="cstar" cx="330" cy="390" r="4.6" style="animation-delay:1.1s"/>
+    <div class="vfrag" id="vf-head">
+      <img id="vfHeadImg" alt="">
+      <svg class="cmap" viewBox="0 0 520 486">
+        <path class="cline" pathLength="1" d="M 85 400 L 185 320 L 178 255 L 205 155 L 265 140 L 330 155 L 368 250 L 382 305 L 305 352 L 430 390"/>
+        <circle class="cstar" cx="85" cy="400" r="4"/>
+        <circle class="cstar" cx="185" cy="320" r="3.4" style="animation-delay:.3s"/>
+        <circle class="cstar" cx="178" cy="255" r="4.2" style="animation-delay:.7s"/>
+        <circle class="cstar" cx="205" cy="155" r="3.2" style="animation-delay:1.1s"/>
+        <circle class="cstar" cx="265" cy="140" r="4.6" style="animation-delay:.5s"/>
+        <circle class="cstar" cx="330" cy="155" r="3.2" style="animation-delay:1.5s"/>
+        <circle class="cstar" cx="368" cy="250" r="4.2" style="animation-delay:.2s"/>
+        <circle class="cstar" cx="382" cy="305" r="3.4" style="animation-delay:1.8s"/>
+        <circle class="cstar" cx="305" cy="352" r="4" style="animation-delay:.9s"/>
+        <circle class="cstar" cx="430" cy="390" r="4.4" style="animation-delay:1.3s"/>
       </svg>
     </div>
+
     <div class="label reveal">НАМ ДОВЕРЯЮТ</div>
     <h2 class="reveal">СБЕР<br>FORBES<br>МИНЦИФРА РОССИИ<br>ФЕДЕРАЦИЯ КИБЕРСПОРТА РОССИИ<br>АРИР</h2>
   </section>
@@ -1005,8 +1011,8 @@ function frame(ts) {
     const ox = -mouse.px * L.par, oy = -mouse.py * L.par;
     for (const s of L.stars) {
       // дрейф: медленное течение вправо-вниз
-      s.x += L.speed * dt * timeScale * 0.6;
-      s.y += L.speed * dt * timeScale * 0.12;
+      s.x += L.speed * dt * timeScale * 1.35;
+      s.y += L.speed * dt * timeScale * 0.27;
       if (s.x > W + 4) s.x = -4;
       if (s.y > H + 4) s.y = -4;
 
