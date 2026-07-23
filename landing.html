@@ -1131,7 +1131,62 @@ function updateVitruvian() {
   let prog = (vh - r.top) / (r.height + vh * 0.1);
   prog = Math.max(0, Math.min(1, prog));
   vitWrap.style.setProperty('--vp', (prog * 114) + '%');
+
 }
+
+/* голова из «Статуса» стыкуется с головой финальной фигуры —
+   собственный кадровый цикл с инерционным сглаживанием */
+const hfEl = document.getElementById('vf-head');
+const statusEl = document.getElementById('status');
+let dockCur = 0, dockActive = false;
+function dockTick() {
+  if (hfEl && statusEl) {
+    const r = contactSec.getBoundingClientRect();
+    const vh = window.innerHeight;
+    let dp = (vh - r.top) / (vh * 0.85);
+    dp = Math.max(0, Math.min(1, dp));
+    // инерция: сглаживаем шаги колеса мыши
+    dockCur += (dp - dockCur) * 0.10;
+    if (dockCur < 0.002 && dp === 0) {
+      if (dockActive) {
+        dockActive = false;
+        statusEl.style.overflow = '';
+        hfEl.style.transition = '';
+        hfEl.style.transform = '';
+        hfEl.style.opacity = '';
+        hfEl.style.transformOrigin = '';
+        hfEl.style.willChange = '';
+      }
+    } else {
+      if (!dockActive) {
+        dockActive = true;
+        statusEl.style.overflow = 'visible';
+        hfEl.style.transition = 'none';       // отключаем CSS-анимацию появления
+        hfEl.style.transformOrigin = '50% 54%';
+        hfEl.style.willChange = 'transform, opacity';
+      }
+      hfEl.classList.add('on');
+      const d = dockCur;
+      const fr = vitWrap.getBoundingClientRect();
+      const st = statusEl.getBoundingClientRect();
+      const Wf = hfEl.offsetWidth, Hf = hfEl.offsetHeight;
+      const baseX = window.innerWidth / 2;
+      const baseY = st.bottom - Hf + 0.40 * Hf + 0.54 * Hf;
+      const tX = fr.left + fr.width * 0.513;
+      const tY = fr.top + fr.height * 0.181;
+      const ease = d * d * (3 - 2 * d);
+      const dx = (tX - baseX) * ease;
+      const dy = (tY - baseY) * ease;
+      const targetW = fr.width * 0.396;
+      const s = 1 + (targetW / Wf - 1) * ease;
+      hfEl.style.transform = 'translate(calc(-50% + ' + dx + 'px), calc(40% + ' + dy + 'px)) scale(' + s + ')';
+      const fade = d < 0.45 ? 0 : Math.min(1, (d - 0.45) / 0.4);
+      hfEl.style.opacity = String(1 - fade);
+    }
+  }
+  requestAnimationFrame(dockTick);
+}
+requestAnimationFrame(dockTick);
 window.addEventListener('scroll', updateVitruvian, { passive: true });
 window.addEventListener('resize', updateVitruvian);
 updateVitruvian();
