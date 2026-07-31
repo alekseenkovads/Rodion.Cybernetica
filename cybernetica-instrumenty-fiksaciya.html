@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybernetica — инструменты и фиксация</title>
+<style>
+  :root{--bg:#F5F2EE;--card:#FFFFFF;--ink:#1a1a1a;--muted:#6b6660;--line:#e2ddd5;--line2:#cfc8bd;--maxw:900px;--n:#2f6db0;--y:#c8641e;}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Helvetica Neue',Arial,system-ui,sans-serif;font-size:15px;line-height:1.62;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:56px 28px 140px}
+  .eyebrow{font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .eyebrow::before{content:"// ";color:var(--ink)}
+  header.doc{border-bottom:1px solid var(--line2);padding-bottom:32px;margin-bottom:8px}
+  header.doc h1{font-size:36px;line-height:1.06;letter-spacing:-.02em;margin:12px 0 10px;font-weight:700}
+  header.doc .sub{color:var(--muted);font-size:15px;max-width:660px}
+  .meta{margin-top:18px;font-family:ui-monospace,monospace;font-size:11.5px;color:var(--muted);letter-spacing:.04em}
+  .meta span{display:inline-block;margin-right:22px}
+  nav.toc{margin:36px 0 8px;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:22px 26px}
+  nav.toc .eyebrow{display:block;margin-bottom:14px}
+  nav.toc ol{margin:0;padding:0;list-style:none;counter-reset:toc;columns:2;column-gap:36px}
+  nav.toc li{counter-increment:toc;break-inside:avoid;margin:0 0 8px}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:13.5px;display:flex;gap:10px;align-items:baseline}
+  nav.toc a:hover{color:var(--muted)}
+  nav.toc a::before{content:counter(toc,decimal-leading-zero);font-family:ui-monospace,monospace;font-size:11px;color:var(--muted);min-width:20px}
+  .part{margin:74px 0 0;padding:26px 28px;background:#1a1a1a;color:#f3f0eb;border-radius:4px;scroll-margin-top:20px}
+  .part .pn{font-family:ui-monospace,monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#9a948b;margin-bottom:8px}
+  .part h2{font-size:26px;margin:0 0 8px;letter-spacing:-.02em;font-weight:700;color:#f3f0eb}
+  .part p{margin:0;font-size:14.5px;color:#b8b2a8;max-width:62ch}
+  section{margin-top:46px;scroll-margin-top:24px}
+  section > .eyebrow{display:block;margin-bottom:6px}
+  h3{font-size:22px;letter-spacing:-.015em;margin:4px 0 16px;font-weight:700;line-height:1.18}
+  h4{font-size:15.5px;margin:24px 0 8px;font-weight:700}
+  p{margin:0 0 14px}
+  .lead{font-size:16.5px;color:#2c2722}
+  strong,b{font-weight:700}
+  ul.clean{margin:8px 0 14px;padding:0;list-style:none}
+  ul.clean li{padding:7px 0 7px 18px;border-bottom:1px solid var(--line);position:relative}
+  ul.clean li:last-child{border-bottom:none}
+  ul.clean li::before{content:"";position:absolute;left:0;top:15px;width:5px;height:5px;background:var(--ink);border-radius:50%}
+  .steps{counter-reset:st;margin:12px 0}
+  .steps .s{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .steps .s:last-child{border-bottom:none}
+  .steps .s .no{counter-increment:st;font-family:ui-monospace,monospace;font-size:12px;color:#fff;background:var(--ink);min-width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+  .steps .s .no::before{content:counter(st)}
+  .steps .s .tx b{display:block;margin-bottom:2px}
+  .steps .s .tx span{color:var(--muted);font-size:13.5px}
+  .steps .s .tx code{font-family:ui-monospace,monospace;font-size:12px;background:#efeae2;padding:1px 6px;border-radius:3px;color:#2c2722}
+  .callout{background:#1a1a1a;color:#f3f0eb;border-radius:4px;padding:20px 24px;margin:18px 0}
+  .callout .eyebrow{color:#9a948b}
+  .callout .eyebrow::before{color:#f3f0eb}
+  .callout p{margin:8px 0 0;font-size:15px}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin:16px 0;background:var(--card);border:1px solid var(--line)}
+  th,td{padding:9px 11px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);text-align:left;vertical-align:top}
+  th{font-family:ui-monospace,monospace;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600;background:#faf8f5}
+  td:last-child,th:last-child{border-right:none}
+  tr:last-child td{border-bottom:none}
+  .legend{font-size:12px;color:var(--muted);margin-top:-2px}
+  .brief{background:var(--card);border:1px solid var(--line2);border-radius:4px;padding:8px 22px;margin:14px 0}
+  .brief .q{display:flex;gap:14px;padding:9px 0;border-bottom:1px solid var(--line);align-items:baseline}
+  .brief .q:last-child{border-bottom:none}
+  .brief .qn{font-family:ui-monospace,monospace;font-size:11px;color:var(--muted);min-width:30px;padding-top:2px}
+  .brief .qt b{display:block}
+  .brief .qt span{color:var(--muted);font-size:12.5px}
+  .flag{display:inline-block;background:#fbe7d6;border:1px solid #e0a86a;color:#8a4b16;border-radius:3px;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.03em;padding:1px 7px;margin-left:6px}
+  .badge{display:inline-block;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:3px;color:#fff}
+  .badge.n{background:var(--n)}
+  .badge.y{background:var(--y)}
+  .badge.tg{background:#2f6db0}
+  .badge.os{background:#1a1a1a}
+  .fixgrid{border:1px solid var(--line);border-radius:4px;overflow:hidden;margin:16px 0;background:var(--card)}
+  .fixgrid .r{display:grid;grid-template-columns:1.4fr 1fr;border-bottom:1px solid var(--line)}
+  .fixgrid .r:last-child{border-bottom:none}
+  .fixgrid .r.h{background:#1a1a1a}
+  .fixgrid .r.h div{color:#f3f0eb;font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:9px 14px}
+  .fixgrid .c1{padding:11px 14px;font-size:13.5px;border-right:1px solid var(--line)}
+  .fixgrid .c2{padding:11px 14px;font-size:13px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  footer.doc{margin-top:70px;padding-top:24px;border-top:1px solid var(--line2);color:var(--muted);font-family:ui-monospace,monospace;font-size:11.5px;letter-spacing:.04em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  @media (max-width:680px){.wrap{padding:40px 18px 90px}header.doc h1{font-size:28px}nav.toc ol{columns:1}.fixgrid .r{grid-template-columns:1fr}.fixgrid .c1{border-right:none;border-bottom:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<div class="wrap" id="top">
+
+  <header class="doc">
+    <div class="eyebrow">Внутренний документ · агентство Cybernetica</div>
+    <h1>Инструменты и фиксация</h1>
+    <p class="sub">Рабочее дополнение к книге. Три вещи, на которых стоит вся операционка: единый клиентский бриф, связка Notion + YouGile с мануалами, и правила фиксации — что, где и когда становится «официальным».</p>
+    <div class="meta"><span>Часть III · расширенная</span><span>Стек: Notion + YouGile + OS</span></div>
+  </header>
+
+  <nav class="toc">
+    <div class="eyebrow">Содержание</div>
+    <ol>
+      <li><a href="#brief">Универсальный бриф</a></li>
+      <li><a href="#brief-flag">Логика «клиент не ответил»</a></li>
+      <li><a href="#stack">Стек: зачем два инструмента</a></li>
+      <li><a href="#notion">Notion — мануал</a></li>
+      <li><a href="#yougile">YouGile — мануал</a></li>
+      <li><a href="#alt">Связка vs альтернативы</a></li>
+      <li><a href="#fix-principle">Принцип фиксации</a></li>
+      <li><a href="#fix-what">Что и где фиксируется</a></li>
+      <li><a href="#rollout">Внедрение на команду</a></li>
+    </ol>
+  </nav>
+
+  <div class="part" id="p-brief">
+    <div class="pn">Блок 1</div>
+    <h2>Универсальный клиентский бриф</h2>
+    <p>Единая форма входа для любого проекта. Заполняет клиент сам, либо ньюбиз/клиентский менеджер за него. Один бриф — один источник правды на старте сделки.</p>
+  </div>
+
+  <section id="brief">
+    <div class="eyebrow">01 · Форма</div>
+    <h3>Структура брифа</h3>
+    <p class="lead">Бриф закрывает всё, что нужно, чтобы собрать медиаплан и не бегать за уточнениями. Живёт в Notion как шаблон-страница: клиенту отправляется ссылка, ответы падают в базу проектов.</p>
+    <div class="brief">
+      <div class="q"><span class="qn">01</span><span class="qt"><b>Клиент и продукт</b><span>Компания, бренд, что рекламируем, ссылки.</span></span></div>
+      <div class="q"><span class="qn">02</span><span class="qt"><b>Задача кампании</b><span>Что хотим получить: охват, узнаваемость, переходы, установки, продажи.</span></span></div>
+      <div class="q"><span class="qn">03</span><span class="qt"><b>KPI и как считаем успех</b><span>Конкретные метрики и целевые значения. На что смотрим в отчёте.</span></span></div>
+      <div class="q"><span class="qn">04</span><span class="qt"><b>Целевая аудитория</b><span>Гео, пол, возраст, интересы, платформы/игры.</span></span></div>
+      <div class="q"><span class="qn">05</span><span class="qt"><b>Бюджет</b><span>Общий бюджет, вилка, что входит/не входит.</span></span></div>
+      <div class="q"><span class="qn">06</span><span class="qt"><b>Сроки</b><span>Даты старта и финала, ключевые вехи, привязка к событиям.</span></span></div>
+      <div class="q"><span class="qn">07</span><span class="qt"><b>Площадки и форматы</b><span>Пожелания или ограничения по каналам. Если нет — заполняем мы.</span></span></div>
+      <div class="q"><span class="qn">08</span><span class="qt"><b>Креативы</b><span>Есть готовые / нужна адаптация / делаем с нуля. Тон, стоп-слова, брендбук.</span></span></div>
+      <div class="q"><span class="qn">09</span><span class="qt"><b>Ограничения и юр.</b><span>Что нельзя, конкуренты, маркировка, требования к отчётности.</span></span></div>
+      <div class="q"><span class="qn">10</span><span class="qt"><b>Контакты и апрувы</b><span>Кто со стороны клиента принимает решения и подписывает.</span></span></div>
+    </div>
+  </section>
+
+  <section id="brief-flag">
+    <div class="eyebrow">02 · Правило</div>
+    <h3>Когда клиент не дал ответ</h3>
+    <p class="lead">Ключевая механика: бриф не должен зависать из-за одного незаполненного поля. Если клиент не ответил — менеджер заполняет графу сам своей гипотезой, но <b>помечает её</b>, и этот пункт отдельно проходит через лида.</p>
+    <div class="steps">
+      <div class="s"><span class="no"></span><span class="tx"><b>Менеджер заполняет графу сам</b><span>Ставит рабочую гипотезу или значение по умолчанию, чтобы бриф двигался дальше.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Помечает поле как «допущение»</b><span>Визуально выделяет — фоном или тегом. В Notion это делается свойством <code>Источник</code> со значением «Клиент» / «Допущение менеджера» и цветной подсветкой, либо жёлтым фоном ячейки.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Пункт уходит к лиду на разбор</b><span>Все поля с меткой «допущение» лид просматривает отдельно — подтверждает, правит или возвращает клиенту на уточнение.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Метка снимается только после решения</b><span>Пока поле жёлтое — по нему нет финального ответа. Зелёный/снятая метка = согласовано.</span></span></div>
+    </div>
+    <div class="callout">
+      <div class="eyebrow">Зачем это важно</div>
+      <p>Так бриф никогда не врёт: с одного взгляда видно, что подтвердил клиент, а что менеджер додумал. Это убирает главный риск — когда команда строит кампанию на догадке, приняв её за факт клиента. Ровно тот же класс ошибок, что с таблицами «где было сказано не делать».</p>
+    </div>
+    <p class="legend">Легенда меток: <span class="flag">жёлтый — допущение</span> — заполнено менеджером, ждёт подтверждения. Без метки — ответ клиента, согласовано.</p>
+  </section>
+
+  <div class="part" id="p-stack">
+    <div class="pn">Блок 2</div>
+    <h2>Стек: Notion + YouGile</h2>
+    <p>Два инструмента, два слоя. Notion — память агентства (знания, стандарты, брифы). YouGile — руки агентства (задачи, движение, фиксация «сделай к сроку»). Ниже — зачем каждый и как поднять на команду.</p>
+  </div>
+
+  <section id="stack">
+    <div class="eyebrow">03 · Разделение</div>
+    <h3>Кто за что отвечает</h3>
+    <table>
+      <thead><tr><th style="width:120px">Слой</th><th>Notion</th><th>YouGile</th></tr></thead>
+      <tbody>
+        <tr><td><b>Метафора</b></td><td>Библиотека и картотека</td><td>Конвейер и рация</td></tr>
+        <tr><td><b>Что решает</b></td><td>Хранит знание, которое не меняется каждый день: Книга стандартов Саши, регламенты, шаблон брифа, база клиентов и подрядчиков, плейбуки.</td><td>Двигает работу, которая меняется каждый час: задачи, дедлайны, кто что делает сейчас, обсуждение по задаче.</td></tr>
+        <tr><td><b>Единица</b></td><td>Страница / запись в базе</td><td>Карточка-задача (= чат)</td></tr>
+        <tr><td><b>Когда открываешь</b></td><td>Когда надо узнать «как правильно» или найти документ.</td><td>Когда надо понять «что делать сегодня» и не пропустить дедлайн.</td></tr>
+      </tbody>
+    </table>
+    <p class="legend">Правило простое: <b>если это знание — в Notion, если это действие со сроком — в YouGile.</b> Бриф рождается в Notion (это документ), а задачи по его реализации живут в YouGile.</p>
+  </section>
+
+  <section id="notion">
+    <div class="eyebrow">04 · Мануал</div>
+    <h3><span class="badge n">Notion</span> — как поднять</h3>
+    <p><b>Задача:</b> собрать единую базу знаний агентства, где живут стандарты, брифы, клиенты и подрядчики. Это ваша долговременная память.</p>
+    <h4>Настройка с нуля</h4>
+    <div class="steps">
+      <div class="s"><span class="no"></span><span class="tx"><b>Создать Workspace агентства</b><span>Один рабочий воркспейс Cybernetica. Пригласить команду по email — иконка настроек → <code>People</code> → <code>Add members</code>.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Разбить на Teamspaces</b><span>Командные пространства под зоны: «Стандарты», «Клиенты», «Подрядчики», «Брифы». У каждого свои участники и права — это ядро разграничения доступа.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Завести базы данных (Databases)</b><span>Не просто страницы, а базы: «Клиенты», «Подрядчики», «Проекты/брифы». База = таблица с полями, которую можно фильтровать и связывать. <code>/database</code> → выбрать вид.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Связать базы (Relations)</b><span>Проект ссылается на клиента и на подрядчиков через свойство <code>Relation</code>. Открыл проект — видишь всех связанных. Это то, чего нет в трекерах.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Сделать шаблон брифа</b><span>Страница-шаблон с 10 полями из блока 1 + свойство <code>Источник</code> (Клиент / Допущение) с цветом. Кнопка <code>New</code> в базе → template.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Раздать права</b><span>По каждому Teamspace и базе: кто Can edit, кто Can comment, кто Can view. «Стандарты» — все читают, редактируют лид и COO. «Подрядчики» — по матрице доступов.</span></span></div>
+    </div>
+    <h4>Тарифы</h4>
+    <ul class="clean">
+      <li><b>Free</b> — для маленькой команды рабочий, но с лимитами на загрузки и без продвинутых прав. На старт/пилот хватит.</li>
+      <li><b>Plus</b> (~$8–10/чел/мес) — снимает лимиты, даёт нормальные права и гостевой доступ. Рабочий тариф для вас.</li>
+      <li><b>Business</b> — приватные Teamspace, SAML SSO. Нужен, когда важно жёстко изолировать зоны.</li>
+    </ul>
+    <p class="legend">Оплата иностранной картой / через VPN. Данные на зарубежных серверах — для базы знаний это ок.</p>
+  </section>
+
+  <section id="yougile">
+    <div class="eyebrow">05 · Мануал</div>
+    <h3><span class="badge y">YouGile</span> — как поднять</h3>
+    <p><b>Задача:</b> навести дисциплину в задачах и фиксировать договорённости прямо там, где идёт работа. Каждая задача — это чат, поэтому обсуждение не отрывается от дела.</p>
+    <h4>Настройка с нуля</h4>
+    <div class="steps">
+      <div class="s"><span class="no"></span><span class="tx"><b>Создать компанию и пригласить команду</b><span>Регистрация → компания Cybernetica → пригласить участников. До 10 человек — бесплатно навсегда, без урезания функций.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Завести проекты и доски</b><span>Проект на клиента или направление; внутри — доски с колонками-статусами: <code>Бэклог → В работе → На ревью → Готово</code>.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Настроить шаблон задачи</b><span>Под вашу логику: поля Что / Результат (DoD) / Срок / Ответственный (DRI) / Апрув. Задача не двигается в «В работе», пока автор не апрувнул саммари.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Использовать чат внутри задачи</b><span>Главная фишка: всё обсуждение по задаче — в её чате, а не в телеге. Решение зафиксировано там же, где задача.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Настроить права (108 опций)</b><span>Тонко под матрицу доступов: кто видит какие доски, кто может менять статусы, кто только комментирует. Лид видит свои проекты, баер — свои.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Раздать мобильные приложения</b><span>iOS/Android/десктоп — чтобы уведомления о задачах и дедлайнах доходили. Команда живёт в приложении, а не забывает про него.</span></span></div>
+    </div>
+    <h4>Тарифы</h4>
+    <ul class="clean">
+      <li><b>Бесплатно до 10 человек</b> — все функции без ограничений и по времени. Для вашего размера может хватить надолго.</li>
+      <li><b>С 11-го человека</b> — ~594 ₽/чел/мес при годовой оплате (помесячно дороже).</li>
+      <li><b>Коробочная версия</b> — ~995 ₽/чел/мес, установка на свой сервер: SSO, 2FA, работа во внутренней сети. Аргумент, если данные не должны уходить наружу.</li>
+    </ul>
+    <p class="legend">Российский продукт, оплата без VPN, данные можно держать в РФ или на своём сервере.</p>
+  </section>
+
+  <section id="alt">
+    <div class="eyebrow">06 · Сравнение</div>
+    <h3>Связка Notion + YouGile: плюсы и минусы против альтернатив</h3>
+    <p class="lead">Ты просил разобрать связку через призму «+/−». Главный вопрос — не «какой инструмент лучше», а «два специализированных или один универсальный».</p>
+    <h4>Notion + YouGile — плюсы</h4>
+    <ul class="clean">
+      <li>Каждый инструмент лучший в своём слое: Notion — эталон знаний, YouGile — задачи с чатом внутри.</li>
+      <li>YouGile лечит вашу конкретную боль: обсуждение внутри задачи, договорённость не тонет в телеге.</li>
+      <li>Дёшево на старте: YouGile до 10 человек бесплатно, Notion Free для пилота.</li>
+      <li>YouGile — российский, с коробкой; Notion на VPN. Риск «отвалился один сервис» распределён.</li>
+    </ul>
+    <h4>Notion + YouGile — минусы</h4>
+    <ul class="clean">
+      <li>Два инструмента = два места. Задача в YouGile, знание в Notion — нужна дисциплина, чтобы не искать в обоих.</li>
+      <li>Нет нативной связи между ними: ссылки ставятся руками (в задаче YouGile — ссылка на бриф в Notion).</li>
+      <li>Команде осваивать два интерфейса вместо одного.</li>
+    </ul>
+    <h4>Альтернатива — один инструмент</h4>
+    <table>
+      <thead><tr><th>Вариант</th><th>+</th><th>−</th></tr></thead>
+      <tbody>
+        <tr><td><b>Только Notion</b></td><td>Одно место, сильное знание, бриф и база клиентов нативно.</td><td>Слабый трекер: нет чата в задаче, дедлайны и статусы ведутся вручную. Ваша боль с фиксацией задач не лечится.</td></tr>
+        <tr><td><b>Только YouGile</b></td><td>Одно место, отличные задачи с чатом, дёшево, российский.</td><td>Слабая вики: Книгу стандартов и связанные базы толком не построить. Знание останется неструктурированным.</td></tr>
+        <tr><td><b>Только ClickUp</b></td><td>Оба слоя в одном: задачи + доки + автоматизации.</td><td>Тяжёлый, высокий порог входа. Для команды, что сопротивляется процессам, — риск отторжения. И знание, и задачи — «нормально», но не «отлично».</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <div class="eyebrow">Вывод</div>
+      <p>Связка Notion + YouGile сильнее любого одиночного инструмента по сумме, но требует одного правила, которое всё склеивает: <b>знание — в Notion, действие со сроком — в YouGile, и в каждой задаче YouGile ссылка на нужную страницу Notion.</b> Если это правило держать — минус «два места» почти исчезает. Если дисциплины не будет — тогда честнее взять один ClickUp и терпеть его тяжесть.</p>
+    </div>
+  </section>
+
+  <div class="part" id="p-fix">
+    <div class="pn">Блок 3</div>
+    <h2>Фиксация договорённостей</h2>
+    <p>Общаться можно где угодно. Но есть вещи, которые обязаны быть зафиксированы в официальном канале — иначе их не существует. Здесь — что именно, и куда.</p>
+  </div>
+
+  <section id="fix-principle">
+    <div class="eyebrow">07 · Принцип</div>
+    <h3>Не зафиксировано в офканале — не имеет силы</h3>
+    <p class="lead">Команда общается где удобно — Telegram (текст и аудио), Discord (голос), почта (внешние). Это нормально и оптимизировать не нужно. Важно другое: <b>принципиальные моменты, выводы и решения обязаны попасть в официальный канал.</b> Договорённость из голосового чата, не перенесённая в офканал, юридически для процесса не существует.</p>
+    <div class="callout">
+      <div class="eyebrow">Три официальных канала</div>
+      <p><span class="badge n">Notion</span> — знания и решения-стандарты. <span class="badge y">YouGile</span> — задачи и договорённости по работе. <span class="badge os">OS Cybernetica</span> — все финансовые договорённости. Всё, что не здесь — черновик и разговор, не обязательство.</p>
+    </div>
+    <h4>Нужен ли Telegram как офканал</h4>
+    <p>Короткий ответ — нет, и вот почему. Телеграм хорош для живого общения, но плох как источник правды: сообщения тонут, поиск слабый, нет структуры и статусов, аудио вообще не ищется. Если сделать его официальным, вернётся ровно та болезнь, от которой уходим — «концов не найти». Роль Telegram — это <b>место разговора, из которого решение переносится в офканал.</b> Правило: «проговорили в телеге → зафиксировал в YouGile/Notion/OS → скинул ссылку». Само по себе сообщение в телеге силы не имеет.</p>
+  </section>
+
+  <section id="fix-what">
+    <div class="eyebrow">08 · Матрица</div>
+    <h3>Что и где фиксируется</h3>
+    <p>Конкретный список: что обязательно фиксируется и в каком канале это становится официальным.</p>
+    <div class="fixgrid">
+      <div class="r h"><div>Что фиксируется</div><div>Официальный канал</div></div>
+      <div class="r"><div class="c1">Бриф клиента, задача кампании, KPI</div><div class="c2"><span class="badge n">Notion</span></div></div>
+      <div class="r"><div class="c1">Стандарты, регламенты, методология Саши, инсайты постокампейн</div><div class="c2"><span class="badge n">Notion</span></div></div>
+      <div class="r"><div class="c1">База клиентов и подрядчиков, контакты, условия</div><div class="c2"><span class="badge n">Notion</span></div></div>
+      <div class="r"><div class="c1">Рабочая задача, дедлайн, ответственный, статус</div><div class="c2"><span class="badge y">YouGile</span></div></div>
+      <div class="r"><div class="c1">Решение по задаче, правки, апрув работы</div><div class="c2"><span class="badge y">YouGile</span></div></div>
+      <div class="r"><div class="c1">Договорённость «кто что делает и к какому сроку»</div><div class="c2"><span class="badge y">YouGile</span></div></div>
+      <div class="r"><div class="c1">Бюджет, стоимость закупки, наценка, рибейты</div><div class="c2"><span class="badge os">OS</span></div></div>
+      <div class="r"><div class="c1">Условия оплаты, сроки платежей, договоры, акты</div><div class="c2"><span class="badge os">OS</span></div></div>
+      <div class="r"><div class="c1">Помесячные финансовые обязательства подрядчик ↔ агентство ↔ клиент</div><div class="c2"><span class="badge os">OS</span></div></div>
+      <div class="r"><div class="c1">Налогообложение, юридические параметры сделки</div><div class="c2"><span class="badge os">OS</span></div></div>
+      <div class="r"><div class="c1">Живое обсуждение, мозгоштурм, «а давай попробуем»</div><div class="c2"><span class="badge tg">Telegram</span> <span style="color:var(--muted);font-size:12px">→ решение переносится в офканал</span></div></div>
+    </div>
+    <p class="legend">OS Cybernetica — приложение, которое пишем отдельно: единый источник финансовой правды. Все деньги — там, помесячно, с условиями оплаты, договорами, налогами и сроками. Notion и YouGile к финансам не прикасаются.</p>
+  </section>
+
+  <section id="rollout">
+    <div class="eyebrow">09 · Внедрение</div>
+    <h3>Как завести на команду</h3>
+    <div class="steps">
+      <div class="s"><span class="no"></span><span class="tx"><b>Объявить правило офканалов</b><span>На сессии: «не зафиксировано в Notion / YouGile / OS — не имеет силы». Один раз, чётко, от лица владельца и COO.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Пилот на одном проекте</b><span>Один клиент проходит полный путь: бриф в Notion → задачи в YouGile → финансы в OS. 1–2 недели, потом тиражируем.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Ввести привычку «перенёс → ссылка»</b><span>Проговорили в телеге — тут же карточка в YouGile и ссылка в ответ. Первые недели COO/лид напоминают, пока не станет рефлексом.</span></span></div>
+      <div class="s"><span class="no"></span><span class="tx"><b>Разбор — без наказаний</b><span>Если что-то потерялось, потому что не зафиксировали, — вопрос «в какой канал это должно было попасть?», а не «кто виноват».</span></span></div>
+    </div>
+  </section>
+
+  <footer class="doc">
+    <span>Cybernetica · внутренний документ</span>
+    <span>Инструменты и фиксация · Часть III</span>
+  </footer>
+
+</div>
+<a href="#top" style="position:fixed;right:20px;bottom:20px;background:#1a1a1a;color:#f3f0eb;border-radius:4px;padding:9px 14px;font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.06em;text-decoration:none;opacity:.85;z-index:20">↑ наверх</a>
+</body>
+</html>
