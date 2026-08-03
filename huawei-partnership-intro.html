@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybernetica × Huawei — предложение о сотрудничестве</title>
+<style>
+  :root{
+    --blue:#111111;
+    --link:#1d4ed8;
+    --blue-dark:#0a0a0a;
+    --blue-light:#f3f4f6;
+    --ink:#1f2937;
+    --muted:#6b7280;
+    --line:#e5e7eb;
+    --green:#047857;
+    --green-light:#ecfdf5;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    color:var(--ink);background:#f3f4f6;line-height:1.5;font-size:14.5px;
+  }
+  .page{max-width:860px;margin:0 auto;background:#fff;padding:48px 64px 40px;box-shadow:0 1px 6px rgba(0,0,0,.08);}
+  @media (max-width:700px){ .page{padding:32px 22px;} }
+  @media print{
+    body{background:#fff;}
+    .page{box-shadow:none;max-width:100%;padding:20px 28px;}
+    .section{break-inside:avoid;}
+  }
+  .brand{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#0a0a0a;margin:-48px -64px 0;padding:20px 40px;}
+  .brand .name{color:#fff;font-weight:800;font-size:18px;letter-spacing:.02em;}
+  .brand .company{font-size:12.5px;color:#9ca3af;text-align:right;}
+  @media (max-width:700px){ .brand{margin:-32px -22px 0;padding:16px 22px;flex-wrap:wrap;} }
+  @media print{ .brand{margin:-20px -28px 0;-webkit-print-color-adjust:exact;print-color-adjust:exact;} }
+
+  h1{font-size:25px;font-weight:800;line-height:1.25;margin:28px 0 8px;}
+  .subtitle{font-size:15.5px;color:var(--muted);max-width:660px;}
+
+  .section{margin-top:26px;}
+  .section h2{font-size:17px;font-weight:800;color:var(--blue-dark);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+  .section h2 .num{width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .section p{margin-bottom:9px;}
+  .section p:last-child{margin-bottom:0;}
+
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px;}
+  @media (max-width:700px){ .duo{grid-template-columns:1fr;} }
+  .duo .col{border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
+  .duo .col h3{font-size:14.5px;font-weight:700;margin-bottom:8px;}
+  .duo .col ul{margin-left:16px;}
+  .duo .col li{font-size:13.5px;margin-bottom:6px;}
+  .duo .col li:last-child{margin-bottom:0;}
+
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:10px 0 4px;}
+  @media (max-width:700px){ .kpis{grid-template-columns:1fr;} }
+  .kpi{border:1px solid var(--line);border-radius:10px;padding:10px 14px;}
+  .kpi .v{font-size:19px;font-weight:800;}
+  .kpi .l{font-size:12px;color:var(--muted);margin-top:2px;}
+
+  .note-green{background:var(--green-light);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:10px 16px;margin-top:10px;font-size:13.5px;}
+  .note-green strong{color:var(--green);}
+  .fmt{font-size:12.5px;color:var(--muted);margin-top:8px;}
+
+  .steps{counter-reset:st;margin-top:2px;}
+  .steps .st{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);}
+  .steps .st:last-child{border-bottom:none;}
+  .steps .st::before{counter-increment:st;content:counter(st);width:24px;height:24px;border-radius:50%;background:var(--blue-light);color:var(--blue);font-weight:800;font-size:12.5px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+  .steps .st div strong{display:block;margin-bottom:1px;font-size:14px;}
+  .steps .st div span{font-size:13.5px;color:#4b5563;}
+
+  .cta{margin-top:28px;background:var(--blue-dark);border-radius:12px;color:#fff;padding:24px 28px;}
+  .cta h2{font-size:18px;font-weight:800;margin-bottom:6px;}
+  .cta p{font-size:14px;color:#d1d5db;margin-bottom:14px;max-width:560px;}
+  .cta .contacts{display:flex;flex-wrap:wrap;gap:10px;}
+  .cta .contact{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:8px 14px;font-size:13.5px;}
+  .cta .contact .lbl{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:#9ca3af;margin-bottom:1px;}
+  @media print{ .cta{-webkit-print-color-adjust:exact;print-color-adjust:exact;} }
+
+  footer{max-width:860px;margin:0 auto;padding:14px 64px 36px;display:flex;justify-content:space-between;font-size:12px;color:var(--muted);}
+  @media (max-width:700px){ footer{padding:14px 22px 28px;} }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="brand">
+    <div class="name">Cybernetica</div>
+    <div class="company">ООО «Кибернетика» · реклама в играх</div>
+  </div>
+
+  <h1>Внутриигровая наружная реклама<br>в играх экосистемы Huawei</h1>
+  <p class="subtitle">Предложение о партнёрстве: мы продаём рекламодателям билборды и другие рекламные поверхности внутри игровых миров — и готовы открыть этот источник дохода для игр экосистемы Huawei на территории России.</p>
+
+  <div class="section">
+    <h2><span class="num">1</span>О каком формате речь</h2>
+    <p>Внутриигровая наружная реклама (In-Game Out-of-Home) — это размещение брендов на естественных поверхностях игрового мира: билбордах, экранах, бортах трасс и арен. Реклама не прерывает геймплей, не конкурирует с баннерами и rewarded-видео и делает виртуальный мир реалистичнее.</p>
+    <p>Эффективность формата подтверждена в том числе опытом самого Huawei: кампания бренда с виртуальными билбордами в играх (платформа Anzu, замеры Lumen) показала результаты значительно выше стандартных digital-форматов.</p>
+    <div class="kpis">
+      <div class="kpi"><div class="v">×3,6</div><div class="l">время контакта с брендом</div></div>
+      <div class="kpi"><div class="v">×7,6</div><div class="l">спонтанная узнаваемость vs бенчмарк</div></div>
+      <div class="kpi"><div class="v">0</div><div class="l">прерываний геймплея</div></div>
+    </div>
+    <p class="fmt">Источник: Digiday, кампания Huawei в TrackMania и Final Kick (Anzu × Wavemaker × Lumen).</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">2</span>Почему мы предлагаем это именно вам</h2>
+    <p>В экосистеме Huawei — AppGallery и GameCenter — сосредоточен крупный пул игр: эксклюзивные тайтлы, игры с прямой интеграцией HMS и партнёрские проекты. При этом инвентарь внутриигровой наружки в них сегодня системно не монетизируется: глобальные In-Game-платформы на российском рынке не работают, а стандартные рекламные форматы этот тип поверхностей не охватывают. Это неиспользуемый актив, который может приносить доход экосистеме и разработчикам.</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">3</span>Что есть у каждой стороны</h2>
+    <div class="duo">
+      <div class="col">
+        <h3>У Huawei</h3>
+        <ul>
+          <li>Пул игр экосистемы: эксклюзивные тайтлы и игры партнёров с 3D-мирами, подходящими для размещения наружной рекламы.</li>
+          <li>Технологическая платформа (HMS, Petal Ads) и отношения с разработчиками.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>У Cybernetica</h3>
+        <ul>
+          <li>Действующий бизнес по продаже внутриигровой наружки в России: клиенты, отдел продаж, действующие партнёрства с игровыми площадками.</li>
+          <li>Рабочий SDK: показ креативов на 3D-поверхностях, подсчёт видимых показов, защита от накрутки.</li>
+          <li>Полная юридическая обвязка для рынка РФ: маркировка рекламы (ОРД/ЕРИР), договоры, документооборот.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">4</span>Суть предложения</h2>
+    <div class="steps">
+      <div class="st"><div><strong>Мы берём на себя коммерцию</strong><span>Поиск рекламодателей, продажа инвентаря внутриигровой наружки в играх вашей экосистемы на территории РФ, модерация креативов, юридическое сопровождение и маркировка.</span></div></div>
+      <div class="st"><div><strong>Техническая интеграция — в любом удобном для вас виде</strong><span>Мы готовы интегрировать наш SDK с вашей технической платформой — или полностью работать на вашей платформе, если в ней уже есть функциональность показа рекламы на внутриигровых поверхностях.</span></div></div>
+      <div class="st"><div><strong>От вас — пул игр</strong><span>Список игр экосистемы, в которых технически и юридически возможно размещение наружной рекламы для продажи на российском рынке.</span></div></div>
+    </div>
+    <div class="note-green"><strong>На данном этапе мы не обсуждаем коммерческие условия.</strong> Цель этого документа — договориться о встрече, определить пилотный пул игр и формат технической интеграции. Финансовая модель и условия — предмет следующего шага.</div>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">5</span>Предлагаемый первый шаг</h2>
+    <p>Встреча или видеозвонок с участием вашей коммерческой и технической команд (30–45 минут): мы показываем работающую платформу и кейсы, вместе определяем 2–3 игры для пилота и согласуем дорожную карту.</p>
+  </div>
+
+  <div class="cta">
+    <h2>Контакты</h2>
+    <p>Будем рады обсудить сотрудничество в удобном для вас формате.</p>
+    <div class="contacts">
+      <div class="contact"><span class="lbl">Контактное лицо</span>[Имя Фамилия]</div>
+      <div class="contact"><span class="lbl">Telegram</span>[@username]</div>
+      <div class="contact"><span class="lbl">Почта</span>[email@cybernetica.agency]</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span>Cybernetica · ООО «Кибернетика»</span>
+  <span>Документ для инициации диалога · без коммерческих условий</span>
+</footer>
+
+</body>
+</html>
