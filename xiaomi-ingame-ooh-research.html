@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xiaomi и внутриигровая наружка — исследование</title>
+<style>
+  :root{
+    --blue:#111111;
+    --link:#1d4ed8;
+    --blue-dark:#0a0a0a;
+    --blue-light:#f3f4f6;
+    --ink:#1f2937;
+    --muted:#6b7280;
+    --line:#e5e7eb;
+    --green:#047857;
+    --green-light:#ecfdf5;
+    --amber:#b45309;
+    --amber-light:#fffbeb;
+    --red:#b91c1c;
+    --red-light:#fef2f2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    color:var(--ink);background:#f3f4f6;line-height:1.55;font-size:15px;
+  }
+  .page{max-width:860px;margin:0 auto;background:#fff;padding:56px 64px 48px;box-shadow:0 1px 6px rgba(0,0,0,.08);}
+  @media (max-width:700px){ .page{padding:32px 22px;} }
+  @media print{
+    body{background:#fff;}
+    .page{box-shadow:none;max-width:100%;padding:24px 32px;}
+    .section{break-inside:avoid;}
+  }
+  .brand{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#0a0a0a;margin:-56px -64px 0;padding:22px 40px;}
+  .brand .name{color:#fff;font-weight:800;font-size:18px;letter-spacing:.02em;}
+  .brand .company{font-size:12.5px;color:#9ca3af;text-align:right;}
+  @media (max-width:700px){ .brand{margin:-32px -22px 0;padding:16px 22px;flex-wrap:wrap;} }
+  @media print{ .brand{margin:-24px -32px 0;-webkit-print-color-adjust:exact;print-color-adjust:exact;} }
+
+  h1{font-size:28px;font-weight:800;line-height:1.2;margin:34px 0 10px;}
+  .subtitle{font-size:16px;color:var(--muted);max-width:680px;}
+  .meta{font-size:12.5px;color:var(--muted);margin-top:8px;}
+
+  .section{margin-top:38px;}
+  .section h2{font-size:19px;font-weight:800;color:var(--blue-dark);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+  .section h2 .num{width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-size:14px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .section h3{font-size:15.5px;font-weight:700;margin:16px 0 6px;}
+  .section p{margin-bottom:10px;}
+  .section p:last-child{margin-bottom:0;}
+  a{color:var(--link);}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0 4px;}
+  @media (max-width:700px){ .kpis{grid-template-columns:1fr 1fr;} }
+  .kpi{border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+  .kpi .v{font-size:20px;font-weight:800;}
+  .kpi .l{font-size:12px;color:var(--muted);margin-top:2px;}
+
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
+  th{background:var(--blue-light);text-align:left;padding:9px 12px;border:1px solid var(--line);font-size:13px;}
+  td{padding:9px 12px;border:1px solid var(--line);vertical-align:top;}
+
+  .note{border-left:4px solid var(--blue);background:var(--blue-light);border-radius:0 8px 8px 0;padding:12px 18px;margin:12px 0;font-size:14.5px;}
+  .note-green{border-left:4px solid var(--green);background:var(--green-light);border-radius:0 8px 8px 0;padding:12px 18px;margin:12px 0;font-size:14.5px;}
+  .note-green strong{color:var(--green);}
+  .note-amber{border-left:4px solid var(--amber);background:var(--amber-light);border-radius:0 8px 8px 0;padding:12px 18px;margin:12px 0;font-size:14.5px;}
+  .note-amber strong{color:var(--amber);}
+
+  ul.clean{margin:6px 0 10px 18px;}
+  ul.clean li{margin-bottom:6px;font-size:14.5px;}
+
+  .steps{counter-reset:st;margin-top:4px;}
+  .steps .st{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);}
+  .steps .st:last-child{border-bottom:none;}
+  .steps .st::before{counter-increment:st;content:counter(st);width:26px;height:26px;border-radius:50%;background:var(--blue-light);color:var(--blue);font-weight:800;font-size:13px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+  .steps .st div strong{display:block;margin-bottom:2px;}
+  .steps .st div span{font-size:14px;color:#4b5563;}
+
+  .src{font-size:12.5px;color:var(--muted);margin-top:26px;border-top:1px solid var(--line);padding-top:14px;}
+  .src a{color:var(--link);text-decoration:none;}
+  footer{max-width:860px;margin:0 auto;padding:16px 64px 40px;display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);}
+  @media (max-width:700px){ footer{padding:16px 22px 32px;} }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="brand">
+    <div class="name">Cybernetica</div>
+    <div class="company">ООО «Кибернетика» · внутренняя справка</div>
+  </div>
+
+  <h1>Xiaomi и внутриигровая наружка:<br>анализ игрока перед заходом</h1>
+  <p class="subtitle">Экосистема Xiaomi, её игровой слой, рекламная машина Mi Ads, каналы продаж рекламы в РФ и как это отличается от кейса Huawei. Основа для адаптации партнёрского предложения.</p>
+  <p class="meta">Составлено: август 2026 · Источники: официальные материалы Xiaomi, PR Newswire, AdIndex, Sostav, vc.ru, CNews, МТС Аналитика и др. (список в конце)</p>
+
+  <div class="section">
+    <h2><span class="num">1</span>Экосистема Xiaomi в двух абзацах</h2>
+    <p>В отличие от Huawei, Xiaomi не теряла сервисы Google — её экосистема живёт «поверх» обычного Android: оболочка HyperOS (бывш. MIUI), магазин GetApps, набор системных приложений (Mi Browser, Mi Video, Mi Music, Themes) и рекламная сеть Xiaomi Ads (Mi Ads). Ставка — не на замещение Google, а на монетизацию огромного парка устройств: реклама зашита прямо в систему (локскрин, экран первичной настройки OOBE, рекомендации приложений, нативные карточки в системных аппах).</p>
+    <p>Ключевое для нас: <strong>в России Xiaomi — бренд №1 по продажам смартфонов</strong> (22% штучных продаж в 2025, данные МТС; Samsung — 14%). Это самый большой адресуемый парк Android-устройств в стране. При этом с сентября 2025 на все Xiaomi в РФ обязательна предустановка RuStore — российский слой дистрибуции работает параллельно GetApps.</p>
+    <div class="kpis">
+      <div class="kpi"><div class="v">685+ млн</div><div class="l">MAU смартфонов Xiaomi (мир, 2024)</div></div>
+      <div class="kpi"><div class="v">260 млн</div><div class="l">MAU GetApps · 100+ рынков</div></div>
+      <div class="kpi"><div class="v">718 млн</div><div class="l">MAU рекламной сети Mi Ads · 200+ стран</div></div>
+      <div class="kpi"><div class="v">22%</div><div class="l">доля продаж смартфонов в РФ (№1, 2025)</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">2</span>Игровой слой Xiaomi</h2>
+    <ul class="clean">
+      <li><strong>Game Center</strong> — игровой хаб внутри экосистемы (глобально — раздел GetApps и отдельное приложение с инстант-играми без установки; в Китае Mi Game Center — полноценный издательский канал с платежами Xiaomi).</li>
+      <li><strong>Собственных игровых студий нет</strong> — как и Huawei, Xiaomi не делает игры сама и не имеет эксклюзивных крупных 3D-тайтлов. Все значимые игры в GetApps мультиплатформенны; «эксклюзивы» — только лёгкие инстант-казуалки без 3D-пространства.</li>
+      <li><strong>Игры — главный рекламодатель платформы:</strong> ~45% рекламируемых приложений в Mi Ads — игры (данные Rocket10). То есть Xiaomi зарабатывает на играх как канал дистрибуции и UA-трафика, а не как издатель.</li>
+      <li>Направление «Grow with Xiaomi» активно зазывает разработчиков и контент-партнёров: программа Minicard в GetApps (+26% к конверсии), платформа монетизации Columbus (1500+ приложений, 30 регионов).</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">3</span>Рекламная машина Xiaomi Ads (Mi Ads)</h2>
+    <p>Это OEM-платформа системной рекламы: инвентарь — GetApps, локскрин, экран первичной настройки (OOBE), пуш-центр, Mi Browser, Mi Video, Mi Music, Themes, 1Screen. Форматы — иконки (главный формат), статичные баннеры, нативные карточки, полноэкранные баннеры, видео до 30 сек. Модели закупки: CPC, oCPC, CPA/CPI. Сильные стороны: дешёвый трафик (CPI до −35% против Google Ads), таргетинг по модели устройства и поведению, кастомные сегменты.</p>
+    <div class="note"><strong>Внутриигровой наружки у Xiaomi нет — как и у Huawei.</strong> Mi Ads не имеет ни одного формата внутри игровых 3D-миров: только системные поверхности и UA-форматы. Playable-форматов тоже нет. Монетизация чужих приложений (Columbus) — стандартные блоки. Ниша In-Game OOH на устройствах Xiaomi не занята платформой.</div>
+    <p>Отличие от Huawei: у Xiaomi нет и «истории знакомства» с форматом — публичного кейса, аналогичного кампании Huawei×ANZU, у Xiaomi мы не нашли. В презентации для Xiaomi кейс ANZU работает как отраслевой бенчмарк, а не как «ваш собственный опыт».</p>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">4</span>Кто продаёт рекламу Xiaomi в РФ</h2>
+    <table>
+      <tr><th>Слой</th><th>Кто продаёт</th><th>Комментарий</th></tr>
+      <tr><td><strong>Системная реклама в телефоне</strong> (локскрин, OOBE, GetApps, системные аппы)</td><td>Xiaomi Ads — глобальный кабинет + реселлеры в РФ</td><td>Из России работают через реселлеров и агентства: Centra (маркетплейс, «единое окно»), Rocket10 (профильная экспертиза по Mi Ads, гайды на AdIndex), getUNIQ (пополнение кабинетов). Прямой кабинет доступен, но оплата и документы из РФ — через посредников.</td></tr>
+      <tr><td><strong>Реклама в приложениях и играх</strong> (баннеры, межстраничные, rewarded)</td><td>Обычные сети, не Xiaomi</td><td>На устройствах Xiaomi в РФ рекламу в приложениях продают стандартные сети: Яндекс Реклама (Yandex Ads), VK Реклама/myTarget, Mi Ads (как один из источников монетизации через Columbus — в РФ почти не используется).</td></tr>
+      <tr><td><strong>RuStore-слой</strong></td><td>VK (RuStore Ads)</td><td>С сентября 2025 RuStore обязателен на Xiaomi в РФ; у него собственные рекламные форматы продвижения приложений. Параллельный, независимый от Xiaomi канал.</td></tr>
+      <tr><td><strong>Внутриигровая наружка (In-Game OOH)</strong></td><td>Никто</td><td>Ни Xiaomi Ads, ни российские сети этот формат не продают; глобальные In-Game SSP (Anzu, Gadsme, Frameplay, AdInMo) в РФ не работают. Вакуум — тот же, что и в кейсе Huawei.</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">5</span>Huawei vs Xiaomi: что меняется для нашего захода</h2>
+    <table>
+      <tr><th></th><th>Huawei</th><th>Xiaomi</th></tr>
+      <tr><td>Парк устройств в РФ</td><td>Заметный, но стареющий (санкции ограничили новые поставки)</td><td><strong>№1 по продажам (22% штук, 2025)</strong> — крупнейший активный парк</td></tr>
+      <tr><td>Магазин приложений</td><td>AppGallery — безальтернативный центр экосистемы (нет Google Play)</td><td>GetApps живёт рядом с Google Play и RuStore — роль слабее</td></tr>
+      <tr><td>Игровой хаб</td><td>GameCenter + сильная игровая витрина AppGallery</td><td>Game Center (инстант-игры); в РФ игровой слой заметно слабее</td></tr>
+      <tr><td>Рекламная сеть</td><td>Petal Ads (полный стек, свой контакт в РФ — ruads@huawei.com)</td><td>Mi Ads (системная/OEM-реклама; в РФ — через реселлеров, прямого офиса продаж меньше)</td></tr>
+      <tr><td>Знакомство с In-Game OOH</td><td>Есть собственный кейс (кампания с ANZU: ×3,6 внимание, ×7,6 узнаваемость)</td><td>Публичного кейса нет — формат придётся «продавать» с нуля через отраслевые бенчмарки</td></tr>
+      <tr><td>Наружка в играх экосистемы</td><td>Не продаётся — ниша свободна</td><td>Не продаётся — ниша свободна</td></tr>
+      <tr><td>Кому адресовать предложение</td><td>Российское представительство / Petal Ads Russia</td><td><strong>Xiaomi Russia — заходим напрямую через собственный контакт в представительстве.</strong> Международный Internet Business Department (GetApps/Mi Ads) — запасной уровень, если офису в РФ потребуется согласование глобальной команды</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2><span class="num">6</span>Как заходить в Xiaomi: рекомендации</h2>
+    <div class="steps">
+      <div class="st"><div><strong>Акцент предложения — парк №1 в РФ, а не экосистема игр</strong><span>У Huawei мы продавали «монетизацию пула игр экосистемы». У Xiaomi сильный аргумент другой: крупнейшая аудитория Android-устройств в России + игры как 45% их рекламного бизнеса. Предлагаем новый формат дохода поверх их главного актива.</span></div></div>
+      <div class="st"><div><strong>Кейс ANZU подавать как отраслевой бенчмарк</strong><span>Формулировка «ваш конкурент Huawei уже использовал формат и получил ×7,6 к узнаваемости» — сильный триггер для Xiaomi. Конкурентная рамка работает лучше, чем «вы уже знакомы с форматом».</span></div></div>
+      <div class="st"><div><strong>Заход — напрямую в представительство в РФ</strong><span>У нас есть собственный контакт в Xiaomi Russia — работаем через него, без посредников и реселлеров. Международный Internet Business Department / Grow with Xiaomi (Сингапур, отвечает за GetApps и Mi Ads) держим в уме как второй уровень: если офис в РФ поддержит идею, согласование глобальной команды пойдёт по их внутренней линии.</span></div></div>
+      <div class="st"><div><strong>Пилот тот же, что и для Huawei</strong><span>2–3 игры с 3D-мирами, популярные на устройствах Xiaomi в РФ, статичные размещения под патч, замер attention-метрик. SDK-интеграция — с разработчиками игр; Xiaomi в пилоте выступает как канал и соорганизатор, а не техплатформа.</span></div></div>
+    </div>
+    <div class="note-amber"><strong>Риск, о котором помнить:</strong> у Xiaomi связка с играми слабее, чем у Huawei — GetApps в РФ не является главным магазином, и «пул игр экосистемы» как аргумент работает хуже. Если разговор упрётся в «у нас нет своих игр», запасная позиция — партнёрство по формату: Xiaomi даёт бренд-рекламодателей и канал продаж Mi Ads, мы даём инвентарь наружки в наших играх (GTA RP-миры и подключаемые тайтлы).</div>
+    <div class="note-green"><strong>Итог:</strong> ниша In-Game OOH на Xiaomi так же свободна, как на Huawei, но заход строится иначе: не «монетизируем ваши игры», а «добавляем новый формат к крупнейшему рекламному парку устройств в РФ». Презентацию адаптируем под эту рамку.</div>
+  </div>
+
+  <div class="src">
+    <strong>Основные источники:</strong>
+    <a href="https://www.prnewswire.com/news-releases/grow-with-xiaomi-building-a-sustainable-open-ecosystem-for-apps-services-and-contents-302318172.html">Grow with Xiaomi, экосистемные цифры (PR Newswire)</a> ·
+    <a href="https://adindex.ru/publication/opinion/marketing/2026/04/20/344348.phtml">Гайд Rocket10 по Mi Ads (AdIndex)</a> ·
+    <a href="https://www.sostav.ru/blogs/259967/70533">Обзор Xiaomi Ads (Sostav)</a> ·
+    <a href="https://vc.ru/marketing/1217486-xiaomi-ads-kak-rabotat-s-kanalom-v-2024-godu">Xiaomi Ads: как работать с каналом (vc.ru)</a> ·
+    <a href="https://centra.ai/store/product/390">Xiaomi Ads на маркетплейсе Centra</a> ·
+    <a href="https://getuniq.me/blog/mi-ads-obzor-reklamnoj-ploshhadki-ot-xiaomi/">Mi Ads — обзор getUNIQ</a> ·
+    <a href="https://www.cnews.ru/news/line/2026-01-13_analitika_mts_xiaomi_i_samsung">Xiaomi №1 в РФ по продажам, 22% (МТС/CNews)</a> ·
+    <a href="https://www.kommersant.ru/doc/7975384">RuStore обязателен на Xiaomi с сентября 2025 (Коммерсантъ)</a> ·
+    <a href="https://global.app.mi.com/details?lo=RU&la=ru&id=com.xiaomi.glgm">Game Center в GetApps (Xiaomi)</a> ·
+    <a href="https://oemad.ai/xiaomi-ads-mi-ads-a-comprehensive-review-of-the-rising-star-in-mobile-advertising/">Обзор Mi Ads (OEMAD)</a> ·
+    <a href="https://digiday.com/marketing/huaweis-in-game-campaign-shows-the-power-of-in-game-ads-and-the-importance-of-measurement/">Кейс Huawei×ANZU для бенчмарка (Digiday)</a>
+  </div>
+
+</div>
+
+<footer>
+  <span>Cybernetica · ООО «Кибернетика»</span>
+  <span>Внутренний документ · не для передачи площадкам и клиентам</span>
+</footer>
+
+</body>
+</html>
