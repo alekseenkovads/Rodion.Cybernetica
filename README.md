@@ -14,4 +14,5 @@ Private. Cybernetica
 - [New Game+ / inStreamly — карта структуры](Cybernetica_newgameplus-structure-map-deck.html) — карта структуры и партнёрских связей New Game+, inStreamly, StreamCoi, Genki и Streamers Global.
 - [Cybernetica — Собственный формат: питч партнёру](Cybernetica_own-format-pitch-deck.html) — питч-дек о собственном формате Cybernetica для партнёров.
 - [Перформанс в игровых мирах (white paper)](Cybernetica_whitepaper-ingame-performance.html) — white paper о перформанс-рекламе в игровых мирах.
+- [Cybernetica — Owned-медиа: концепт](Cybernetica_owned-media-concept-deck.html) — концепт owned-медиа для Cybernetica: как сделать агентство видимым для брендов и рынка.
  - [Workspace](index.html) — сводная страница со всеми документами.
