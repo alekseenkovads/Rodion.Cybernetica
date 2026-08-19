@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="ru" data-palette="#2a78d6,#eb6834,#1baf7a">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Монетизация блогеров: РСЯ, рынок, игроки и стратегия для гейминга</title>
+<style>
+:root{
+  color-scheme: light;
+  --bg:#fbfaf8;
+  --surface-1:#ffffff;
+  --surface-2:#f4f2ee;
+  --surface-3:#eceae4;
+  --border:#e0ddd5;
+  --border-strong:#cbc7bc;
+  --text-primary:#14130f;
+  --text-secondary:#4f4d46;
+  --text-muted:#7c7a71;
+  --series-1:#2a78d6;
+  --series-2:#eb6834;
+  --series-3:#1baf7a;
+  --good:#0f7a48;
+  --warn:#a86a00;
+  --bad:#c3352f;
+  --accent:#2a78d6;
+  --ink-hero:#0d0f14;
+  --radius:14px;
+  --maxw:1120px;
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme: dark;
+    --bg:#141413;
+    --surface-1:#1a1a19;
+    --surface-2:#212120;
+    --surface-3:#2a2a28;
+    --border:#34342f;
+    --border-strong:#4a4a43;
+    --text-primary:#ffffff;
+    --text-secondary:#c3c2b7;
+    --text-muted:#95948a;
+    --series-1:#3987e5;
+    --series-2:#d95926;
+    --series-3:#199e70;
+    --good:#3fa46f;
+    --warn:#d09a3a;
+    --bad:#e66767;
+    --accent:#3987e5;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text-primary);
+  font:16px/1.62 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* ---------- hero ---------- */
+.hero{
+  background:var(--ink-hero);
+  color:#fff;
+  padding:64px 0 56px;
+  border-bottom:1px solid #23262f;
+}
+.hero .wrap{max-width:var(--maxw)}
+.eyebrow{
+  font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:#8b93a7;margin:0 0 18px;font-weight:600;
+}
+.hero h1{
+  font-size:clamp(30px,4.4vw,50px);line-height:1.1;margin:0 0 20px;
+  letter-spacing:-.022em;font-weight:700;max-width:20ch;
+}
+.hero p.lead{
+  font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:#b9c0cf;
+  margin:0 0 28px;max-width:70ch;
+}
+.hero .meta{display:flex;flex-wrap:wrap;gap:10px}
+.chip{
+  display:inline-block;padding:6px 13px;border-radius:999px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  font-size:13px;color:#d6dbe6;
+}
+
+/* ---------- nav ---------- */
+nav.toc{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--bg) 92%,transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+nav.toc .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:thin}
+nav.toc a{
+  white-space:nowrap;font-size:13.5px;color:var(--text-secondary);
+  text-decoration:none;padding:6px 12px;border-radius:8px;font-weight:500;
+}
+nav.toc a:hover{background:var(--surface-3);color:var(--text-primary)}
+
+/* ---------- sections ---------- */
+section{padding:60px 0 8px;scroll-margin-top:64px}
+h2{
+  font-size:clamp(24px,3vw,34px);line-height:1.18;margin:0 0 8px;
+  letter-spacing:-.018em;font-weight:700;
+}
+h2 .num{
+  display:inline-block;font-size:13px;font-weight:700;color:var(--accent);
+  letter-spacing:.1em;margin-bottom:10px;
+}
+h3{font-size:20px;line-height:1.3;margin:38px 0 12px;letter-spacing:-.01em;font-weight:650}
+h4{font-size:16px;margin:26px 0 8px;font-weight:650}
+p{margin:0 0 14px;color:var(--text-secondary)}
+p strong,li strong{color:var(--text-primary);font-weight:640}
+.section-lead{font-size:17.5px;color:var(--text-secondary);max-width:74ch;margin-bottom:26px}
+ul,ol{margin:0 0 16px;padding-left:22px;color:var(--text-secondary)}
+li{margin-bottom:7px}
+a{color:var(--accent)}
+hr.sep{border:0;border-top:1px solid var(--border);margin:52px 0 0}
+
+/* ---------- cards ---------- */
+.card{
+  background:var(--surface-1);border:1px solid var(--border);
+  border-radius:var(--radius);padding:22px 24px;margin:18px 0;
+}
+.card h4{margin-top:0}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:860px){.g2,.g3{grid-template-columns:1fr}}
+
+.callout{
+  border-left:3px solid var(--accent);
+  background:var(--surface-2);
+  border-radius:0 12px 12px 0;
+  padding:18px 22px;margin:22px 0;
+}
+.callout.warn{border-left-color:var(--warn)}
+.callout.bad{border-left-color:var(--bad)}
+.callout.good{border-left-color:var(--good)}
+.callout p:last-child{margin-bottom:0}
+.callout .label{
+  font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+  font-weight:700;color:var(--text-muted);margin-bottom:6px;
+}
+
+blockquote{
+  margin:18px 0;padding:4px 0 4px 20px;border-left:2px solid var(--border-strong);
+  color:var(--text-secondary);font-style:italic;
+}
+blockquote cite{display:block;margin-top:6px;font-style:normal;font-size:13.5px;color:var(--text-muted)}
+
+/* ---------- stat tiles ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0 8px}
+@media(max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{
+  background:var(--surface-1);border:1px solid var(--border);
+  border-radius:12px;padding:16px 18px;
+}
+.stat .v{font-size:clamp(22px,2.6vw,30px);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--text-primary)}
+.stat .k{font-size:13px;color:var(--text-secondary);margin-top:6px;line-height:1.4}
+.stat .s{font-size:11.5px;color:var(--text-muted);margin-top:6px}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;margin:18px 0 22px;border:1px solid var(--border);border-radius:12px;background:var(--surface-1)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+th{
+  background:var(--surface-2);font-weight:640;font-size:12.5px;
+  letter-spacing:.03em;text-transform:uppercase;color:var(--text-muted);
+  position:sticky;top:0;
+}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--surface-2)}
+td{color:var(--text-secondary)}
+td.name,td strong{color:var(--text-primary);font-weight:600}
+.tag{
+  display:inline-block;padding:2px 8px;border-radius:6px;font-size:11.5px;
+  font-weight:650;letter-spacing:.02em;white-space:nowrap;
+}
+.tag.a{background:color-mix(in srgb,var(--series-1) 15%,transparent);color:var(--series-1)}
+.tag.b{background:color-mix(in srgb,var(--series-2) 16%,transparent);color:var(--series-2)}
+.tag.c{background:color-mix(in srgb,var(--series-3) 16%,transparent);color:var(--series-3)}
+.tag.d{background:var(--surface-3);color:var(--text-muted)}
+.tag.dead{background:color-mix(in srgb,var(--bad) 14%,transparent);color:var(--bad)}
+
+/* ---------- charts ---------- */
+figure.chart{
+  margin:24px 0 28px;padding:20px 22px;background:var(--surface-1);
+  border:1px solid var(--border);border-radius:var(--radius);
+}
+figure.chart figcaption{margin:0 0 4px;font-size:16px;font-weight:650;color:var(--text-primary)}
+figure.chart .sub{font-size:13.5px;color:var(--text-muted);margin:0 0 18px}
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar-row{display:grid;grid-template-columns:minmax(120px,26%) 1fr;gap:14px;align-items:center}
+.bar-lab{font-size:13.5px;color:var(--text-secondary);text-align:right}
+.bar-track{display:flex;align-items:center;gap:9px}
+.bar-fill{
+  height:16px;border-radius:0 4px 4px 0;
+  background:var(--series-1);transition:filter .12s ease;
+  min-width:2px;
+}
+.bar-row:hover .bar-fill{filter:brightness(1.12)}
+.bar-val{font-size:13px;font-weight:650;color:var(--text-primary);white-space:nowrap}
+.axis-note{margin-top:14px;font-size:12.5px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:10px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:16px}
+.legend span{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--text-secondary)}
+.legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+/* ---------- layers diagram ---------- */
+.layers{display:flex;flex-direction:column;gap:10px;margin:22px 0}
+.layer{
+  display:grid;grid-template-columns:44px 1fr;gap:16px;align-items:start;
+  background:var(--surface-1);border:1px solid var(--border);
+  border-radius:12px;padding:16px 18px;
+}
+.layer .n{
+  width:30px;height:30px;border-radius:8px;background:var(--surface-3);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:14px;color:var(--text-primary);
+}
+.layer h4{margin:0 0 5px}
+.layer p{margin:0;font-size:14.5px}
+
+/* ---------- idea blocks ---------- */
+.idea{
+  background:var(--surface-1);border:1px solid var(--border);
+  border-radius:var(--radius);padding:24px 26px;margin:20px 0;
+  border-top:3px solid var(--series-1);
+}
+.idea.b{border-top-color:var(--series-2)}
+.idea.c{border-top-color:var(--series-3)}
+.idea .idea-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.idea .idea-h .letter{
+  font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--text-muted);
+}
+.idea h3{margin:0 0 12px;font-size:21px}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:6px 16px;font-size:14.5px;margin-top:14px}
+.kv dt{color:var(--text-muted);font-size:13px;padding-top:1px}
+.kv dd{margin:0;color:var(--text-secondary)}
+@media(max-width:640px){.kv{grid-template-columns:1fr;gap:2px 0}.kv dd{margin-bottom:10px}}
+
+/* ---------- timeline ---------- */
+.timeline{border-left:2px solid var(--border);padding-left:24px;margin:24px 0}
+.tl-item{position:relative;margin-bottom:26px}
+.tl-item::before{
+  content:"";position:absolute;left:-31px;top:6px;width:12px;height:12px;
+  border-radius:50%;background:var(--accent);border:3px solid var(--bg);
+}
+.tl-item h4{margin:0 0 6px}
+.tl-item p{margin:0;font-size:14.5px}
+
+/* ---------- sources ---------- */
+.sources{columns:2;column-gap:34px;font-size:13.5px;line-height:1.55}
+@media(max-width:800px){.sources{columns:1}}
+.sources li{margin-bottom:8px;break-inside:avoid;color:var(--text-secondary)}
+footer{
+  margin-top:60px;padding:28px 0 60px;border-top:1px solid var(--border);
+  font-size:13px;color:var(--text-muted);
+}
+
+/* tooltip */
+#tip{
+  position:fixed;pointer-events:none;opacity:0;transition:opacity .1s;
+  background:var(--ink-hero);color:#fff;font-size:12.5px;padding:7px 10px;
+  border-radius:7px;z-index:99;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.24);
+}
+</style>
+</head>
+<body>
+
+<div id="tip"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Стратегический разбор · август 2026</p>
+    <h1>Монетизация блогеров: РСЯ, рынок, игроки и где здесь свободное место</h1>
+    <p class="lead">Полный разбор «РСЯ для блогеров», карта конкурентов в России и мире, состояние российского гейминг-инфлюенса на момент обвала беттинг-бюджетов — и три продуктовые конфигурации для агентства, у которого уже есть контроль над предложением.</p>
+    <div class="meta">
+      <span class="chip">Яндекс · РСЯ для блогеров</span>
+      <span class="chip">30+ игроков РФ и мира</span>
+      <span class="chip">12 механик к заимствованию</span>
+      <span class="chip">3 конфигурации продукта</span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#tldr">Выводы</a>
+    <a href="#rsya">РСЯ для блогеров</a>
+    <a href="#category">Категория и игроки</a>
+    <a href="#gaming">Гейминг РФ</a>
+    <a href="#mechanics">12 механик</a>
+    <a href="#graveyard">Кладбище</a>
+    <a href="#ideas">Наши идеи</a>
+    <a href="#risks">Риски</a>
+    <a href="#sources">Источники</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============ TLDR ============ -->
+<section id="tldr">
+  <div class="num">00</div>
+  <h2>Пять выводов, из которых следует всё остальное</h2>
+  <p class="section-lead">Если читать только один экран — вот он.</p>
+
+  <div class="layers">
+    <div class="layer"><div class="n">1</div><div>
+      <h4>«РСЯ для блогеров» — единственная платформа на рынке, которая не раскрывает ставку</h4>
+      <p>Вы не знаете ни размер вознаграждения за целевое действие, ни комиссию Яндекса, ни какие действия выбрал рекламодатель. Справка прямо говорит: узнать, сколько заработаешь за конкретную публикацию, невозможно. При этом маркировка и ЕРИР сняты с блогера полностью, а 3% рекламный сбор не начисляется.</p>
+    </div></div>
+    <div class="layer"><div class="n">2</div><div>
+      <h4>Дефицит на рынке партнёрок — не офферы, а эксклюзивный спрос и собственные данные</h4>
+      <p>Поэтому «агрегатор всех площадок» структурно проигрывает: он зажат в рев-шер сэндвиче, транслирует чужую атрибуцию и отключается ровно тогда, когда становится значимым. Работающая агрегация — это агрегация данных и рабочего процесса, а не инвентаря.</p>
+    </div></div>
+    <div class="layer"><div class="n">3</div><div>
+      <h4>Гарантию результата может дать только владелец инвентаря или медиабюджета</h4>
+      <p>Это не вопрос смелости, а арифметика. Upwork, Fiverr, Collabstr гарантируют платёж, но никогда результат — им нечем добирать недобор. Реальные гарантии есть только у тех, кто продаёт свой инвентарь (Paved, ТВ-сети) или имеет бюджет на амплификацию (Upswell).</p>
+    </div></div>
+    <div class="layer"><div class="n">4</div><div>
+      <h4>Российский гейминг-инфлюенс проходит через слом спроса прямо сейчас</h4>
+      <p>Беттинг давал до 95% денег топ-стримеров — с 1 января 2026 налоговая нагрузка на букмекеров выросла примерно в 60 раз, маркетинг режется на 20–30%, контракты урезаются втрое. На их место заходят китайские издатели, но покупают перформанс, а не имидж. Между этими двумя фактами — незанятое место.</p>
+    </div></div>
+    <div class="layer"><div class="n">5</div><div>
+      <h4>Все, кто пытался быть посредником без риска, лежат на кладбище</h4>
+      <p>Twitch Bounty Board умер от пустого инвентаря, Woovit — от низкого ARPU, Bidstack — от сгоревшего капитала, Spotter — от покупки прошлого. Выжили те, кто контролировал предложение или брал риск на себя.</p>
+    </div></div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ RSYA ============ -->
+<section id="rsya">
+  <div class="num">01</div>
+  <h2>«РСЯ для блогеров»: детальный разбор</h2>
+  <p class="section-lead">Партнёрская платформа Яндекса, где блогер выбирает товар или магазин из каталога рекламодателей Яндекс Директа, публикует пост со специальной ссылкой и получает вознаграждение за целевые действия покупателей в течение 21 дня после перехода.</p>
+
+  <div class="callout">
+    <div class="label">Не путать</div>
+    <p>У Яндекса два разных продукта для владельцев каналов с похожими названиями. Их регулярно смешивают в обзорах.</p>
+  </div>
+
+  <div class="tw">
+  <table>
+    <thead><tr><th>Параметр</th><th>РСЯ для блогеров</th><th>Монетизация каналов в РСЯ (мессенджеры)</th></tr></thead>
+    <tbody>
+      <tr><td class="name">Кто делает контент</td><td>Блогер сам, нейросетью или готовыми креативами бренда</td><td>Яндекс автоматически публикует через бота</td></tr>
+      <tr><td class="name">За что платят</td><td>За целевые действия (покупка, корзина)</td><td>За показы: аукцион или биржа, CPM</td></tr>
+      <tr><td class="name">Площадки</td><td>Telegram, MAX, ВКонтакте, Дзен, YouTube, Rutube</td><td>Telegram и MAX</td></tr>
+      <tr><td class="name">Контроль</td><td>Вы решаете, что и как рекламировать</td><td>Вы задаёте расписание и частоту, объявления подбирает система</td></tr>
+      <tr><td class="name">Порог входа</td><td>1 000 подписчиков</td><td>1 000 подписчиков, канал старше месяца, от 300 просмотров на пост</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:13.5px;color:var(--text-muted)">Продукты можно использовать параллельно. Всё дальнейшее — про первый.</p>
+
+  <h3>Как это работает механически</h3>
+  <div class="timeline">
+    <div class="tl-item"><h4>1. Регистрация и подтверждение прав</h4><p>Нужен Яндекс ID. Указываете адрес канала (для закрытых Telegram-каналов — ссылку на пост), подтверждаете права в разделе «Дашборд».</p></div>
+    <div class="tl-item"><h4>2. Модерация канала</h4><p>В среднем не более 6 часов. Уведомление приходит, если хотя бы один канал прошёл.</p></div>
+    <div class="tl-item"><h4>3. Тестовый период</h4><p>Начинается сразу после регистрации и длится до заключения договора, но <strong>не более одного месяца</strong>. Вознаграждение копится, но не выплачивается. Не успели заключить договор — накопленное не получите.</p></div>
+    <div class="tl-item"><h4>4. Создание поста</h4><p>Три сценария: «рекламировать товар» (алгоритм подберёт магазин в момент клика), «рекламировать магазин» (алгоритм подберёт посадочную), «подборка товаров или акций» (ссылки на конкретные страницы). Текст пишете сами, генерируете нейросетью или берёте готовый креатив бренда.</p></div>
+    <div class="tl-item"><h4>5. Публикация и добавление в кабинет</h4><p>Публикуете у себя, затем <strong>вручную добавляете ссылку на пост в «Историю постов»</strong> — до конца календарного месяца, иначе вознаграждение не начислят. Пост уходит на модерацию автоматически.</p></div>
+    <div class="tl-item"><h4>6. Учёт целевых действий</h4><p>Пользователь кликает → редирект на конкретного продавца → Яндекс Метрика на сайте магазина фиксирует его действия 21 день. Отслеживать ничего не нужно, учёт автоматический.</p></div>
+  </div>
+
+  <h3>Требования и допуск</h3>
+  <div class="grid g2">
+    <div class="card">
+      <h4>К каналу</h4>
+      <ul>
+        <li>от 1 000 подписчиков</li>
+        <li>площадка: VK, Rutube, Telegram, MAX, YouTube, Дзен</li>
+        <li>прямая постоянная ссылка (для закрытых TG — ссылка на пост)</li>
+        <li>последняя публикация не старше месяца</li>
+        <li>не менее 100 просмотров на постах старше 48 часов</li>
+        <li>живая вовлечённость: реакции, комментарии, репосты</li>
+        <li>каналы от 10 000 подписчиков — в реестре РКН</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>К партнёру</h4>
+      <ul>
+        <li>только резиденты РФ</li>
+        <li>юрлицо, ИП или самозанятый — физлица не принимаются</li>
+        <li>при превышении 2,4 млн ₽ годового дохода самозанятый автоматически теряет статус, договор может быть расторгнут</li>
+      </ul>
+      <h4>Запрещённые источники трафика</h4>
+      <ul>
+        <li>любые сайты</li>
+        <li>ресурсы Meta: Instagram, Facebook, WhatsApp</li>
+        <li>каналы иноагентов и чужие каналы</li>
+        <li>мотивированный трафик, рассылки, спам</li>
+        <li>контент для взрослых</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="label">Запрещённые тематики канала</div>
+    <p>Криптовалюты, казино, букмекерство, ставки и азартные игры (включая выигрыш неденежным имуществом — например, предметами в онлайн-играх); астрология и эзотерика; ЧП, катастрофы и ДТП; шок-контент; способы заработка в сети; кешбэк-сервисы; каналы преимущественно с объявлениями, вакансиями, новостями и б/у товарами; военная, политическая, религиозная и остросоциальная тематика.</p>
+    <p style="margin-top:10px"><strong>Для гейминг-каналов это критично:</strong> формулировка про «выигрыш в виде неденежного имущества, например товаров в онлайн-играх» напрямую задевает лутбокс- и кейс-контент, а соседство с беттингом отсекает значительную часть киберспортивной аудитории.</p>
+  </div>
+
+  <h3>Деньги: как считается и как выплачивается</h3>
+  <div class="grid g3">
+    <div class="stat"><div class="v">21 день</div><div class="k">окно учёта целевых действий после перехода</div><div class="s">≈половина действий — в день клика</div></div>
+    <div class="stat"><div class="v">3 000 ₽</div><div class="k">минимальная сумма выплаты</div><div class="s">меньше — переносится на следующий месяц</div></div>
+    <div class="stat"><div class="v">после 20-го</div><div class="k">выплата за прошлый месяц</div><div class="s">на счёт из анкеты</div></div>
+  </div>
+
+  <ul>
+    <li><strong>Ставка неизвестна заранее и в принципе непознаваема.</strong> Стоимость целевого действия зависит от типа действия, посадочной страницы, характеристик пользователя. Справка: «узнать, за какие целевые действия вы получите вознаграждение и их стоимость — невозможно».</li>
+    <li><strong>Комиссия Яндекса не раскрывается</strong> нигде.</li>
+    <li><strong>Подписчики и клики не учитываются при начислении вообще</strong> — только целевые действия.</li>
+    <li><strong>Антифрод пересчитывает данные несколько дней</strong>, статистика может уменьшаться задним числом.</li>
+    <li><strong>Налоги:</strong> самозанятый платит 6% сам через «Мой налог», РСЯ не удерживает. Новый <strong>3% сбор с интернет-рекламы не начисляется</strong> — договора с рекламодателем у блогера нет.</li>
+    <li><strong>Реферальная программа:</strong> 500 ₽ за первый промодерированный пост реферала + 15% от его вознаграждения в следующие 90 дней, при условии заключения им договора.</li>
+  </ul>
+
+  <div class="callout good">
+    <div class="label">Позиционирование Яндекса</div>
+    <p>Официально РСЯ для блогеров <em>не</em> CPA-сеть. Заявленные отличия: вознаграждение за быстрые действия (покупка, корзина), а не после доставки и окончания срока возврата; статистику фиксирует Яндекс Метрика, а не сам рекламодатель, поэтому нет долгой сверки заказов и спорных ситуаций.</p>
+  </div>
+
+  <h3>Сильные стороны</h3>
+  <div class="grid g2">
+    <div class="card"><h4>Маркировка и ОРД целиком на Яндексе</h4><p>Токены, ЕРИР, акты, статистика — автоматически. От блогера только фраза «Реклама. Информация о рекламодателе по ссылке», которую можно нанести на изображение автоматически. Это снимает главный юридический риск российского рынка.</p></div>
+    <div class="card"><h4>Нет холда и сверки</h4><p>Считает Метрика, результат виден на следующий день. У TikTok Shop — 15–31 день и отзыв комиссии при возврате, у Amazon — около 60 дней, у CPA-сетей — сверка с рекламодателем.</p></div>
+    <div class="card"><h4>Целевым действием может быть корзина</h4><p>Практически уникально: почти везде платят строго за оплаченный, а часто и доставленный заказ.</p></div>
+    <div class="card"><h4>Мультиплатформенность в одном кабинете</h4><p>Telegram + MAX + VK + Дзен + YouTube + Rutube одновременно. Такой связки для мессенджеров нет ни у одного западного игрока.</p></div>
+    <div class="card"><h4>Каталог всех рекламодателей Директа</h4><p>Более сотни тысяч предложений, а не ассортимент одного магазина.</p></div>
+    <div class="card"><h4>Масштаб уже не пилотный</h4><p>За первый год: 600+ тыс. рекламных постов, 32+ млн кликов, около 50 авторов заработали более 1 млн ₽ каждый в первые месяцы.</p></div>
+  </div>
+
+  <h3>Слабые стороны</h3>
+  <div class="grid g2">
+    <div class="card"><h4>Полная непрозрачность экономики</h4><p>Ни ставки, ни доли платформы, ни набора целевых действий. Планировать доход нельзя — только считать постфактум.</p></div>
+    <div class="card"><h4>Весь риск на блогере</h4><p>Рекламодатель платит за результат и ничем не рискует. Блогер тратит пост — дефицитный ресурс рекламной ёмкости канала — без гарантии заработать хоть что-то.</p></div>
+    <div class="card"><h4>Каннибализация прямых продаж</h4><p>Прямая интеграция даёт предсказуемые деньги. Тот же слот здесь может дать 0 ₽. Логика применения — заполнять пустые слоты, а не заменять прямые сделки.</p></div>
+    <div class="card"><h4>Атрибуция чужая и непроверяемая</h4><p>Метрика стоит у рекламодателя, антифрод у Яндекса. Проверить корректность начислений нельзя в принципе.</p></div>
+    <div class="card"><h4>Ручная рутина и дедлайн</h4><p>Каждый пост надо самому добавить ссылкой в кабинет до конца календарного месяца.</p></div>
+    <div class="card"><h4>Ловушка тестового периода</h4><p>Месяц на заключение договора, иначе накопленное вознаграждение не выплачивается.</p></div>
+    <div class="card"><h4>Жёсткие требования к контенту</h4><p>Только русский язык, строгая грамматика, запрет на негатив о брендах, «нередактируемые» креативы у части брендов, длинный список запрещённых категорий.</p></div>
+    <div class="card"><h4>Разрыв в воронке</h4><p>У TikTok Shop и Douyin покупка происходит там же, где просмотр. Здесь — переход из мессенджера на внешний сайт, и конверсия падает на порядок. Яндекс не может это закрыть, не имея маркетплейса в связке.</p></div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ CATEGORY ============ -->
+<section id="category">
+  <div class="num">02</div>
+  <h2>Категория и игроки</h2>
+  <p class="section-lead">«Платят блогеру за результат» — это на самом деле четыре разных бизнеса с разной экономикой и разной защищённостью. Путать их дорого.</p>
+
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:52px">Тип</th><th>За что платят</th><th>Кто знает ставку заранее</th><th>Примеры</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag a">A</span></td><td class="name">Слепой перфоманс-нетворк — за конверсию, оффер подбирает алгоритм</td><td><strong>Никто</strong></td><td>РСЯ для блогеров, Skimlinks / Sovrn</td></tr>
+      <tr><td><span class="tag b">B</span></td><td class="name">Партнёрка магазина или маркетплейса — % от заказа</td><td>Блогер: ставка по категории публична</td><td>Ozon Blogger, Amazon, TikTok Shop, Taobao</td></tr>
+      <tr><td><span class="tag c">C</span></td><td class="name">CPA-сеть или инфлюенс-платформа — за действие по выбранному офферу</td><td>Блогер</td><td>Perfluence, Admitad, LTK, ShopMy</td></tr>
+      <tr><td><span class="tag d">D</span></td><td class="name">Монетизация площадки — за показы и просмотры</td><td>Площадка (CPM)</td><td>РСЯ-мессенджеры, VK Видео, Telegram, Дзен</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>РСЯ для блогеров формально относится к типу A, а продаётся как тип B. Отсюда весь разрыв ожиданий.</p>
+
+  <h3>Россия</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Игрок</th><th>Модель</th><th>Ставка / условия</th><th>Порог</th><th>Комментарий</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="name">Ozon Blogger</td><td><span class="tag b">B</span></td>
+        <td>По категориям: электроника до ~15%, одежда и обувь до ~30%, косметика и товары для дома до ~50%. Выплаты дважды в месяц</td>
+        <td>Порога по подписчикам <strong>нет</strong>; нужен статус самозанятого</td>
+        <td>Самый прямой конкурент. Запущен в мае 2026 в Telegram, затем VK и MAX. Ставка известна заранее — но только ассортимент Ozon</td>
+      </tr>
+      <tr>
+        <td class="name">Яндекс Маркет</td><td><span class="tag b">B</span> + <span class="tag d">D</span></td>
+        <td>До 25% с заказов, в акции 30–40%; гибрид с оплатой за клики; бонусы за подключение 3–10 тыс. ₽ по размеру аудитории</td>
+        <td>—</td>
+        <td>Внутренний конкурент собственному продукту Яндекса, но с прозрачной ставкой и оплатой трафика</td>
+      </tr>
+      <tr>
+        <td class="name">Wildberries / Wibes</td><td><span class="tag b">B</span></td>
+        <td>~5% от оплаченного товара, только CPO, товар не должен быть возвращён 14 дней</td>
+        <td>—</td>
+        <td>Ориентирован на контент внутри экосистемы WB. Для внешнего блогера экономика почти не сходится</td>
+      </tr>
+      <tr>
+        <td class="name">Perfluence</td><td><span class="tag c">C</span></td>
+        <td><strong>Четыре модели на выбор:</strong> CPP (за публикацию), CPC, CPA, RevShare. Минимальные бюджеты рекламодателя: 1 млн ₽ за посты, 500 тыс. ₽ за CPA</td>
+        <td>1 000 подписчиков</td>
+        <td>~499 тыс. блогеров, 23,1 млн целевых действий. Главный содержательный конкурент: та же автоматизация комплаенса, но выбор офферов и модели оплаты остаётся за блогером</td>
+      </tr>
+      <tr>
+        <td class="name">BidFox</td><td><span class="tag d">D</span></td>
+        <td>Оплата только за фактически полученный охват, <strong>автоматический возврат при недоборе</strong>, аукцион с динамическим ценообразованием</td>
+        <td>—</td>
+        <td>Telegram, VK, OK, MAX. Ближайший российский аналог «guaranteed views». Платформа сама отправляет пост, сама маркирует</td>
+      </tr>
+      <tr>
+        <td class="name">Telega.in</td><td><span class="tag d">D</span></td>
+        <td>Комиссия 20%, минимальный бюджет кампании 1 000 ₽, автомаркировка</td>
+        <td>—</td>
+        <td>30 000+ каналов. Владелец канала может отказаться в течение 24 часов — гарантии по составу нет</td>
+      </tr>
+      <tr>
+        <td class="name">Epicstars</td><td><span class="tag c">C</span></td>
+        <td>Эскроу EpicSafe: заморозка средств до приёмки, 5 рабочих дней на проверку, дальше авто-приёмка. Пополнение 3,5–6%, вывод 7%. Маркировка бесплатно</td>
+        <td>—</td>
+        <td>Лучшая в РФ реализация симметричной защиты обеих сторон</td>
+      </tr>
+      <tr>
+        <td class="name">Admitad, ePN, CityAds</td><td><span class="tag c">C</span></td>
+        <td>Ставки публичны, тысячи офферов</td>
+        <td>—</td>
+        <td>Длинный холд, сверка на стороне рекламодателя, маркировка и ЕРИР на блогере</td>
+      </tr>
+      <tr>
+        <td class="name">Uplify</td><td><span class="tag d">D</span></td>
+        <td>CPM / CPV / фикс. <strong>Минимальный бюджет 1 000 000 ₽</strong></td>
+        <td>—</td>
+        <td>3 500 стримеров, 60 брендов, 491 кампания. Клиенты: Ozon, МТС, Сбер, Яндекс, Samsung. Агентский слой для крупных, не платформа для креаторов</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout">
+    <div class="label">Что важно заметить</div>
+    <p>Все российские товарные платформы упираются в один потолок: они платят процент с покупки — это 3–15%, редко больше. Вертикали, где за <em>лид</em> платят 500–3 000 ₽ и больше — финтех, страхование, образование, подписки, недвижимость, авто, B2B SaaS — блогерской платформы с автомаркировкой и понятной ставкой не имеют вовсе. Причина техническая: модель Яндекса и Ozon завязана на каталог товаров и Метрику на сайте магазина, лидогенерация требует другой архитектуры.</p>
+  </div>
+
+  <h3>Мир</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Игрок</th><th>Комиссия</th><th>Окно атрибуции</th><th>Выплаты</th><th>Порог</th></tr></thead>
+    <tbody>
+      <tr><td class="name">TikTok Shop Affiliate</td><td>средняя ~13% в США; продавец задаёт 1–80%. Бьюти 15–30%, фэшн 10–20%, электроника 5–13%</td><td>last-click</td><td>≈15 дней после доставки (у новых продавцов до 31); при возврате комиссия отзывается</td><td>по статусу креатора</td></tr>
+      <tr><td class="name">LTK</td><td>10–30%</td><td>1–3 недели по бренду</td><td>ежемесячно</td><td>нет минимума с 2024</td></tr>
+      <tr><td class="name">ShopMy</td><td>5–25%, до 30% у топов; удерживает ~15%</td><td>по бренду</td><td><strong>еженедельно</strong></td><td>1K+, по заявке</td></tr>
+      <tr><td class="name">Mavely</td><td>до 30%</td><td>24 часа</td><td>по площадке</td><td>1K+, по заявке</td></tr>
+      <tr><td class="name">Amazon Influencer</td><td>1–10% по категориям + 1–5% бонус за shoppable-видео. Отдельно Creator Connections: $100–500 за пост на 1–10 тыс. подписчиков, $3 500+ на 250 тыс.+</td><td>24 часа</td><td>≈60 дней после конца месяца</td><td>1 000+ подписчиков, storefront-квалификация</td></tr>
+      <tr><td class="name">Skimlinks / Sovrn</td><td>не раскрывается</td><td>по сети</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p><strong>Skimlinks / Sovrn Commerce</strong> — структурно самый близкий аналог РСЯ для блогеров: скрипт автоматически превращает обычные ссылки в партнёрские и в момент клика выбирает мерчанта с лучшей доходностью из 50 000+. Издатель, как и в РСЯ, не знает заранее, сколько получит с клика. Разница — это инструмент для сайтов и медиа, а не для мессенджер-каналов. Повторить его с нуля нельзя: он выжил на масштабе миллиардов кликов и десятилетии интеграций.</p>
+  <p>Азия — где модель зрелее всего: <strong>Taobao Alliance / Alimama</strong> и <strong>JD Union</strong> (экосистема «таокэ», фактически изобретшая массовую блогерскую CPA), <strong>Douyin</strong> и <strong>Xiaohongshu</strong> со встроенным affiliate прямо в рекомендательной ленте, <strong>Coupang Partners</strong> в Корее, <strong>Shopee Affiliate</strong> и <strong>LazAffiliate</strong> в SEA (Lazada вложила $100 млн в creator commerce в 2025).</p>
+
+  <h3>Гейминг-вертикаль: мировые игроки</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Игрок</th><th>Что делает</th><th>Модель оплаты креатору</th><th>Масштаб</th></tr></thead>
+    <tbody>
+      <tr><td class="name">Gamesight</td><td>Атрибуция креаторских кампаний для PC и консолей. Водопад из 7 методов, фингерпринт с точностью 90% PC / 83% консоли, дуальный реферальный код</td><td>не платит креаторам — измеряет</td><td>1,1 млрд дата-поинтов в день, база на 129+ млн креаторов</td></tr>
+      <tr><td class="name">StreamElements</td><td>Крупнейшая перформанс-сеть спонсорств. SideSpons — мультиспонсорская карусель</td><td>чистый перформанс: платят только при конверсии</td><td>~90% спонсорского контента на Twitch, 272 млн отслеженных конверсий, средний 3× ROAS</td></tr>
+      <tr><td class="name">Streamlabs Sponsorships</td><td>Кампании внутри Streamlabs Desktop с готовыми виджетами и командами Cloudbot</td><td><strong>гарантированная база + бонус за конверсии, 0% комиссии, 100% бюджета креатору</strong></td><td>запуск июнь 2025, порогов по фолловерам нет</td></tr>
+      <tr><td class="name">inStreamly</td><td>AI-триггер брендированного оверлея по игровому событию, мимике стримера, чату, времени суток</td><td>за смотрибельность, не за конверсии; порог вывода ~€20</td><td>150 000+ стримеров, 488 брендов, 15 стран; крупнейшая кампания — 2 000+ стримеров одновременно</td></tr>
+      <tr><td class="name">Powerspike</td><td>Self-serve закупка, ночные аукционы матчинга, окно 48 часов на акцепт, сентимент-анализ чата как brand safety</td><td>«fair market rate», оформлен как ежемесячно повторяющийся баунти</td><td>примерно 1 из 6 топовых креаторов</td></tr>
+      <tr><td class="name">Matchmade</td><td>Перформанс-маркетинг для игр: разработчик задаёт тиры CPI, платформа подбирает креаторов</td><td>CPI с коррекцией на органический аплифт</td><td>честно признаёт: по ссылкам приходит лишь ¼–⅓ реальных инсталлов</td></tr>
+      <tr><td class="name">Lurkit</td><td>Раздача ключей + платные кампании. Аукцион ставок от креаторов, эскроу через Stripe до приёмки контента</td><td>креатор сам выставляет цену, торг в чате</td><td>~100 000 креаторов; подписка от $89/мес</td></tr>
+      <tr><td class="name">Keymailer / Partnier</td><td>Раздача ключей, CRM, антифрод, Press Portal, сеть плейтестеров</td><td>бартер ключами</td><td>55 000+ инфлюенсеров, 2 400+ пресс-аутлетов</td></tr>
+      <tr><td class="name">Anzu / Frameplay</td><td>In-game реклама. Ray-casting для проверки реальной видимости в 3D; Frameplay отдал атрибуцию независимому MMP Kochava</td><td>CPM разработчику игры</td><td>Anzu: IVT 0,16% mobile / 0,47% PC по верификации HUMAN</td></tr>
+      <tr><td class="name">Nitro (Overwolf)</td><td>Веб-сеть для игровых сайтов</td><td><strong>Net-7 выплаты</strong> при индустриальном стандарте Net-60/90</td><td>500+ премиальных сайтов; куплен Overwolf за 8-значную сумму</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ GAMING RU ============ -->
+<section id="gaming">
+  <div class="num">03</div>
+  <h2>Российский гейминг: рынок в момент слома</h2>
+  <p class="section-lead">Срез на август 2026. Рынок проходит через самое жёсткое переустройство с 2022 года: одновременно схлопывается беттинг, ломается платёжная инфраструктура Twitch и вводится тройной регуляторный пресс.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="v">187 млрд ₽</div><div class="k">игровой рынок РФ, 2024 (+6,1%)</div><div class="s">прогноз ~257 млрд к 2030</div></div>
+    <div class="stat"><div class="v">~89 млн</div><div class="k">играют, 61% населения</div><div class="s">27% — ежедневно, в среднем 2,5 ч/день</div></div>
+    <div class="stat"><div class="v">~42 млн</div><div class="k">интересуются киберспортом (28,9%)</div><div class="s">ядро 25–34 года</div></div>
+    <div class="stat"><div class="v">57–60 млрд ₽</div><div class="k">весь рынок инфлюенс-маркетинга РФ</div><div class="s">гейминг-сегмент — порядка 1–3 млрд</div></div>
+  </div>
+
+  <figure class="chart">
+    <figcaption>Кто покупал рекламу на русском Twitch</figcaption>
+    <p class="sub">Число рекламных упоминаний по категориям. Восемь букмекеров дают больше интеграций, чем все остальные категории вместе.</p>
+    <div class="bars" id="chart-adv">
+      <div class="bar-row" data-tip="8 рекламодателей · 986 упоминаний"><div class="bar-lab">Беттинг</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--series-2)"></div><span class="bar-val">986</span></div></div>
+      <div class="bar-row" data-tip="23 рекламодателя · 327 упоминаний"><div class="bar-lab">Онлайн-казино</div><div class="bar-track"><div class="bar-fill" style="width:33.2%"></div><span class="bar-val">327</span></div></div>
+      <div class="bar-row" data-tip="19 рекламодателей · 280 упоминаний"><div class="bar-lab">Видеоигры</div><div class="bar-track"><div class="bar-fill" style="width:28.4%"></div><span class="bar-val">280</span></div></div>
+      <div class="bar-row" data-tip="8 рекламодателей · 167 упоминаний"><div class="bar-lab">Лутбоксы и кейсы</div><div class="bar-track"><div class="bar-fill" style="width:16.9%"></div><span class="bar-val">167</span></div></div>
+      <div class="bar-row" data-tip="8 рекламодателей · 81 упоминание"><div class="bar-lab">Компьютерная техника</div><div class="bar-track"><div class="bar-fill" style="width:8.2%"></div><span class="bar-val">81</span></div></div>
+    </div>
+    <p class="axis-note">Источник: замер Ассоциации блогеров и агентств (122 рекламодателя, 28 категорий). Структурный ориентир, не текущий срез. Топ-бренды по числу интеграций: Winline — 491, BetBoom — 310, Tornado Energy — 153.</p>
+  </figure>
+
+  <figure class="chart">
+    <figcaption>Сколько площадки заплатили авторам за 2025 год</figcaption>
+    <p class="sub">Платит та площадка, где нет лайв-гейминг-аудитории. Там, где она есть, платить нечем.</p>
+    <div class="bars">
+      <div class="bar-row" data-tip="VK Видео: 400 000 авторов, гейминг-авторы +93%"><div class="bar-lab">VK Видео</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div><span class="bar-val">3 млрд ₽</span></div></div>
+      <div class="bar-row" data-tip="Rutube: 240 000 блогеров, MAU 80,6 млн"><div class="bar-lab">Rutube</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--series-3)"></div><span class="bar-val">1,5 млрд ₽</span></div></div>
+      <div class="bar-row" data-tip="Buster: 568 млн минут просмотра, средний онлайн 27 180"><div class="bar-lab">Twitch, топ-1 РФ<br><span style="font-size:11.5px;color:var(--text-muted)">за 7,5 мес. 2026</span></div><div class="bar-track"><div class="bar-fill" style="width:0.5%;background:var(--series-2)"></div><span class="bar-val">≈456 тыс. ₽ — и не выводятся</span></div></div>
+    </div>
+    <p class="axis-note">Шкала общая. VK Видео и Rutube — суммарные выплаты всем авторам; Twitch — заработок одного топ-1 стримера страны на официальных инструментах платформы, который он не может вывести из-за санкций.</p>
+  </figure>
+
+  <h3>Спрос: кто платит и сколько</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Формат</th><th>Цена</th></tr></thead>
+    <tbody>
+      <tr><td class="name">Средняя стандартная интеграция на Twitch (голосовая + чат-бот + плашка)</td><td><strong>≈40 300 ₽</strong></td></tr>
+      <tr><td class="name">Плашка / баннер под стримом</td><td>30 000–100 000 ₽</td></tr>
+      <tr><td class="name">Спонсорский стрим</td><td>от 50 000 ₽; у топ-10 — более 1 000 000 ₽</td></tr>
+      <tr><td class="name">Баннер у Buster</td><td><strong>2 000 000 ₽ / мес</strong> (до 16 баннеров одновременно)</td></tr>
+      <tr><td class="name">Нано (&lt;10k) / микро (10–100k) / макро (100k–1M) / мега (1M+)</td><td>1–5 тыс. / 5–15 тыс. / 15 тыс.–1 млн / от 1 млн ₽</td></tr>
+      <tr><td class="name">YouTube-интеграция у миллионника</td><td>до 3 млн ₽ и выше</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout bad">
+    <div class="label">Что говорят на рынке</div>
+    <blockquote>Буки — это 95% денег. На следующий квартал, начиная с января 2026 года, бюджеты как порезали. Их просто нет.<cite>Мэддисон</cite></blockquote>
+    <blockquote>Намекнули, что новый контракт урежут почти в три раза. Доход моей команды падает пропорционально моему.<cite>by_Owl</cite></blockquote>
+    <blockquote>Реклама приносит, естественно, но не так сильно, как раньше. Сейчас реально тяжёлое время.<cite>Cheatbanned</cite></blockquote>
+  </div>
+
+  <h3>Новый спрос: китайские издатели</h3>
+  <ul>
+    <li><strong>VK Ads: 2,5 млрд ₽ от китайских рекламодателей за первое полугодие 2026</strong>, число рекламодателей +62%, бюджеты на игры ×2,7, видеоформаты ×7</li>
+    <li><strong>RuStore:</strong> зарубежные издатели утроили расходы, более 400 млн ₽ за первое полугодие; Китай — 76% иностранных бюджетов</li>
+    <li>Яндекс: инвестиции китайских рекламодателей выросли более чем вдвое</li>
+  </ul>
+  <p>Ключевое: это <strong>перформанс-деньги</strong>. Они уходят в VK Ads и RuStore, где есть готовая атрибуция, а не в баннеры на стримах. Чтобы они пришли в стримы, стрим должен начать считаться.</p>
+
+  <h3>Партнёрки российских издателей: структурная дыра</h3>
+  <div class="tw">
+  <table>
+    <thead><tr><th>Издатель</th><th>Что платит креатору</th></tr></thead>
+    <tbody>
+      <tr><td class="name">Мир танков (Lesta)</td><td>Единственная прозрачная денежная CPA: регистрация 0 ₽, первый бой 92 ₽, второе действие 162 ₽, возврат ушедшего игрока 23 ₽. <strong>Потолок 254 ₽ с игрока.</strong> Cookie 30 дней, RU/BY, только десктоп</td></tr>
+      <tr><td class="name">Astrum Entertainment</td><td>Программа лояльности, не аффилиат: 4 000–15 000 кристаллов в месяц по уровням, пин-коды, роли в Discord. Денежных ставок нет</td></tr>
+      <tr><td class="name">Gaijin (War Thunder)</td><td>Бартер: игровая валюта, техника, ранний доступ, велком-пак 10 000 Золотых Орлов. Revenue Share есть, но для UGC-контента, а не для блогеров</td></tr>
+      <tr><td class="name">Мобильные издатели</td><td>Публичных ставок нет — закупка через RuStore Ads / VK Ads по CPI-аукциону</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout warn">
+    <p><strong>Rev-share с платежей приведённых игроков не предлагает ни один крупный российский издатель.</strong> Стример не может построить предсказуемый пассивный доход на играх, которые он и так стримит. Промежуточного слоя между «CPA для арбитражников» и «бартер для блогеров» не существует.</p>
+  </div>
+
+  <h3>Регуляторика: почему средний сегмент вымывается</h3>
+  <div class="grid g2">
+    <div class="card">
+      <h4>Маркировка живого эфира технически не решена</h4>
+      <ul>
+        <li>erid нельзя корректно вшить в лайв; для неперезаливаемых трансляций закон предлагает костыль — реквизиты в описании после эфира</li>
+        <li>оверлей висит 8 часов на 30 тыс. зрителей: это один креатив или тысяча показов — однозначного ответа нет</li>
+        <li>VOD и клипы порождают «вечную отчётность»: галочку «нативная реклама», позволявшую отчитаться один раз, убрали в апреле 2025</li>
+        <li>Twitch — иностранная площадка без ОРД-интеграции</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Цена ошибки</h4>
+      <ul>
+        <li>нет / неверный erid: физлицо <strong>30 000–100 000 ₽</strong>, юрлицо 200 000–500 000 ₽</li>
+        <li>непередача данных в ЕРИР: 10 000–30 000 ₽ / 200 000–500 000 ₽</li>
+        <li>нет пометки «Реклама»: 2 000–2 500 ₽ / 100 000–500 000 ₽</li>
+        <li><strong>штрафы суммируются по каждому размещению</strong>; контролируют РКН, ФАС и ФНС</li>
+        <li>реклама на незарегистрированном канале от 10 тыс. подписчиков — до 500 000 ₽ для крупного бизнеса</li>
+        <li>3% рекламный сбор с 1 апреля 2025 — платит в том числе сам стример как распространитель</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Десять самых острых незакрытых болей</h3>
+  <ol>
+    <li><strong>Беттинг-обвал без замены спроса.</strong> До 95% денег топ-стримеров шли от букмекеров; нагрузка выросла примерно в 60 раз, маркетинг режется на 20–30%. Лаг замещения — минимум 12–18 месяцев.</li>
+    <li><strong>Платформенная монетизация Twitch мертва, замены под лайв нет.</strong> Обходные пути вывода съедают 20–30%. VK Видео платит хорошо, но лайв-гейминг-аудитория туда не перенеслась.</li>
+    <li><strong>Маркировка живых эфиров не решена ни методически, ни технически.</strong></li>
+    <li><strong>Регуляторная нагрузка съедает средний сегмент.</strong> При медианной интеграции ~40 300 ₽ и сумме издержек (3% сбор + налог + 10–12% донат-сервису + комиссия агентства + обязательный статус самозанятого) ниша 10–50 тыс. подписчиков нерентабельна. Одновременно минимальный бюджет Uplify — 1 млн ₽, что отрезает малый и средний спрос.</li>
+    <li><strong>Нет денежных affiliate-программ у российских издателей.</strong></li>
+    <li><strong>Кризис доверия к метрикам.</strong> Эксперимент Мэддисона с 200 000+ накрученного онлайна; признание Guacamolemolly, что «70% стримеров на этом делают бизнес». Независимого верификатора охватов лайва нет.</li>
+    <li><strong>87% креаторов сталкиваются с проблемами оплаты.</strong> Нет эскроу, нет индустриального шаблона договора. Талант-хабы покрывают по 17–30 человек — 99% ведут переговоры в одиночку.</li>
+    <li><strong>Реестр РКН создаёт серую зону.</strong> ~300 тыс. поданных заявок против 168 тыс. внесённых аккаунтов. Рекламодателю проще отказаться от гейминг-канала, чем проверять.</li>
+    <li><strong>Требования к рекламе беттинга с 01.09.2026 неисполнимы в лайве.</strong> Предупреждение ≥7% площади, QR на «инвестиционную альтернативу», 5-секундные дисклеймеры — всё описано под ТВ и сайт.</li>
+    <li><strong>Гейминг как канал не доказал acquisition-эффективность.</strong> Эталонный кейс DNS × Team Unique: 47 млн показов, 2 500+ конверсий — но <strong>лишь 20% новой аудитории</strong>. Канал работает на лояльность, не на привлечение. Пока нет отраслевой методики атрибуции, это имиджевая строка бюджета, которую режут первой.</li>
+  </ol>
+</section>
+
+<hr class="sep">
+
+<!-- ============ MECHANICS ============ -->
+<section id="mechanics">
+  <div class="num">04</div>
+  <h2>Двенадцать механик, которые стоит забрать</h2>
+  <p class="section-lead">Отобрано из мировой практики по двум критериям: реально применимо в РФ и в России этого нет.</p>
+
+  <div class="tw">
+  <table>
+    <thead><tr><th style="width:34px">#</th><th>Механика</th><th>Откуда</th><th>Зачем</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td class="name">Дуальный реферальный код: и кликабельная ссылка, и код для ручного ввода — сводятся в одну атрибуцию</td><td>Gamesight</td><td>Закрывает главную дыру лайва: зритель не кликает во время стрима, он запоминает код и вводит позже</td></tr>
+      <tr><td>2</td><td class="name">Атрибуционный водопад из 7 методов с фингерпринтом как легитимным fallback</td><td>Gamesight</td><td>На PC и консолях нет IDFA. Точность 90% / 83%. Плюс приём: внутренние сайтовые трекеры принудительно депроритизируются, чтобы органика не крала кредит у кампании</td></tr>
+      <tr><td>3</td><td class="name">Коэффициент органического аплифта поверх трекинга</td><td>Matchmade</td><td>По ссылкам приходит лишь ¼–⅓ реальных инсталлов. Без коррекции CPA-сделка всегда несправедлива к стримеру</td></tr>
+      <tr><td>4</td><td class="name">Прорационная выплата: не добрал целевой CCV — получил часть, а не ноль</td><td>Twitch Bounty Board</td><td>Лучший из существующих компромиссов по риску. Снимает главный страх стримера «стрим не зашёл — работал бесплатно»</td></tr>
+      <tr><td>5</td><td class="name">Гарантированная база + бонус за конверсии, 0% комиссии, 100% бюджета креатору</td><td>Streamlabs</td><td>Прямая атака на чистый перформанс. Забирает предложение у конкурентов</td></tr>
+      <tr><td>6</td><td class="name">Make-good вместо возврата денег, с количественными триггерами</td><td>Paved + ТВ-апфронты (ADU)</td><td>Себестоимость доп. инвентаря всегда ниже номинала. Единственный способ дать гарантию, не убив маржу. Качество make-good-инвентаря обязательно прописывать в договоре</td></tr>
+      <tr><td>7</td><td class="name">Апфронт: годовое обязательство → CPM на 20–40% ниже спота + права отмены 30–50% квартала за 30–60 дней</td><td>ТВ-апфронты</td><td>Превращает разовые сделки в контрактуемый спрос. В российском инфлюенсе этого нет вообще</td></tr>
+      <tr><td>8</td><td class="name">AI-триггер оверлея по игровому событию, мимике стримера, чату</td><td>inStreamly</td><td>100% защита от адблоков (их ставит ~66% Gen Z) и 100% view-through. Единственный формат, который физически нельзя заблокировать</td></tr>
+      <tr><td>9</td><td class="name">Мультиспонсорская карусель — зритель сам выбирает бренд</td><td>StreamElements SideSpons</td><td>Ломает правило «один стрим = один спонсор», кратно поднимает fill rate long tail</td></tr>
+      <tr><td>10</td><td class="name">Эскроу с двусторонними таймаутами: 72 ч блогеру на принятие, 5 рабочих дней рекламодателю на приёмку, дальше авто-приёмка</td><td>Epicstars + Upwork</td><td>Защищает обе стороны. Главное правило дословно: не профинансирован милстоун — защиты нет</td></tr>
+      <tr><td>11</td><td class="name">Транширование: 10–15% при подписании / 35–40% при сдаче / 25–30% при публикации / остаток после окна измерения</td><td>индустриальный стандарт 2026</td><td>Единственная схема, где интересы синхронны: у стримера деньги на продакшн заранее, у бренда рычаг на публикацию</td></tr>
+      <tr><td>12</td><td class="name">Ранняя оплата, фондируемая самим рекламодателем (dynamic discounting, не факторинг)</td><td>Lumanu</td><td>Стример забирает деньги сразу с дисконтом, рекламодатель получает доходность на своём кэше, платформа не берёт кредитного риска вообще</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="callout warn">
+    <div class="label">Три предупреждения из того же исследования</div>
+    <ul style="margin-bottom:0">
+      <li><strong>Не покупайте бэк-каталог.</strong> Spotter вложил $940 млн в 735 каналов и в 2025 ушёл в сокращения; Jellysmack свернул программу. Алгоритмические ленты обесценивают старый контент быстрее любой модели.</li>
+      <li><strong>Не платите за эксклюзив.</strong> Гарантированные контракты Mixer и Kick мертвы. Дэн Клэнси: «идея "я подпишу большой контракт, и все зрители перейдут" не работает». Аудитория не мигрирует за креатором.</li>
+      <li><strong>Не стройте биржу неликвидного актива.</strong> Pipe при оценке $2 млрд не собрал ликвидность и развернулся в embedded capital.</li>
+    </ul>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ GRAVEYARD ============ -->
+<section id="graveyard">
+  <div class="num">05</div>
+  <h2>Кладбище: чему учат провалы</h2>
+  <p class="section-lead">Все они умерли от одного и того же — от отсутствия контроля над предложением или от попытки быть посредником без риска.</p>
+
+  <div class="tw">
+  <table>
+    <thead><tr><th>Игрок</th><th>Что случилось</th><th>Урок</th></tr></thead>
+    <tbody>
+      <tr><td class="name">Twitch Bounty Board <span class="tag dead">закрыт</span></td><td>2018 → декабрь 2025, свёрнут в Sponsorship Dashboard. «99% людей в 99,9% случаев видели Nothing Available»</td><td>Маркетплейс умирает от пустого инвентаря, а не от плохого продукта. Twitch не смог продать спрос и отдал слой StreamElements</td></tr>
+      <tr><td class="name">Woovit <span class="tag dead">закрыт</span></td><td>Закрылся 20 декабря 2024 после 7 лет работы</td><td>Раздача ключей как самостоятельный бизнес не кормит: ARPU $59–199/мес не окупает поддержку</td></tr>
+      <tr><td class="name">Bidstack <span class="tag dead">банкротство</span></td><td>Администрация март 2024, −98% за пять лет, обзвонили ~200 покупателей — ни одного оффера. Скандальный выкуп менеджментом из банкротства</td><td>In-game ad network сжигает капитал быстрее, чем растёт брендовый спрос. Технология была, юнит-экономики не было</td></tr>
+      <tr><td class="name">Spotter <span class="tag dead">разворот</span></td><td>$940 млн в 735 каналов; 2025 — невыполнение целей, несколько волн сокращений, закрытие публичного доступа к Studio</td><td>Покупка прошлого ломается, когда алгоритмическая дистрибуция обесценивает бэк-каталог</td></tr>
+      <tr><td class="name">Jellysmack <span class="tag dead">свернулся</span></td><td>$750 млн обязательств, октябрь 2024 — реструктуризация, сворачивание программы на площадках Meta</td><td>Модель полностью зависела от чужого CPM</td></tr>
+      <tr><td class="name">WASD.TV / Nuum (МТС) <span class="tag dead">закрыт</span></td><td>2020 → перезапуск в Nuum 2023 → закрытие. Документированный кейс невыплаты 100 000 ₽ стримеру</td><td>Телеком строил площадку, не имея ни контента, ни продаж</td></tr>
+      <tr><td class="name">Keymailer <span class="tag d">жив, но</span></td><td>Системная проблема фейковых и «мёртвых» аккаунтов, фармящих ключи</td><td>Без верификации личности key-платформа превращается в машину по сливу ключей на серый рынок</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ IDEAS ============ -->
+<section id="ideas">
+  <div class="num">06</div>
+  <h2>Наши идеи</h2>
+  <p class="section-lead">Исходная позиция: агентство киберспорта и гейминга в РФ, договоры и прямые отношения с большинством активных гейминг-блогеров, публичное имя, собственная разработка, действующие клиенты.</p>
+
+  <div class="callout good">
+    <div class="label">Главный тезис</div>
+    <p>Ваш настоящий актив — не контакты, а <strong>контроль над инвентарём</strong>. Гарантию результата математически может дать только тот, у кого есть собственный инвентарь или медиабюджет: маркетплейс без бюджета не имеет чем добирать недобор. Именно этого не было ни у одного игрока с кладбища. Технологию скопируют за полгода, отношения с сотней блогеров — нет.</p>
+  </div>
+
+  <h3>Что отпадает сразу</h3>
+  <p><strong>Агрегатор всех площадок для блогеров всех тематик</strong> — структурная ловушка. Дефицит на рынке не в офферах (их избыток: 100+ тыс. предложений у Яндекса, 50 тыс. мерчантов у Sovrn), а в эксклюзивном спросе и собственных данных о конверсии. Агрегатор попадает в рев-шер сэндвич — его ставка блогеру математически всегда хуже прямого подключения; транслирует чужую атрибуцию, за которую отвечает; и отключается ровно тогда, когда становится значимым. Живая часть идеи — агрегировать не инвентарь, а <em>данные и рабочий процесс</em>: показывать блогеру eCPM каждого его рекламного слота по всем сетям сразу. Этого сегодня не видит никто, включая самих блогеров. Но это SaaS с невысоким потолком, а не рекламный бизнес.</p>
+
+  <h3>Три конфигурации</h3>
+
+  <div class="idea">
+    <div class="idea-h"><span class="letter">Конфигурация A</span></div>
+    <h3>Сейлз-хаус с гарантией охвата — «апфронт русского гейминга»</h3>
+    <p>Продаёте не «интеграцию у стримера X», а <strong>гарантированный объём просмотров кампании по фиксированному CPM</strong>. Распределяете по портфелю каналов сами. Недобрали — добираете make-good'ом из собственного инвентаря, с прописанным качеством замены. Годовое обязательство даёт клиенту скидку 20–40% к споту, вам — предсказуемый спрос.</p>
+    <dl class="kv">
+      <dt>Механики</dt><dd>№6 make-good с количественными триггерами, №7 апфронт с правами отмены, №4 прорационная выплата</dd>
+      <dt>Экономика</dt><dd>15–25% инвентаря в резерв на добор; маржа — спред между закупкой слотов и продажей охвата</dd>
+      <dt>Копируемость</dt><dd><strong>Низкая.</strong> Нужен контроль предложения + исторические данные о доставке + готовность держать риск</dd>
+      <dt>Что ловит</dt><dd>Уходящие имиджевые бюджеты — их не надо переучивать на перформанс</dd>
+    </dl>
+  </div>
+
+  <div class="idea b">
+    <div class="idea-h"><span class="letter">Конфигурация B</span></div>
+    <h3>Андеррайтер дохода блогера — «гарантированный минимум»</h3>
+    <p>Обратная сторона той же медали и самое сильное, что можно сделать прямо сейчас. Вы выкупаете у блогера рекламные слоты на квартал или год по <strong>гарантированной ставке</strong>, монетизируете их сами (CPM, CPA, оверлеи, партнёрка издателей) и делите апсайд выше порога. Блогер меняет непредсказуемость на стабильность — ровно в тот момент, когда его контракт с букмекером режут втрое.</p>
+    <dl class="kv">
+      <dt>Механики</dt><dd>№5 гарантированная база + бонус, №4 прорационная выплата, №12 ранняя оплата за счёт рекламодателя, №11 транширование</dd>
+      <dt>Почему сейчас</dt><dd>Инвентарь контрактуется по цене дна рынка. Через год, когда китайские и издательские бюджеты дойдут до стримов, он будет ваш</dd>
+      <dt>Копируемость</dt><dd><strong>Очень низкая</strong> — нужны капитал, отношения и данные одновременно</dd>
+      <dt>Риск</dt><dd>Вы берёте рыночный риск. Если рынок падает дальше, гарантия становится убытком. Стартовать с 10–20 каналов и короткого горизонта</dd>
+    </dl>
+  </div>
+
+  <div class="idea c">
+    <div class="idea-h"><span class="letter">Конфигурация C</span></div>
+    <h3>Измерительный слой — «измеряемый стрим»</h3>
+    <p>Стек атрибуции для лайва: дуальный код + промокоды + доступ к аналитике издателя + коэффициент органического аплифта + депроритизация внутренних трекеров, чтобы органика не съедала кредит кампании. Продаётся китайским и российским издателям как условие входа их перформанс-бюджетов в стримы.</p>
+    <div class="callout" style="margin:16px 0 0">
+      <p style="margin:0"><strong>Аргумент, который надо положить в основу питча:</strong> по incrementality-исследованиям Gamesight реальный вклад креатора <strong>в 5–10 раз выше</strong> того, что показывает click-трекер. Весь рынок сегодня недоплачивает стримерам на порядок — и вы это докажете цифрами.</p>
+    </div>
+    <dl class="kv">
+      <dt>Механики</dt><dd>№1 дуальный код, №2 водопад атрибуции, №3 коэффициент аплифта, №8 оверлейный инвентарь</dd>
+      <dt>Копируемость</dt><dd><strong>Средняя.</strong> Технологию повторят, накопленные данные о доставке и конверсии — нет</dd>
+      <dt>Ограничение</dt><dd>Сам по себе это SaaS с потолком. Работает как оружие для A и B, а не как отдельный бизнес</dd>
+    </dl>
+  </div>
+
+  <h3>Сборка: почему защищена только комбинация</h3>
+  <p>Ни одна из трёх по отдельности не является защищённым бизнесом. Защищённой становится связка, потому что каждая часть усиливает остальные:</p>
+  <div class="layers">
+    <div class="layer"><div class="n">→</div><div><p><strong>Вы контролируете инвентарь</strong> → значит можете гарантировать доставку.</p></div></div>
+    <div class="layer"><div class="n">→</div><div><p><strong>Вы гарантируете доставку</strong> → значит можете продавать апфронтом и брать премию.</p></div></div>
+    <div class="layer"><div class="n">→</div><div><p><strong>Вы измеряете результат</strong> → значит покупаете инвентарь дешевле, чем он стоит, и доказываете рекламодателю, что он недоплачивал.</p></div></div>
+    <div class="layer"><div class="n">→</div><div><p><strong>Вы держите деньги, документы и маркировку</strong> → значит блогер не уходит, даже когда придёт кто-то с чуть большей ставкой.</p></div></div>
+  </div>
+  <p>Скопировать любой один слой можно. Все четыре сразу — только собрав десять лет отношений, а это не покупается.</p>
+
+  <div class="callout">
+    <div class="label">Четвёртый слой — самый дешёвый и держит крепче всего</div>
+    <p><strong>Комплаенс.</strong> Маркировка живого эфира не решена никем. Публичное лицо агентства может сделать то, чего не может никакая платформа: <strong>опубликовать и защитить отраслевую методику маркировки лайв-инвентаря</strong>, согласовав её с юристами и по возможности с регулятором. Тот, чья методика становится стандартом, автоматически становится точкой входа для всех рекламодателей, которые боятся штрафа в 500 000 ₽. Это моат, построенный на репутации, а не на коде.</p>
+    <p style="margin-bottom:0">Инфраструктура покупается с полки: номинальный счёт с холдом до 60 дней (≈3% на списании и 3% на выплате), массовые выплаты по СБП (2,8% + 30 ₽), автоматические чеки самозанятых через партнёров ФНС, ОРД. Строить нужно не платёжный слой, а <em>логику гарантий поверх него</em>.</p>
+  </div>
+
+  <h3>Последовательность</h3>
+  <div class="timeline">
+    <div class="tl-item">
+      <h4>Ближайшие месяцы — без единой строчки кода</h4>
+      <p>Взять 10–15 блогеров, у которых сейчас режется беттинг-контракт, и предложить гарантированный выкуп слотов на квартал. Параллельно продать двум-трём китайским или российским издателям кампанию с гарантией охвата и make-good'ом. За квартал вы узнаете реальную закупочную цену, реальную доставку и реальный спред — это валидация, которую нельзя получить из исследования.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Дальше — то, что уже подтвердилось цифрами</h4>
+      <p>Эскроу с двусторонними таймаутами, автоматическая маркировка и уплата 3% сбора за исполнителя, кабинет с честной статистикой доставки.</p>
+    </div>
+    <div class="tl-item">
+      <h4>Потом — измерение и собственный инвентарь</h4>
+      <p>Атрибуционный стек и оверлейный формат с AI-триггером: то, что нельзя заблокировать адблоком и чего нет ни у кого, включая сами площадки.</p>
+    </div>
+    <div class="tl-item">
+      <h4>И только затем — самообслуживание</h4>
+      <p>Ниже порога Uplify в 1 млн ₽ сейчас пустота: весь средний и малый спрос на гейминг-инвентарь некому обслужить.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ RISKS ============ -->
+<section id="risks">
+  <div class="num">07</div>
+  <h2>Что может пойти не так</h2>
+  <div class="grid g2">
+    <div class="card"><h4>Рынок может продолжить сжиматься</h4><p>Гейминг-инфлюенс — порядка 1–3 млрд ₽ из 57–60 млрд рынка блогеров; Twitch и Rutube по данным АКАР дают менее 1% каждый. Гарантируя доход на падающем рынке, вы занимаете позицию продавца опциона.</p></div>
+    <div class="card"><h4>Китайские деньги могут не дойти до стримов</h4><p>Пока они уходят в VK Ads и RuStore — в каналы с готовой атрибуцией. Задача — доказать, что стрим считается. Не докажете — они не придут.</p></div>
+    <div class="card"><h4>Ботоводство подрывает основу гарантии</h4><p>Накрутка 200 000+ онлайна в эксперименте Мэддисона и оценка «70% стримеров на этом делают бизнес» означают: гарантировать охват можно только с независимой верификацией. Строить с первого дня, иначе вы гарантируете фикцию.</p></div>
+    <div class="card"><h4>Twitch может уйти</h4><p>Слух про март 2026 не подтверждён, но суммарные штрафы платформы уже 35,4 млрд ₽. Инвентарь должен быть мультиплатформенным с самого начала — VK Видео растёт: гейминг-авторы +93%, порог монетизации снижен до 1 000 подписчиков.</p></div>
+    <div class="card"><h4>Конфликт агентства и принципала</h4><p>Как только вы начнёте выкупать инвентарь, клиенты-рекламодатели поймут, что вы больше не агент. Разводить юридически и коммуникационно заранее.</p></div>
+    <div class="card"><h4>Регуляторный риск по беттингу</h4><p>С 01.09.2026 требования к рекламе азартных игр в лайв-форматах фактически неисполнимы. Юристы букмекеров будут запрещать формат, а не искать решение — рассчитывать на возврат этих денег не стоит.</p></div>
+  </div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ SOURCES ============ -->
+<section id="sources">
+  <div class="num">08</div>
+  <h2>Источники</h2>
+  <p class="section-lead">Все данные собраны из публичных источников на август 2026. Часть отраслевых замеров — структурные ориентиры, а не текущие срезы; это отмечено в подписях.</p>
+
+  <h4>Яндекс и российские партнёрские платформы</h4>
+  <ul class="sources">
+    <li><a href="https://yandex.ru/support/partner-bloggers/ru/">Справка РСЯ для блогеров — о платформе</a></li>
+    <li><a href="https://yandex.ru/support/partner-bloggers/ru/payments">Выплата вознаграждения</a></li>
+    <li><a href="https://yandex.ru/support/partner-bloggers/ru/joining">Как стать участником</a></li>
+    <li><a href="https://yandex.ru/support/partner-bloggers/ru/rules/traffic-requirements">Требования к каналу</a></li>
+    <li><a href="https://yandex.ru/support/partner-bloggers/ru/rules/post-requirements">Требования к рекламному контенту</a></li>
+    <li><a href="https://yandex.ru/support/partner-bloggers/ru/rules/forbidden">Запрещённые категории</a></li>
+    <li><a href="https://yandex.ru/support/partner-bloggers/ru/ad-labeling">Маркировка рекламы</a></li>
+    <li><a href="https://yandex.ru/support/partner-bloggers/ru/referral-program">Реферальная программа</a></li>
+    <li><a href="https://yandex.ru/support/partner-bloggers/ru/qanda">Вопросы и ответы</a></li>
+    <li><a href="https://partner.yandex.ru/bloggers">Лендинг РСЯ для блогеров</a></li>
+    <li><a href="https://partner.yandex.ru/messengers">Монетизация каналов в мессенджерах</a></li>
+    <li><a href="https://b2b.yandex.ru/adv/news/rsya-dlya-blogerov-odin-god-trendy">Итоги первого года РСЯ для блогеров</a></li>
+    <li><a href="https://b2b.yandex.ru/adv/solutions/cases/rsya-dlya-blogerov-otzyv-o-monetizacii">Кейс блогера</a></li>
+    <li><a href="https://habr.com/ru/companies/click/articles/856644/">РСЯ для блогеров глазами рекламодателя — Хабр</a></li>
+    <li><a href="https://ppc.world/news/rsya-vyplatila-blogeram-53-mlrd-rubley-za-tri-goda-monetizacii-kanalov/">Итоги монетизации каналов — ppc.world</a></li>
+    <li><a href="https://www.ozon.ru/bloggers">Ozon Blogger</a></li>
+    <li><a href="https://ppc.world/news/blogery-vkontakte-i-maksa-teper-mogut-zarabatyvat-na-rekomendaciyah-tovarov-s-ozon-blogger/">Ozon Blogger для VK и MAX</a></li>
+    <li><a href="https://affelist.ru/stati/referalnye-programmy-marketplejsov/">Реферальные программы маркетплейсов</a></li>
+    <li><a href="https://www.calltouch.ru/blog/perfluence-obzor-platformy-dlya-reklamodatelej-i-blogerov/">Perfluence — обзор платформы</a></li>
+    <li><a href="https://bidfox.ru/">BidFox</a></li>
+    <li><a href="https://ru.epicstars.com/garanty/">Epicstars EpicSafe — эскроу</a></li>
+    <li><a href="https://www.sostav.ru/publication/kak-menyaetsya-rossijskij-rynok-cpa-i-inflyuens-marketinga-itogi-2025-goda-i-ozhidaniya-na-2026-god-82117.html">Итоги рынка CPA и инфлюенс-маркетинга 2025</a></li>
+  </ul>
+
+  <h4>Мировые платформы</h4>
+  <ul class="sources">
+    <li><a href="https://docs.gamesight.io/docs/available-attribution-methods">Gamesight — методы атрибуции</a></li>
+    <li><a href="https://docs.gamesight.io/docs/referral-code">Gamesight — реферальные коды</a></li>
+    <li><a href="https://docs.gamesight.io/docs/pc-game-attribution">Gamesight — атрибуция PC-игр</a></li>
+    <li><a href="https://www.netinfluencer.com/how-gamesight-is-elevating-creator-marketing-in-the-gaming-industry/">Gamesight — интервью</a></li>
+    <li><a href="https://www.netinfluencer.com/how-instreamly-is-helping-brands-and-creators-capitalize-on-audience-attention-in-gaming/">inStreamly — механика микро-спонсорств</a></li>
+    <li><a href="https://instreamly.com/posts/streamer-sponsorships-how-brands-partner-with-live-streamers/">inStreamly — бенчмарки спонсорств</a></li>
+    <li><a href="https://streamelements.com/brands">StreamElements для брендов</a></li>
+    <li><a href="https://digiday.com/marketing/why-streamelements-is-launching-a-side-sponsorship-tool-to-widen-creators-advertising-options/">Digiday — SideSpons</a></li>
+    <li><a href="https://blog.twitch.tv/en/2025/02/25/expanding-your-sponsorship-opportunities-on-twitch/">Twitch — расширение спонсорских возможностей</a></li>
+    <li><a href="https://secure.businesswire.com/news/home/20250626884705/en/Logitech-Gs-Streamlabs-Launches-New-Sponsorship-Platform-to-Connect-Brands-and-Streamers">Streamlabs Sponsorships — запуск</a></li>
+    <li><a href="https://www.gamedeveloper.com/business/twitch-tries-bounty-board-approach-to-setting-streamers-up-for-sponsored-streams">Twitch Bounty Board — механика</a></li>
+    <li><a href="https://x.com/zachbussey/status/1997073981434712449">Закрытие Bounty Board</a></li>
+    <li><a href="https://upside.fm/powerspike-connecting-brands-and-creators-on-twitch-with-a-self-serve-advertising-platform-up094/">Powerspike — интервью основателя</a></li>
+    <li><a href="https://www.influencerupdate.biz/interview/66563/matchmade-interview/">Matchmade — performance-модель для игр</a></li>
+    <li><a href="https://www.lurkit.gg/pricing">Lurkit — тарифы</a></li>
+    <li><a href="https://support.lurkit.com/how-does-payment-work-for-quests">Lurkit — эскроу и оплата</a></li>
+    <li><a href="https://keymailer.co/pricing/">Keymailer — тарифы</a></li>
+    <li><a href="https://x.com/woovitinfo/status/1865088335993278615">Woovit — объявление о закрытии</a></li>
+    <li><a href="https://www.terminals.io/faqs">Terminals.io — требования к креаторам</a></li>
+    <li><a href="https://www.anzu.io/media-value">Anzu — измерение видимости</a></li>
+    <li><a href="https://www.kochava.com/case-studies/frameplay">Frameplay × Kochava — атрибуция in-game</a></li>
+    <li><a href="https://www.cityam.com/bidstack-silent-as-investor-anger-grows-over-pre-pack-administration-deal/">Bidstack — банкротство</a></li>
+    <li><a href="https://blog.nitropay.com/nitro-vs-playwire-vs-venatus-which-ad-network-is-right-for-gaming-publishers/">Nitro vs Playwire vs Venatus — условия выплат</a></li>
+    <li><a href="https://creatorflow.so/blog/affiliate-platform-payout-comparison-creators/">LTK vs ShopMy vs Mavely vs Amazon</a></li>
+    <li><a href="https://www.hamstergarage.com/article/tiktok-shop-affiliate-commission-rates-fees-payouts">TikTok Shop Affiliate — ставки и выплаты</a></li>
+    <li><a href="https://www.hubfluence.io/amazon-influencer-program">Amazon Influencer Program</a></li>
+    <li><a href="https://www.sovrn.com/commerce/">Sovrn Commerce</a></li>
+  </ul>
+
+  <h4>Финансирование, гарантии и эскроу</h4>
+  <ul class="sources">
+    <li><a href="https://www.lumanu.com/platform/instant-pay">Lumanu — Instant Pay / dynamic discounting</a></li>
+    <li><a href="https://www.bloomberg.com/news/articles/2025-06-18/startup-that-bet-on-youtube-stars-misses-financial-goals-slashes-staff">Bloomberg — Spotter не выполнил цели</a></li>
+    <li><a href="https://www.paved.com/help/articles/8121038-makegoods-refunds">Paved — политика make-good вместо возвратов</a></li>
+    <li><a href="https://www.simulmedia.com/tv-advertising-glossary/what-is-an-audience-deficiency-unit">Audience Deficiency Unit — ТВ make-good</a></li>
+    <li><a href="https://digiday.com/future-of-tv/wtf-is-the-tv-upfront/">Digiday — как устроен ТВ-апфронт</a></li>
+    <li><a href="https://www.upswell.ai/answers/what-are-guaranteed-views-in-influencer-marketing/">Upswell — гарантия просмотров</a></li>
+    <li><a href="https://support.upwork.com/hc/en-us/articles/211063748-How-Fixed-Price-Payment-Protection-works-for-freelancers-on-Upwork">Upwork — эскроу и арбитраж</a></li>
+    <li><a href="https://solarstaff.ru/pricing">Solar Staff — тарифы и выплаты</a></li>
+    <li><a href="https://konsol.pro/masspayments">Konsol.pro — массовые выплаты</a></li>
+    <li><a href="https://yookassa.ru/payouts">ЮKassa — выплаты</a></li>
+    <li><a href="https://www.tbank.ru/corporate/account/nominal/">Т-Банк — номинальный счёт</a></li>
+  </ul>
+
+  <h4>Российский гейминг: рынок, спрос, регуляторика, боли</h4>
+  <ul class="sources">
+    <li><a href="https://interactivead.ru/wp-content/uploads/2025/10/arir-white-paper-gamingdigital-entertainment-ads_vertikal.pdf">АРИР — White Paper «Гейминг и киберспорт в России 2025» (PDF)</a></li>
+    <li><a href="https://adindex.ru/publication/analitics/search/2025/10/15/338102.phtml">AdIndex — рынок гейминга и киберспорта</a></li>
+    <li><a href="https://adpass.ru/v-twitch-nastrimili-reklamy-na-1-mlrd-rublej/">ADPASS / АБА — структура рекламодателей на Twitch</a></li>
+    <li><a href="https://www.cybersport.ru/tags/other/odin-banner-2-mln-buster-rasskazal-skolko-stoit-reklama-u-nego-na-kanale">Цена баннера у Buster</a></li>
+    <li><a href="https://www.cybersport.ru/tags/strimery/buster-pokazal-skolko-zarabotal-na-twitch-za-sem-mesyatsev-v-2026-godu">Заработок Buster на Twitch за 2026</a></li>
+    <li><a href="https://stream-promotion.ru/blokirovka-monetizacii-na-twitch-dlya-rossiyan">Блокировка выплат Twitch для россиян</a></li>
+    <li><a href="https://adindex.ru/news/digital/2026/04/23/344461.phtml">VK Видео выплатило авторам 3 млрд ₽</a></li>
+    <li><a href="https://www.sostav.ru/publication/vk-video-narashchivaet-masshtaby-programmy-monetizatsii-86043.html">VK Видео — порог 1 000 подписчиков</a></li>
+    <li><a href="https://adindex.ru/news/digital/2025/12/24/341396.phtml">Доходы авторов Rutube</a></li>
+    <li><a href="https://rutube.ru/info/monetization/">Rutube — условия монетизации</a></li>
+    <li><a href="https://www.vbr.ru/novosti/tehnologii/2026/05/14/telegram-nacal-viplati/">Telegram — выплаты российским каналам в TON</a></li>
+    <li><a href="https://ppc.world/articles/top-8-servisov-dlya-priema-donatov-v-20252026-godu-obzor-sravnenie/">Комиссии донат-сервисов</a></li>
+    <li><a href="https://uplify.ru/">Uplify</a> · <a href="https://uplify.ru/ssp-dsp">Uplify SSP</a></li>
+    <li><a href="https://www.sostav.ru/publication/kitajskie-kompanii-rezko-uvelichili-reklamnye-byudzhety-na-rossijskikh-tsifrovykh-platformakh-85688.html">Китайские рекламодатели на российских платформах</a></li>
+    <li><a href="https://www.sostav.ru/publication/zarubezhnye-razrabotchiki-igr-utroili-raskhody-na-reklamu-v-rustore-85608.html">Издатели игр в RuStore</a></li>
+    <li><a href="https://affenzo.com/mir-tankov-obzor-partnerskoj-programmy-za-aktivnogo-igroka/">Партнёрская программа «Мира танков»</a></li>
+    <li><a href="https://tanki.su/ru/content/offers/affiliate_program/">Мир танков — аффилейт-программа</a></li>
+    <li><a href="https://warthunder.com/en/media/partnership">War Thunder Partnership</a></li>
+    <li><a href="https://vc.ru/marketing/594846-kak-sponsorstvo-kibersportivnoi-komandy-uvelichilo-prodazhi-tehniki-keis-rialveb-i-dns">Кейс DNS × Team Unique × Realweb</a></li>
+    <li><a href="https://www.vedomosti.ru/sport/around/articles/2025/12/26/1166565-gosudarstvo-uvelichilo-nalogovuyu-nagruzku-na-bukmekerov">Ведомости — налоги на букмекеров</a></li>
+    <li><a href="https://cyber.sports.ru/streamers-twitch/1117157095-meddison-mylnyj-puzyr-striminga-lopaetsya-ya-sam-sebya-vse-sponsory-ux.html">Мэддисон о схлопывании бюджетов</a></li>
+    <li><a href="https://cyber.sports.ru/betting/blogs/3373172.html">Стримеры о новых контрактах</a></li>
+    <li><a href="https://esports.ru/news/cheatbanned-o-snizhenii-dokhodov-strimerov-sejchas-realno-tyazheloe-vremya/">Cheatbanned о снижении доходов</a></li>
+    <li><a href="https://respawn.media/celebrities/yixb8-boty-na-twitch-kak-nakrutka-zritelei-stala-glavnoi-problemoi-ploshchadki">Боты на Twitch как системная проблема</a></li>
+    <li><a href="https://elama.ru/blog/16otvetov-omarkirovke-reklamy-vblogah/">eLama — маркировка рекламы у блогеров</a></li>
+    <li><a href="https://elama.ru/blog/oshtrafah-iotvetstvennosti-zanesoblyudenie-zakona-omarkirovke-reklamy/">eLama — штрафы за нарушение маркировки</a></li>
+    <li><a href="https://elama.ru/blog/faq-po-sboru-3-za-dohod-ot-reklamy-otvechayut-eksperty-elama/">eLama — FAQ по 3% сбору</a></li>
+    <li><a href="https://elama.ru/blog/registraciya-blogerov-v-roskomnadzore-gayd-po-novomu-zakonu/">eLama — реестр блогеров РКН</a></li>
+    <li><a href="https://vc.ru/marketing/1051970-reklama-v-sostave-avtorskih-proizvedeniy-u-blogerov-vechnaya-otchetnost-v-ord">«Вечная отчётность» в ОРД</a></li>
+    <li><a href="https://skillbox.ru/media/marketing/podpisan-zakon-ob-izmeneniyah-v-reklame-azartnyh-igr-i-bukmekerov/">Закон о рекламе азартных игр</a></li>
+    <li><a href="https://www.sostav.ru/publication/blogery-vs-brendy-kogda-i-pochemu-mezhdu-nimi-iskrit-84290.html">Блогеры vs бренды: проблемы оплаты</a></li>
+  </ul>
+
+  <p style="font-size:13px;color:var(--text-muted);margin-top:20px">Instagram и Facebook принадлежат Meta, признанной экстремистской организацией и запрещённой в РФ.</p>
+</section>
+
+<footer>
+  <div>Аналитический материал подготовлен на основе публичных источников. Оценки рынка и выводы носят рекомендательный характер и не являются инвестиционной или юридической консультацией.</div>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  var tip = document.getElementById('tip');
+  document.querySelectorAll('[data-tip]').forEach(function(el){
+    el.addEventListener('mousemove', function(e){
+      tip.textContent = el.getAttribute('data-tip');
+      tip.style.opacity = '1';
+      var x = e.clientX + 14, y = e.clientY + 16;
+      if (x + tip.offsetWidth > window.innerWidth - 12) x = e.clientX - tip.offsetWidth - 14;
+      tip.style.left = x + 'px';
+      tip.style.top = y + 'px';
+    });
+    el.addEventListener('mouseleave', function(){ tip.style.opacity = '0'; });
+  });
+})();
+</script>
+</body>
+</html>
