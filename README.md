@@ -15,4 +15,5 @@ Private. Cybernetica
 - [Cybernetica — Собственный формат: питч партнёру](Cybernetica_own-format-pitch-deck.html) — питч-дек о собственном формате Cybernetica для партнёров.
 - [Перформанс в игровых мирах (white paper)](Cybernetica_whitepaper-ingame-performance.html) — white paper о перформанс-рекламе в игровых мирах.
 - [Cybernetica — Owned-медиа: концепт](Cybernetica_owned-media-concept-deck.html) — концепт owned-медиа для Cybernetica: как сделать агентство видимым для брендов и рынка.
+- [Монетизация блогеров: РСЯ, рынок и стратегия](gamingcreatormonetizationanalysis.html) — разбор «РСЯ для блогеров», карта конкурентов в России и мире, состояние гейминг-инфлюенса и продуктовые ниши.
  - [Workspace](index.html) — сводная страница со всеми документами. 
