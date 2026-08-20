@@ -16,4 +16,8 @@ Private. Cybernetica
 - [Перформанс в игровых мирах (white paper)](Cybernetica_whitepaper-ingame-performance.html) — white paper о перформанс-рекламе в игровых мирах.
 - [Cybernetica — Owned-медиа: концепт](Cybernetica_owned-media-concept-deck.html) — концепт owned-медиа для Cybernetica: как сделать агентство видимым для брендов и рынка.
 - [Монетизация блогеров: РСЯ, рынок и стратегия](gamingcreatormonetizationanalysis.html) — разбор «РСЯ для блогеров», карта конкурентов в России и мире, состояние гейминг-инфлюенса и продуктовые ниши.
+- [Cybernetica Landing — colour](landing_color.html) — цветная версия публичного лендинга: гейминг и киберспорт в России.
+- [Cybernetica Landing — mono](landing_mono.html) — монохромная версия публичного лендинга: гейминг и киберспорт в России.
+- [Превью лендинга — colour](sheet_color.png) — экраны цветной версии лендинга одним листом.
+- [Превью лендинга — mono](sheet_mono.png) — экраны монохромной версии лендинга одним листом.
  - [Workspace](index.html) — сводная страница со всеми документами. 
