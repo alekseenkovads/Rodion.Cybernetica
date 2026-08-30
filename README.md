@@ -5,8 +5,6 @@ Private. Cybernetica
 
 - [Gaming & Cybersport Market Overview](GamingAndCybersportMarketOverviewByRodion.html) — аналитический обзор вертикали гейминга и киберспорта.
 - [Инструменты и фиксация](cybernetica-instrumenty-fiksaciya.html) — единый клиентский бриф, связка Notion + YouGile, правила фиксации решений.
-- [Cybernetica Landing](landing.html) — публичный лендинг: гейминг и киберспорт в России.
-- [Cybernetica Landing v2](landing_v2.html) — альтернативная версия публичного лендинга: гейминг и киберспорт в России.
 - [Huawei и in-game наружка](huawei-ingame-ooh-research.html) — исследование игровой экосистемы Huawei, мирового рынка in-game OOH-рекламы и ниши для Cybernetica в России.
 - [Cybernetica × Huawei — предложение о партнёрстве](huawei-partnership-intro.html) — знакомство с Huawei и предложение о запуске внутриигровой наружной рекламы в играх их экосистемы.
 - [Xiaomi и in-game наружка](xiaomi-ingame-ooh-research.html) — исследование игровой экосистемы Xiaomi, рекламной сети Mi Ads и каналов продажи рекламы в России, сравнение с кейсом Huawei.
@@ -17,8 +15,7 @@ Private. Cybernetica
 - [Cybernetica — Owned-медиа: концепт](Cybernetica_owned-media-concept-deck.html) — концепт owned-медиа для Cybernetica: как сделать агентство видимым для брендов и рынка.
 - [Монетизация блогеров: РСЯ, рынок и стратегия](gamingcreatormonetizationanalysis.html) — разбор «РСЯ для блогеров», карта конкурентов в России и мире, состояние гейминг-инфлюенса и продуктовые ниши.
 - [Cybernetica Landing — colour](landing_color.html) — цветная версия публичного лендинга: гейминг и киберспорт в России.
-- [Cybernetica Landing — mono](landing_mono.html) — монохромная версия публичного лендинга: гейминг и киберспорт в России.
-- [Ключевой визуал — mono](e_mono_neb.png) — экран моно-версии лендинга: «Мы не работаем с теми, кто хочет обмануть аудиторию».
+- [Cybernetica Landing — colour v2](landing_color_v2.html) — вторая цветная версия публичного лендинга: гейминг и киберспорт в России.
 - [Горизонтальная операционная система](Cybernetica_org-system-horizontal.html) — отказ от многоуровневой вертикали: четыре слоя, один уровень подчинения, владельцы функций.
 - [Целевая модель бухгалтерии и документооборота](Cybernetica_target-model-accounting-internal.html) — как должно быть: пять принципов, документ как часть роли, плейбук вместо перепроверки.
- - [Workspace](index.html) — сводная страница со всеми документами. 
+- [Workspace](index.html) — сводная страница со всеми документами.
