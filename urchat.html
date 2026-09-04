@@ -1,0 +1,437 @@
+<title>Автоматизация юрчата Кибернетики</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root{
+    --paper:#F3F4F1;
+    --surface:#FFFFFF;
+    --surface-2:#EAECE8;
+    --ink:#161A19;
+    --ink-soft:#4C5654;
+    --ink-faint:#78837F;
+    --line:#D8DCD7;
+    --line-strong:#BFC5BF;
+    --accent:#2F5D50;
+    --accent-soft:#E2EBE6;
+    --hot:#9E3B2E;
+    --hot-soft:#F3E2DE;
+    --warm:#8A6212;
+    --warm-soft:#F4EBD6;
+    --shadow:0 1px 2px rgba(22,26,25,.06);
+    --maxw:74ch;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#101413;
+      --surface:#171C1B;
+      --surface-2:#1F2523;
+      --ink:#E7ECE8;
+      --ink-soft:#A9B4AF;
+      --ink-faint:#7D8884;
+      --line:#2A312F;
+      --line-strong:#3A423F;
+      --accent:#7FBAA5;
+      --accent-soft:#1B2A26;
+      --hot:#E08A79;
+      --hot-soft:#2B1D1A;
+      --warm:#D8B15F;
+      --warm-soft:#2A2317;
+      --shadow:0 1px 2px rgba(0,0,0,.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#101413;
+    --surface:#171C1B;
+    --surface-2:#1F2523;
+    --ink:#E7ECE8;
+    --ink-soft:#A9B4AF;
+    --ink-faint:#7D8884;
+    --line:#2A312F;
+    --line-strong:#3A423F;
+    --accent:#7FBAA5;
+    --accent-soft:#1B2A26;
+    --hot:#E08A79;
+    --hot-soft:#2B1D1A;
+    --warm:#D8B15F;
+    --warm-soft:#2A2317;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:40px 24px 96px}
+  .col{max-width:var(--maxw)}
+
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:12px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+  h1{
+    font-family:Literata,Georgia,serif;
+    font-weight:700;font-size:clamp(30px,5vw,44px);line-height:1.12;
+    letter-spacing:-.01em;margin:14px 0 12px;text-wrap:balance;
+  }
+  .lede{font-size:18px;color:var(--ink-soft);margin:0}
+  h2{
+    font-family:Literata,Georgia,serif;
+    font-weight:600;font-size:24px;line-height:1.25;margin:0 0 6px;text-wrap:balance;
+  }
+  h3{font-family:Literata,Georgia,serif;font-weight:600;font-size:19px;line-height:1.3;margin:0;text-wrap:balance}
+  p{margin:0 0 14px}
+  a{color:var(--accent)}
+
+  header.top{border-bottom:1px solid var(--line);padding-bottom:28px}
+
+  .stats{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+    gap:1px;background:var(--line);border:1px solid var(--line);
+    margin-top:28px;border-radius:3px;overflow:hidden;
+  }
+  .stat{background:var(--surface);padding:14px 16px}
+  .stat b{
+    display:block;font-family:"IBM Plex Mono",monospace;font-weight:500;
+    font-size:23px;line-height:1.1;font-variant-numeric:tabular-nums;
+  }
+  .stat span{font-size:12.5px;color:var(--ink-faint);display:block;margin-top:4px}
+
+  section{margin-top:52px}
+  .section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:20px}
+  .section-head .num{
+    font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-faint);
+    letter-spacing:.08em;padding-top:4px;
+  }
+
+  /* pattern list */
+  ol.patterns{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+  ol.patterns > li{
+    display:grid;grid-template-columns:44px 1fr;gap:18px;
+    padding:22px 0;border-top:1px solid var(--line);
+  }
+  ol.patterns > li:last-child{border-bottom:1px solid var(--line)}
+  .rank{
+    font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500;
+    color:var(--ink-faint);padding-top:5px;font-variant-numeric:tabular-nums;
+  }
+  .p-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px}
+  .freq{
+    font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.04em;
+    color:var(--ink-soft);background:var(--surface-2);
+    border-radius:2px;padding:2px 7px;white-space:nowrap;
+  }
+  .quotes{margin:12px 0 0;padding:0 0 0 14px;border-left:2px solid var(--line-strong);
+    color:var(--ink-soft);font-size:14.5px;display:flex;flex-direction:column;gap:5px}
+  .quotes span{display:block}
+  .fix{margin-top:13px;font-size:15.5px}
+  .fix b{font-weight:600}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+  .tag{
+    font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.03em;
+    padding:3px 8px;border-radius:2px;border:1px solid transparent;
+  }
+  .tag.impact{background:var(--accent-soft);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 25%,transparent)}
+  .tag.effort{background:var(--surface-2);color:var(--ink-soft);border-color:var(--line)}
+  .tag.now{background:var(--hot-soft);color:var(--hot);border-color:color-mix(in srgb,var(--hot) 25%,transparent)}
+
+  /* waves */
+  .waves{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .wave{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:18px;box-shadow:var(--shadow)}
+  .wave .when{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint)}
+  .wave h3{margin:8px 0 10px;font-size:17px}
+  .wave ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--ink-soft);display:flex;flex-direction:column;gap:6px}
+
+  /* table */
+  .table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:3px;background:var(--surface)}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{
+    font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:11.5px;
+    letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint);
+  }
+  tbody tr:last-child td{border-bottom:none}
+  td.n{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px;vertical-align:1px}
+  .dot.hi{background:var(--hot)}
+  .dot.mid{background:var(--warm)}
+  .dot.lo{background:var(--accent)}
+
+  .note{
+    margin-top:56px;padding:18px 20px;border:1px solid var(--line);
+    border-left:3px solid var(--warm);border-radius:3px;background:var(--warm-soft);
+    font-size:14.5px;color:var(--ink-soft);
+  }
+  .note b{color:var(--ink)}
+  .risk-list{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:7px}
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);
+    font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-faint)}
+  ::selection{background:var(--accent-soft)}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">Юр.док.Cybernetica · 26 августа — 3 сентября 2026</div>
+    <h1>Что в юрчате повторяется каждую неделю — и что из этого можно отдать ИИ</h1>
+    <p class="lede col">Разбор всей доступной переписки: 190 сообщений, 10 участников, 23 присланных документа за девять рабочих дней. Ниже — 12 типовых запросов, отсортированных по частоте, и конкретный AI-сценарий для каждого.</p>
+
+    <div class="stats">
+      <div class="stat"><b>190</b><span>сообщений в окне</span></div>
+      <div class="stat"><b>23</b><span>документа на вычитку</span></div>
+      <div class="stat"><b>21</b><span>раз «посмотри, пожалуйста»</span></div>
+      <div class="stat"><b>11</b><span>пингов «удалось посмотреть?»</span></div>
+      <div class="stat"><b>~60%</b><span>трафика — рутина</span></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head"><span class="num">01</span><div><h2>Как устроен поток</h2></div></div>
+    <div class="col">
+      <p>Чат работает как единое окно приёма юридических задач: менеджеры проектов (Авито × Grand, турнир Сбера, косплей БРИКС, МРП/Bidease, АНЗУ, MGCom) приносят договоры, допники и регламенты, а два-три человека — Александр как юрист и Настя по финансово-налоговой части — их разбирают.</p>
+      <p>Повторяется не только тема, но и <b>форма</b> обращения. Почти каждая задача проходит один и тот же цикл: файл → «посмотри, пожалуйста» → тишина → пинг → пинг с дедлайном → правки → «забрал, спасибо». Внутри этого цикла содержательной юридической работы — меньше половины сообщений.</p>
+      <p>Важное наблюдение: ИИ здесь уже используется — им сгенерирован протокол разногласий и внесены правки в режиме рецензирования. И там же видны обе типовые ошибки: ИИ не знал про действующее допсоглашение о маркировке и предложил конфликтующий пункт 4.3, а пункты протокола шли вразнобой относительно текста договора. Обе лечатся не «лучшей моделью», а контекстом и правилами.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="num">02</span><div><h2>Двенадцать повторяющихся запросов</h2></div></div>
+
+    <ol class="patterns">
+
+      <li>
+        <div class="rank">01</div>
+        <div>
+          <div class="p-head"><h3>Первичная вычитка документа</h3><span class="freq">21 обращение</span></div>
+          <div class="quotes">
+            <span>«Подрядчик отдал нам регламент, сможешь посмотреть, пожалуйста?»</span>
+            <span>«Доброе утро, глянь пожалуйста ещё допник от МРП»</span>
+          </div>
+          <p class="fix"><b>ИИ-сценарий:</b> загрузка файла в чат запускает автоматический риск-отчёт: отклонения от плейбука компании, отсутствующие обязательные пункты, конфликты с уже подписанными допниками по этому же контрагенту. Юрист получает не чистый документ, а размеченный черновик протокола разногласий — и правит, а не читает с нуля.</p>
+          <div class="tags"><span class="tag impact">эффект: максимальный</span><span class="tag effort">внедрение: среднее</span><span class="tag now">частично уже есть</span></div>
+        </div>
+      </li>
+
+      <li>
+        <div class="rank">02</div>
+        <div>
+          <div class="p-head"><h3>«Удалось посмотреть?» — пинги о статусе</h3><span class="freq">11+ сообщений, доходит до звонка</span></div>
+          <div class="quotes">
+            <span>«Я извиняюсь что дополнительно пингую, нам необходимо согласовать до 27.08»</span>
+            <span>«Подскажи, пожалуйста, ужасно горим»</span>
+            <span>«На всякий случай дублирую, вдруг в потоке сообщений потерялось»</span>
+          </div>
+          <p class="fix"><b>ИИ-сценарий:</b> самый шумный класс сообщений и при этом самый простой в автоматизации. Бот заводит задачу из сообщения с файлом и упоминанием, вытаскивает дедлайн прямо из текста («до 27.08», «нужен в четверг»), назначает исполнителя и напоминает сам. Отдельным сообщением — утренний дайджест «что на тебе сегодня».</p>
+          <div class="tags"><span class="tag impact">эффект: высокий</span><span class="tag effort">внедрение: лёгкое</span><span class="tag now">быстрая победа</span></div>
+        </div>
+      </li>
+
+      <li>
+        <div class="rank">03</div>
+        <div>
+          <div class="p-head"><h3>Рекламный сбор 3%: кто платит и с чего</h3><span class="freq">15 сообщений одной веткой</span></div>
+          <div class="quotes">
+            <span>«Сбор 3% мы платим как агентство только со своей прибыли или с комиссии?»</span>
+            <span>«Если в цепочке несколько услуговых договоров, платит тот, кто первый после рекламодателя»</span>
+          </div>
+          <p class="fix"><b>ИИ-сценарий:</b> вопрос разбирался вживую 20 минут и через месяц вернётся в том же виде. Это готовое дерево решений: тип договора (агентский / услуговый) × резидентство сторон × позиция в цепочке → кто платит и с какой базы. Ассистент отвечает по внутренней справке за секунды, спорные случаи эскалирует.</p>
+          <div class="tags"><span class="tag impact">эффект: высокий</span><span class="tag effort">внедрение: лёгкое</span><span class="tag now">быстрая победа</span></div>
+        </div>
+      </li>
+
+      <li>
+        <div class="rank">04</div>
+        <div>
+          <div class="p-head"><h3>Налоги на призовой фонд и выплаты</h3><span class="freq">13 сообщений</span></div>
+          <div class="quotes">
+            <span>«Нам нужно прописать все призовые сразу с налогом?»</span>
+            <span>«Приз составляет 114 943,00 и с них удерживаем налог, победитель получит 100 000»</span>
+          </div>
+          <p class="fix"><b>ИИ-сценарий:</b> связка «калькулятор + формулировка». Gross-up 13% считается автоматически по сумме на руки, а к нему подставляется утверждённая редакция пункта о награждении. Отдельный блок — нерезиденты: способ выплаты, валюта, самостоятельная уплата налога в своей стране. Ровно этот текст уже написан вручную 3 сентября — он должен стать шаблоном, а не разовым ответом.</p>
+          <div class="tags"><span class="tag impact">эффект: высокий</span><span class="tag effort">внедрение: лёгкое</span></div>
+        </div>
+      </li>
+
+      <li>
+        <div class="rank">05</div>
+        <div>
+          <div class="p-head"><h3>Стандартные коммерческие условия</h3><span class="freq">9 сообщений</span></div>
+          <div class="quotes">
+            <span>«Было: 5 рабочих дней. Стало: 5 календарных. Тебе ок с календарными?»</span>
+            <span>«Условия оплаты — оказанные услуги, а УПД — подтверждение оказанных услуг»</span>
+          </div>
+          <p class="fix"><b>ИИ-сценарий:</b> сроки выставления и рассмотрения УПД, рабочие против календарных дней, срок оплаты, приостановка услуг — конечный набор параметров. Плейбук-чекер сравнивает их с политикой компании и подсвечивает асимметрию («у них календарные, у нас рабочие») до того, как документ уйдёт на подпись.</p>
+          <div class="tags"><span class="tag impact">эффект: высокий</span><span class="tag effort">внедрение: среднее</span></div>
+        </div>
+      </li>
+
+      <li>
+        <div class="rank">06</div>
+        <div>
+          <div class="p-head"><h3>Ответственность, неустойки, права на креативы</h3><span class="freq">10 сообщений</span></div>
+          <div class="quotes">
+            <span>«п. 7.2.1 — не принимаем. п. 7.5 — не принимаем»</span>
+            <span>«Просьба предложить редакцию. Мы прописали, что ответственность наступает только при наличии вины»</span>
+          </div>
+          <p class="fix"><b>ИИ-сценарий:</b> спор идёт по одним и тем же пунктам от контрагента к контрагенту: кап 10%, зеркальная неустойка, реальный ущерб при доказанной вине, исключительная лицензия на креативы. Нужен позиционный плейбук: желаемая редакция → две запасные → красная линия → готовый аргумент. ИИ подбирает уровень отступления и сразу пишет ответ контрагенту.</p>
+          <div class="tags"><span class="tag impact">эффект: максимальный</span><span class="tag effort">внедрение: среднее</span></div>
+        </div>
+      </li>
+
+      <li>
+        <div class="rank">07</div>
+        <div>
+          <div class="p-head"><h3>«Не могу сформулировать, помоги»</h3><span class="freq">8 обращений</span></div>
+          <div class="quotes">
+            <span>«Нужно прописать два момента… не могу сформулировать, помоги, пожалуйста»</span>
+          </div>
+          <p class="fix"><b>ИИ-сценарий:</b> генератор формулировок поверх базы уже согласованных редакций компании — не «напиши юридический текст с нуля», а «найди, как мы это формулировали раньше, и адаптируй». Каждая принятая формулировка возвращается в базу.</p>
+          <div class="tags"><span class="tag impact">эффект: высокий</span><span class="tag effort">внедрение: лёгкое</span><span class="tag now">быстрая победа</span></div>
+        </div>
+      </li>
+
+      <li>
+        <div class="rank">08</div>
+        <div>
+          <div class="p-head"><h3>Обработка ответа контрагента</h3><span class="freq">2 крупные ветки</span></div>
+          <div class="quotes">
+            <span>«Посмотри пожалуйста комментарии юристов АНЗУ. Нужны твои комментарии»</span>
+            <span>«Смотрю, не совсем понимаю, зачем удалены важные пункты»</span>
+          </div>
+          <p class="fix"><b>ИИ-сценарий:</b> входящие комментарии контрагента раскладываются в таблицу «пункт → их позиция → наша позиция → аргумент → статус». Дальше это и трекер согласования, и черновик ответа. Сейчас всё это живёт в виде простыни текста в чате и собирается заново каждый раунд.</p>
+          <div class="tags"><span class="tag impact">эффект: высокий</span><span class="tag effort">внедрение: среднее</span></div>
+        </div>
+      </li>
+
+      <li>
+        <div class="rank">09</div>
+        <div>
+          <div class="p-head"><h3>Отзеркаливание условий back-to-back</h3><span class="freq">3 обращения, 1 крупный проект</span></div>
+          <div class="quotes">
+            <span>«Отзеркаль в договор с Grand все обязательства и условия, которые мы зафиксировали в договоре с Авито»</span>
+          </div>
+          <p class="fix"><b>ИИ-сценарий:</b> сравнение двух договоров по смыслу, а не по тексту: матрица обязательств «есть у клиента / есть у подрядчика / расхождение». Именно так и всплыли пропущенные пункты про номер заказа и про простой свыше 24 часов — но всплыли на втором круге, вручную.</p>
+          <div class="tags"><span class="tag impact">эффект: высокий</span><span class="tag effort">внедрение: среднее</span></div>
+        </div>
+      </li>
+
+      <li>
+        <div class="rank">10</div>
+        <div>
+          <div class="p-head"><h3>Маркировка рекламы и ЕРИР</h3><span class="freq">5 сообщений</span></div>
+          <div class="quotes">
+            <span>«Тут единственный вопрос — кто делает маркировку?»</span>
+            <span>«4.3 я удалил, т.к. маркировка у нас в ДС»</span>
+          </div>
+          <p class="fix"><b>ИИ-сценарий:</b> чек-лист «кто маркирует, кто подаёт в ЕРИР, где это зафиксировано» плюс автопроверка на конфликт договора с допсоглашением. Это ровно тот случай, где ИИ уже ошибся — потому что не видел ДС №1. Лечится доступом к папке действующих документов контрагента, а не переписыванием промпта.</p>
+          <div class="tags"><span class="tag impact">эффект: средний</span><span class="tag effort">внедрение: среднее</span></div>
+        </div>
+      </li>
+
+      <li>
+        <div class="rank">11</div>
+        <div>
+          <div class="p-head"><h3>Проверка ссылок на нормы</h3><span class="freq">2 ветки, обе с риском</span></div>
+          <div class="quotes">
+            <span>«Не смогли найти подтверждения, что в ст. 10.6 149-ФЗ есть часть 1.3. Можешь подтвердить или опровергнуть?»</span>
+          </div>
+          <p class="fix"><b>ИИ-сценарий:</b> валидатор ссылок: проверяет, существует ли норма в действующей редакции, и возвращает текст с датой редакции. Оговорка обязательна — здесь модели чаще всего галлюцинируют, поэтому ответ без ссылки на первоисточник считается неответом.</p>
+          <div class="tags"><span class="tag impact">эффект: средний</span><span class="tag effort">внедрение: среднее</span></div>
+        </div>
+      </li>
+
+      <li>
+        <div class="rank">12</div>
+        <div>
+          <div class="p-head"><h3>Логистика файлов и версий</h3><span class="freq">23 файла, PDF→Word, почта, «где взять»</span></div>
+          <div class="quotes">
+            <span>«Пдф можно в ворд вернуть, если надо»</span>
+            <span>«Где бы мне взять наш договор с MGCom?»</span>
+            <span>«Насть, кинь на почту, если удобно»</span>
+          </div>
+          <p class="fix"><b>ИИ-сценарий:</b> самая скучная и самая окупаемая часть. Автоконвертация PDF→Word, единое имя версии, папка по контрагенту, поиск по всему архиву договоров на естественном языке. Без этого слоя ни один из пунктов выше не работает: ИИ нечего читать, кроме того, что ему прислали в конкретном сообщении.</p>
+          <div class="tags"><span class="tag impact">эффект: фундамент</span><span class="tag effort">внедрение: среднее</span></div>
+        </div>
+      </li>
+
+    </ol>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="num">03</span><div><h2>Приоритеты</h2></div></div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Что делаем</th><th>Частота в окне</th><th>Экономия</th><th>Сложность</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="dot hi"></span>Трекер задач и дедлайнов из чата</td><td class="n">11+</td><td>снимает пинги и звонки</td><td class="n">низкая</td></tr>
+          <tr><td><span class="dot hi"></span>Справочник по 3% и налогам с призов</td><td class="n">28</td><td>~1 ч диалогов на случай</td><td class="n">низкая</td></tr>
+          <tr><td><span class="dot hi"></span>База согласованных формулировок</td><td class="n">8</td><td>минуты вместо часа</td><td class="n">низкая</td></tr>
+          <tr><td><span class="dot mid"></span>Плейбук + авто-протокол разногласий</td><td class="n">21</td><td>половина времени вычитки</td><td class="n">средняя</td></tr>
+          <tr><td><span class="dot mid"></span>Индекс документов и поиск по архиву</td><td class="n">23</td><td>условие работы всего остального</td><td class="n">средняя</td></tr>
+          <tr><td><span class="dot mid"></span>Матрица back-to-back для зеркальных договоров</td><td class="n">3</td><td>снимает второй круг правок</td><td class="n">средняя</td></tr>
+          <tr><td><span class="dot lo"></span>Валидатор ссылок на НПА</td><td class="n">2</td><td>снижает риск, не время</td><td class="n">средняя</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="num">04</span><div><h2>Три волны</h2></div></div>
+    <div class="waves">
+      <div class="wave">
+        <div class="when">Волна 1 · 1–2 недели</div>
+        <h3>Убрать шум</h3>
+        <ul>
+          <li>Бот-трекер: задача из сообщения с файлом, дедлайн из текста, напоминания</li>
+          <li>FAQ-справочник: 3%, налог с призов, gross-up</li>
+          <li>Библиотека формулировок — начать с тех, что уже написаны в этом чате</li>
+        </ul>
+      </div>
+      <div class="wave">
+        <div class="when">Волна 2 · 1–2 месяца</div>
+        <h3>Ускорить вычитку</h3>
+        <ul>
+          <li>Архив договоров с поиском и папкой по контрагенту</li>
+          <li>Плейбук позиций: желаемая редакция, две запасные, красная линия</li>
+          <li>Авто-протокол разногласий строго по порядку пунктов договора</li>
+        </ul>
+      </div>
+      <div class="wave">
+        <div class="when">Волна 3 · дальше</div>
+        <h3>Закрыть круг</h3>
+        <ul>
+          <li>Матрица back-to-back между клиентским и подрядным договором</li>
+          <li>Таблица позиций и черновик ответа контрагенту</li>
+          <li>Валидатор ссылок на нормы с обязательным первоисточником</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="num">05</span><div><h2>Что учесть, чтобы это работало</h2></div></div>
+    <ul class="risk-list col">
+      <li><b>Контекст важнее модели.</b> Ошибка с пунктом 4.3 случилась не из-за качества генерации, а из-за того, что ИИ не видел допсоглашение. Пока нет архива действующих документов по контрагенту, любой автоматический разбор будет предлагать конфликтующие правки.</li>
+      <li><b>Правила оформления фиксируются один раз.</b> Замечание про порядок пунктов в протоколе разногласий — это не разовая правка, а постоянное правило вывода. Такие правила должны жить в одном месте и применяться ко всем документам.</li>
+      <li><b>Человек остаётся на выходе.</b> Всё, что касается ссылок на нормы, налоговых сумм и красных линий по ответственности, показывается юристу с источником и уходит контрагенту только после его подтверждения.</li>
+      <li><b>Конфиденциальность.</b> Договоры с Авито, Сбером, МРП — коммерческая тайна: нужен контур, где документы не уходят в общедоступные сервисы.</li>
+    </ul>
+  </section>
+
+  <div class="note col">
+    <b>Об охвате данных.</b> Из этого аккаунта в чате доступна переписка только с 26 августа 2026 года — это 190 сообщений до 3 сентября включительно; более ранняя история группе не отдаётся (Telegram упирается в начало доступного окна и при переходе к любой прошлой дате возвращает к 26 августа). Все цифры и выводы выше относятся к этому окну. Если открыть полную историю — например, экспортом из десктопного Telegram, — частоты можно пересчитать на выборке в несколько тысяч сообщений и приоритеты, вероятно, немного сдвинутся.
+  </div>
+
+  <footer>Разбор чата «Юр.док.Cybernetica» · окно 26.08–03.09.2026 · 190 сообщений</footer>
+
+</div>
