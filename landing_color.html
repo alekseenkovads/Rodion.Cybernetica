@@ -454,7 +454,7 @@
     <a href="#analytics">ИССЛЕДОВАНИЯ</a>
   </div>
   <a class="nav-cta" href="#contact">НАПИСАТЬ НАМ</a>
-  <div class="proto-tag"><span class="pt-full">черновик · </span>v28<span class="pt-full"> · colour</span></div>
+  <div class="proto-tag"><span class="pt-full">черновик · </span>v29<span class="pt-full"> · colour</span></div>
 </nav>
 
 <main>
@@ -1565,7 +1565,7 @@ requestAnimationFrame(frame);
     iVit.style.opacity = '0';
     iVit.style.filter = 'blur(10px)';
     iVit.style.transform = 'translate(-50%, -50%) scale(1.04)';
-  }, 3900));
+  }, 4900));
 
   // 5) логотип проявляется уже на своём месте в шапке — там и остаётся
   timers.push(setTimeout(() => {
@@ -1573,11 +1573,11 @@ requestAnimationFrame(frame);
     intro.style.display = 'none';
     navLogo.classList.remove('hidden');   // transition в CSS даёт плавное проявление
     navBar.classList.remove('intro-hold');
-  }, 4650));
+  }, 5650));
   flyEls.forEach((el, i) => {
-    timers.push(setTimeout(() => { if (!done) el.classList.add('in'); }, 4750 + i * 260));
+    timers.push(setTimeout(() => { if (!done) el.classList.add('in'); }, 5750 + i * 260));
   });
-  timers.push(setTimeout(finish, 4750 + flyEls.length * 260 + 1300));
+  timers.push(setTimeout(finish, 5750 + flyEls.length * 260 + 1300));
 })();
 
 /* ---------- появление секций ---------- */
