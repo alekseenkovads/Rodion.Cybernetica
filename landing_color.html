@@ -443,6 +443,13 @@
     background: var(--bg); border: 1px solid var(--accent-soft);
     text-align: center; position: relative;
   }
+  /* В модалке ширина контента 390 px — поле (320) и кнопка (207) в строку
+     не помещались и разъезжались по двум строкам с разной шириной.
+     Здесь форма всегда в столбик, как на телефоне. */
+  .modal-box .email-row { flex-direction: column; align-items: stretch; gap: 10px; margin-top: 30px; }
+  .modal-box .email-row input[type="email"] { width: 100%; border-right: 1px solid rgba(255,255,255,0.35); }
+  .modal-box .email-row button[type="submit"] { width: 100%; padding: 15px 0; }
+  .modal-box .consent { margin-top: 6px; }
   .modal-box h2 { font-size: 29px; letter-spacing: 0.04em; margin-bottom: 18px; }
   .modal-box p { font-weight: 300; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.75); margin-bottom: 28px; }
   .modal-close {
@@ -544,7 +551,7 @@
     <a href="#analytics">ИССЛЕДОВАНИЯ</a>
   </div>
   <a class="nav-cta" href="#contact">НАПИСАТЬ НАМ</a>
-  <div class="proto-tag" hidden><span class="pt-full">черновик · </span>v33<span class="pt-full"> · colour</span></div>
+  <div class="proto-tag" hidden><span class="pt-full">черновик · </span>v34<span class="pt-full"> · colour</span></div>
 </nav>
 
 <main>
@@ -1419,7 +1426,14 @@ document.getElementById('modal').addEventListener('click', e => {
 /* ---------- панель для тестирования ----------
    Включается только адресом с ?test. Без неё пасхалка остаётся на месте —
    просто звезду надо найти самому, как и задумано. */
-const TEST_MODE = /[?&]test\b/.test(location.search);
+/* Панель с часами и ×10 нужна только при проверке.
+   Включается сама, когда файл открыт локально (file:// или localhost) —
+   то есть всегда, когда мы смотрим черновик у себя.
+   На боевом адресе её нет; чтобы вызвать там, достаточно дописать ?test
+   в конец адреса: .../landing_color.html?test */
+const TEST_MODE = /[?&]test\b/.test(location.search) || location.hash === '#test'
+  || location.protocol === 'file:'
+  || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
 const demoPanel = document.getElementById('demo');
 let clockEl = null;
 if (TEST_MODE) {
